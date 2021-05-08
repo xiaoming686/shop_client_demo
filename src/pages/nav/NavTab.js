@@ -7,7 +7,8 @@ import OrderScreen from '../order/OrderScreen';
 import MessageScreen from '../message/MessageScreen';
 import MyScreen from '../my/MyScreen';
 import MyDetail from '../my/MyDetail';
-
+import I18n from '../../utils/languages/languages'
+//93行类比更改语言，跟随系统语言切换
 const Tab = createBottomTabNavigator();
 const TabStack = createStackNavigator();
 
@@ -89,7 +90,7 @@ export default function Navigation() {
         name="order"
         component={OrderNavigator}
         options={{
-          title: '订单',
+          title: I18n.t('order'),
           headerMode: 'none',
           tabBarIcon: ({ focused, horizontal, tintColor }) => {
             tintColor = 'red';
