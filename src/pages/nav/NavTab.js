@@ -2,9 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { View, Text, Image, Dimensions } from 'react-native'
-import ShopScreen from '../shop/ShopScreen';
 import OrderScreen from '../order/OrderScreen';
-import MessageScreen from '../message/MessageScreen';
 import MyScreen from '../my/MyScreen';
 import MyDetail from '../my/MyDetail';
 import I18n from '../../utils/languages/languages'
@@ -20,38 +18,6 @@ function OrderNavigator() {
         component={OrderScreen}
         options={{
           headerShown:false,
-        }}
-      />
-    </TabStack.Navigator>
-  );
-}
-
-function ShopNavigator() {
-  return (
-    <TabStack.Navigator>
-      <TabStack.Screen
-        name="Shop"
-        component={ShopScreen}
-        options={{
-          headerTitle: '店铺',
-          headerLeft: null,
-          headerTitleAlign: 'center',
-        }}
-      />
-    </TabStack.Navigator>
-  );
-}
-
-function MessageNavigator() {
-  return (
-    <TabStack.Navigator>
-      <TabStack.Screen
-        name="Message"
-        component={MessageScreen}
-        options={{
-          headerTitle: '消息',
-          headerLeft: null,
-          headerTitleAlign: 'center',
         }}
       />
     </TabStack.Navigator>
@@ -106,45 +72,6 @@ export default function Navigation() {
           }
         }}
       />
-      <Tab.Screen
-        name="message"
-        component={MessageNavigator}
-        options={{
-          title: '消息',
-          tabBarIcon: ({ focused, horizontal, tintColor }) => {
-            tintColor = 'red';
-            return (
-              <Image
-                style={{ width: 25, height: 25 }}
-                source={
-                  focused
-                    ? require('../../assets/images/png/msg.png')
-                    : require('../../assets/images/png/msg.png')
-                }></Image>
-            );
-          }
-        }}
-      />
-      <Tab.Screen
-        name="school"
-        component={ShopNavigator}
-        options={{
-          title: '店铺',
-          tabBarIcon: ({ focused, horizontal, tintColor }) => {
-            tintColor = 'red';
-            return (
-              <Image
-                style={{ width: 25, height: 25 }}
-                source={
-                  focused
-                    ? require('../../assets/images/png/shopcard.png')
-                    : require('../../assets/images/png/shopcard.png')
-                }></Image>
-            );
-          }
-        }}
-      />
-
       <Tab.Screen
         name="my"
         component={MyNavigator}
