@@ -6,6 +6,7 @@ const Tab = createMaterialTopTabNavigator();
 
 export default function OtherOrder() {
   return (
+    {/* 1-颈部tab栏 */}
     <Tab.Navigator tabBarOptions={{
       showLabel: true,
       activeTintColor: '#FFFFFF',
@@ -30,7 +31,7 @@ export default function OtherOrder() {
     </Tab.Navigator>
   );
 }
-// 1-进行中
+// 1-1进行中组件
 class DoingOrder extends Component {
   render() {
     return (
@@ -56,7 +57,7 @@ class DoingOrder extends Component {
     )
   }
 }
-// 2-预定单
+// 1-2-预定单组件
 class ReservedOrder extends Component {
   render() {
     return (
@@ -86,7 +87,7 @@ class ReservedOrder extends Component {
     )
   }
 }
-// 2-1即将到时
+// 1-2-1即将到时组件
 class ReservedSoonOrder extends Component {
   render() {
     return (
@@ -112,7 +113,7 @@ class ReservedSoonOrder extends Component {
     )
   }
 }
-// 2-2今日
+// 1-2-2今日组件
 class ReservedTodayOrder extends Component {
   render() {
     return (
@@ -138,7 +139,7 @@ class ReservedTodayOrder extends Component {
     )
   }
 }
-// 2-3明日
+// 1-2-3明日组件
 class ReservedTomorrowOrder extends Component {
   render() {
     return (
@@ -164,7 +165,7 @@ class ReservedTomorrowOrder extends Component {
     )
   }
 }
-// 3-取消单
+// 1-3-取消单组件
 class CancelOrder extends Component {
   render() {
     return (

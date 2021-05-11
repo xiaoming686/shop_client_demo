@@ -10,6 +10,7 @@ import I18n from '../../utils/languages/languages'
 const Tab = createBottomTabNavigator();
 const TabStack = createStackNavigator();
 
+// tab中订单组件
 function OrderNavigator() {
   return (
     <TabStack.Navigator>
@@ -17,13 +18,13 @@ function OrderNavigator() {
         name="Order"
         component={OrderScreen}
         options={{
-          headerShown:false,
+          headerShown: false,
         }}
       />
     </TabStack.Navigator>
   );
 }
-
+// tab中我的组件
 function MyNavigator() {
   return (
     <TabStack.Navigator>
@@ -49,6 +50,7 @@ function MyNavigator() {
   );
 }
 
+// 底部tab栏
 export default function Navigation() {
   return (
     <Tab.Navigator>

@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import { View, Text, Button, ViewComponent } from 'react-native'
+import { View, Text, Button,Image, ViewComponent } from 'react-native'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 const Tab = createMaterialTopTabNavigator();
 
 export default function TakeOutOrder() {
   return (
+    {/* 1-颈部tab栏 */}
     <Tab.Navigator tabBarOptions={{
       showLabel: true,
       activeTintColor: '#FFFFFF',
@@ -30,7 +31,7 @@ export default function TakeOutOrder() {
     </Tab.Navigator>
   );
 }
-
+// 1-1进行中组件
 class DoingOrder extends Component {
   render() {
     return (
@@ -56,7 +57,7 @@ class DoingOrder extends Component {
     )
   }
 }
-
+// 1-2预定单组件
 class ReservedOrder extends Component {
   render() {
     return (
@@ -82,7 +83,7 @@ class ReservedOrder extends Component {
     )
   }
 }
-
+// 1-3退款组件
 class Refund extends Component {
   render() {
     return (

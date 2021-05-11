@@ -39,6 +39,7 @@ export default class LoginScreen extends Component {
     }
     this.setState({ password });
   }
+  /* 6-1-登录验证并跳转 */
   submit = () => {
     this.props.navigation.navigate('NavTab')
   }
