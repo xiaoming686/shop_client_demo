@@ -47,7 +47,7 @@ export default class LoginScreen extends Component {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         {/* 1-吉祥物图片 */}
-        <View><Image style={{ marginTop:40,width: 100, height: 100, resizeMode: 'contain' }} source={require('../../assets/images/png/dl_zhujixiangwu.png')} /></View>
+        <Image style={{ marginTop:40,width: 100, height: 100, resizeMode: 'contain' }} source={require('../../assets/images/png/dl_zhujixiangwu.png')} />
         {/* 2-邮箱输入 */}
         <View style={{ borderRadius: 10, height: 50, width: '80%', backgroundColor: '#FFFFFF', flexDirection: 'row', marginTop: 40, alignItems: 'center', }}>
           <Image style={{ marginLeft: 20, width: 20, height: 20, resizeMode: 'contain' }} source={require('../../assets/images/png/email.png')} />

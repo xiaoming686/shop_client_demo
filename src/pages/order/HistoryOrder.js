@@ -4,8 +4,8 @@ import { View,Text,Button } from 'react-native'
 export default class HistoryOrder extends Component {
   render() {
     return (
-      <View style={{ backgroundColor: '#F8F8F9' }}>
-      {/* 1-遍历订单 */}
+      <View>
+      {/* 1-需要遍历历史订单 */}
       <View style={{ margin: 20, padding: 10, backgroundColor: '#FFFFFF' }}>
         <View style={{ flexDirection: 'row', }}>
           <Text style={{ fontSize: 24 }}>A8554</Text>

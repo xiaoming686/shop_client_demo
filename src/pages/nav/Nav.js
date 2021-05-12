@@ -8,7 +8,8 @@ import PhoneRegisterScreen from '../login/PhoneRegisterScreen'
 import ForgetScreen from '../login/ForgetScreen'
 import LanguageScreen from '../login/LanguageScreen'
 import NavTab from './NavTab'
-import DetailScreen from '../details/DetailScreen'
+import SearchOrder from '../order/SearchOrder'
+import OrderDetail from '../orderDetail/OrderDetail'
 
 const Stack = createStackNavigator();
 function Nav() {
@@ -50,11 +51,15 @@ function Nav() {
         options={{ title: '首页', headerShown: false }}
       />
       <Stack.Screen
-        name="Detail"
-        component={DetailScreen}
-        options={({ route, navigation }) => ({
-          title: route.params.screenName,
-        })}
+        name="Search"
+        component={SearchOrder}
+        options={{ title: '搜索', headerShown: true }}
+      />
+      {/* 订单详情根据不同的详情决定组件个数 */}
+      <Stack.Screen
+        name="OrderDetail"
+        component={OrderDetail}
+        options={{ title: '订单详情', headerShown: true }}
       />
     </Stack.Navigator>
   );
