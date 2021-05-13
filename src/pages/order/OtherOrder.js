@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { View, Text, Button, TouchableOpacity } from 'react-native'
+import { View, Text, Button, TouchableOpacity, ScrollView } from 'react-native'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import OtherOrderItem from '../../components/OtherOrderItem'
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -32,27 +33,22 @@ export default function OtherOrder() {
 }
 // 1-1进行中组件
 class DoingOrder extends Component {
+  state = {
+    doingorder: [{ a: 1, b: 2 }, { a: 3, b: 4 }, { a: 5, b: 4 }, { a: 7, b: 4 }]
+  }
   render() {
     return (
-      <View>
-        {/* 1-需要遍历其他单进行中的订单 */}
-        <TouchableOpacity onPress={() => { this.props.navigation.navigate('OrderDetail') }} style={{ margin: 20, padding: 10, backgroundColor: '#FFFFFF', borderRadius: 20 }}>
-          <View style={{ flexDirection: 'row', }}>
-            <Text style={{ fontSize: 22 }}>取餐号A8554</Text>
-            <View style={{ flexDirection: 'row', width: '50%', justifyContent: 'space-between', marginTop: 8, marginLeft: 10 }}>
-              <Text style={{ color: '#5D5757' }}>桌号：58</Text>
-              <Text style={{ color: 'green', }}>外带</Text>
-            </View>
-          </View>
-          <View style={{ marginTop: 10, marginBottom: 10, paddingTop: 20, paddingBottom: 20, borderTopWidth: 1, borderStyle: 'dotted' }}>
-            <Text style={{ textAlign: 'center', fontSize: 16 }}>备注：麻烦师傅不要给我放辣椒我很怕辣，也不要放蒜，也不要放洋葱.</Text>
-          </View>
-          <View style={{ flexDirection: 'row-reverse', }}>
-            <View style={{ width: 60, borderRadius: 10, overflow: 'hidden' }}><Button title="完成" color="#00CB88"></Button></View>
-            <View style={{ width: 60, marginRight: 20, borderRadius: 10, overflow: 'hidden' }}><Button title="提醒" color="#5FA6EE"></Button></View>
-          </View>
-        </TouchableOpacity>
-      </View>
+      <ScrollView>
+        {
+          this.state.doingorder.map((item) => {
+            return (
+              <View>
+                <OtherOrderItem props={this.props} num={item.a}></OtherOrderItem>
+              </View>
+            )
+          })
+        }
+      </ScrollView>
     )
   }
 }
@@ -63,126 +59,104 @@ class ReservedOrder extends Component {
   }
   render() {
     return (
-      <View>
+      <ScrollView>
         <View style={{ marginTop: 20, flexDirection: 'row', justifyContent: 'space-around' }}>
-          <TouchableOpacity style={{ padding: 5, paddingLeft: 10, paddingRight: 10, borderRadius: 10, backgroundColor: this.state.active == 1 ? 'gray' : 'transparent' }} onPress={() => { this.setState({ active: 1 }) }}>
+          <TouchableOpacity style={{ padding: 5, paddingLeft: 10, paddingRight: 10, borderRadius: 10, backgroundColor: this.state.active == 1 ? '#e5e4e4' : 'transparent' }} onPress={() => { this.setState({ active: 1 }) }}>
             <Text>即将到时</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={{ padding: 5, paddingLeft: 10, paddingRight: 10, borderRadius: 10, backgroundColor: this.state.active == 2 ? 'gray' : 'transparent' }} onPress={() => { this.setState({ active: 2 }) }}>
+          <TouchableOpacity style={{ padding: 5, paddingLeft: 10, paddingRight: 10, borderRadius: 10, backgroundColor: this.state.active == 2 ? '#e5e4e4' : 'transparent' }} onPress={() => { this.setState({ active: 2 }) }}>
             <Text>今日</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={{ padding: 5, paddingLeft: 10, paddingRight: 10, borderRadius: 10, backgroundColor: this.state.active == 3 ? 'gray' : 'transparent' }} onPress={() => { this.setState({ active: 3 }) }}>
+          <TouchableOpacity style={{ padding: 5, paddingLeft: 10, paddingRight: 10, borderRadius: 10, backgroundColor: this.state.active == 3 ? '#e5e4e4' : 'transparent' }} onPress={() => { this.setState({ active: 3 }) }}>
             <Text>明日</Text>
           </TouchableOpacity>
         </View>
         <View>
           {this.state.active == 1 ? <ReservedSoonOrder props={this.props}></ReservedSoonOrder> : this.state.active == 2 ? <ReservedTodayOrder props={this.props}></ReservedTodayOrder> : <ReservedTomorrowOrder props={this.props}></ReservedTomorrowOrder>}
         </View>
-      </View>
+      </ScrollView>
     )
   }
 }
 // 1-2-1即将到时组件
 class ReservedSoonOrder extends Component {
+  state = {
+    reservedsoonorder: [{ a: 1, b: 2 }, { a: 3, b: 4 }, { a: 5, b: 4 }, { a: 7, b: 4 }]
+  }
   render() {
     return (
       <View>
-        {/* 1-需要遍历其他单即将到时的订单 */}
-        <TouchableOpacity onPress={() => { this.props.props.navigation.navigate('OrderDetail') }} style={{ margin: 20, padding: 10, backgroundColor: '#FFFFFF', borderRadius: 20 }}>
-          <View style={{ flexDirection: 'row', }}>
-            <Text style={{ fontSize: 24 }}>A8554</Text>
-            <View style={{ flexDirection: 'row', width: '65%', justifyContent: 'space-between', marginTop: 8, marginLeft: 10 }}>
-              <Text style={{ color: '#5D5757' }}>桌号：58</Text>
-              <Text style={{ color: 'green', }}>外带</Text>
-            </View>
-          </View>
-          <View style={{ marginTop: 10, marginBottom: 10, paddingTop: 20, paddingBottom: 20, borderTopWidth: 1, borderStyle: 'dotted' }}>
-            <Text style={{ textAlign: 'center', fontSize: 16 }}>备注：麻烦师傅不要给我放辣椒我很怕辣，也不要放蒜，也不要放洋葱.</Text>
-          </View>
-          <View style={{ flexDirection: 'row-reverse', }}>
-            <View style={{ width: 60, borderRadius: 10, overflow: 'hidden' }}><Button title="完成" color="#00CB88"></Button></View>
-            <View style={{ width: 60, marginRight: 20, borderRadius: 10, overflow: 'hidden' }}><Button title="提醒" color="#5FA6EE"></Button></View>
-          </View>
-        </TouchableOpacity>
+        {
+          this.state.reservedsoonorder.map((item) => {
+            return (
+              <View>
+                <OtherOrderItem props={this.props.props} num={item.a}></OtherOrderItem>
+              </View>
+            )
+          })
+        }
       </View>
     )
   }
 }
 // 1-2-2今日组件
 class ReservedTodayOrder extends Component {
+  state = {
+    reservedtodayorder: [{ a: 1, b: 2 }, { a: 3, b: 4 }, { a: 5, b: 4 }, { a: 7, b: 4 }]
+  }
   render() {
     return (
       <View>
-        {/* 1-需要遍历其他单今日的订单 */}
-        <TouchableOpacity onPress={() => { this.props.props.navigation.navigate('OrderDetail') }} style={{ margin: 20, padding: 10, backgroundColor: '#FFFFFF', borderRadius: 20 }}>
-          <View style={{ flexDirection: 'row', }}>
-            <Text style={{ fontSize: 24 }}>A8554</Text>
-            <View style={{ flexDirection: 'row', width: '65%', justifyContent: 'space-between', marginTop: 8, marginLeft: 10 }}>
-              <Text style={{ color: '#5D5757' }}>桌号：5888</Text>
-              <Text style={{ color: 'green', }}>外带</Text>
-            </View>
-          </View>
-          <View style={{ marginTop: 10, marginBottom: 10, paddingTop: 20, paddingBottom: 20, borderTopWidth: 1, borderStyle: 'dotted' }}>
-            <Text style={{ textAlign: 'center', fontSize: 16 }}>备注：麻烦师傅不要给我放辣椒我很怕辣，也不要放蒜，也不要放洋葱.</Text>
-          </View>
-          <View style={{ flexDirection: 'row-reverse', }}>
-            <View style={{ width: 60, borderRadius: 10, overflow: 'hidden' }}><Button title="完成" color="#00CB88"></Button></View>
-            <View style={{ width: 60, marginRight: 20, borderRadius: 10, overflow: 'hidden' }}><Button title="提醒" color="#5FA6EE"></Button></View>
-          </View>
-        </TouchableOpacity>
+        {
+          this.state.reservedtodayorder.map((item) => {
+            return (
+              <View>
+                <OtherOrderItem props={this.props.props} num={item.a} byself={true}></OtherOrderItem>
+              </View>
+            )
+          })
+        }
       </View>
     )
   }
 }
 // 1-2-3明日组件
 class ReservedTomorrowOrder extends Component {
+  state = {
+    reservedtomorroworder: [{ a: 1, b: 2 }, { a: 3, b: 4 }, { a: 5, b: 4 }, { a: 7, b: 4 }]
+  }
   render() {
     return (
       <View>
-        {/* 1-需要遍历其他单明日的订单 */}
-        <TouchableOpacity onPress={() => { this.props.props.navigation.navigate('OrderDetail') }} style={{ margin: 20, padding: 10, backgroundColor: '#FFFFFF', borderRadius: 20 }}>
-          <View style={{ flexDirection: 'row', }}>
-            <Text style={{ fontSize: 24 }}>A8554</Text>
-            <View style={{ flexDirection: 'row', width: '65%', justifyContent: 'space-between', marginTop: 8, marginLeft: 10 }}>
-              <Text style={{ color: '#5D5757' }}>桌号：5899</Text>
-              <Text style={{ color: 'green', }}>外带</Text>
-            </View>
-          </View>
-          <View style={{ marginTop: 10, marginBottom: 10, paddingTop: 20, paddingBottom: 20, borderTopWidth: 1, borderStyle: 'dotted' }}>
-            <Text style={{ textAlign: 'center', fontSize: 16 }}>备注：麻烦师傅不要给我放辣椒我很怕辣，也不要放蒜，也不要放洋葱.</Text>
-          </View>
-          <View style={{ flexDirection: 'row-reverse', }}>
-            <View style={{ width: 60, borderRadius: 10, overflow: 'hidden' }}><Button title="完成" color="#00CB88"></Button></View>
-            <View style={{ width: 60, marginRight: 20, borderRadius: 10, overflow: 'hidden' }}><Button title="提醒" color="#5FA6EE"></Button></View>
-          </View>
-        </TouchableOpacity>
+        {
+          this.state.reservedtomorroworder.map((item) => {
+            return (
+              <OtherOrderItem props={this.props.props} num={item.a} cancel={false} tomorrow={item.b} byself={true}></OtherOrderItem>
+            )
+          })
+        }
       </View>
     )
   }
 }
 // 1-3-取消单组件
 class CancelOrder extends Component {
+  state = {
+    cancelorder: [{ a: 1, b: 2 }, { a: 3, b: 4 }, { a: 5, b: 4 }, { a: 7, b: 4 }]
+  }
   render() {
     return (
-      <View>
-        {/* 1-需要遍历其他单取消的订单 */}
-        <View style={{ margin: 20, padding: 10, backgroundColor: '#FFFFFF' }}>
-          <View style={{ flexDirection: 'row', }}>
-            <Text style={{ fontSize: 24 }}>A8554</Text>
-            <View style={{ flexDirection: 'row', width: '65%', justifyContent: 'space-between', marginTop: 8, marginLeft: 10 }}>
-              <Text style={{ color: '#5D5757' }}>桌号：58</Text>
-              <Text style={{ color: 'green', }}>外带</Text>
-            </View>
-          </View>
-          <View style={{ marginTop: 10, marginBottom: 10, paddingTop: 20, paddingBottom: 20, borderTopWidth: 1, borderStyle: 'dotted' }}>
-            <Text style={{ textAlign: 'center', fontSize: 16 }}>备注：麻烦师傅不要给我放辣椒我很怕辣，也不要放蒜，也不要放洋葱.</Text>
-          </View>
-          <View style={{ flexDirection: 'row-reverse', }}>
-            <View style={{ width: 60, borderRadius: 10, overflow: 'hidden' }}><Button title="完成" color="#00CB88"></Button></View>
-            <View style={{ width: 60, marginRight: 20, borderRadius: 10, overflow: 'hidden' }}><Button title="提醒" color="#5FA6EE"></Button></View>
-          </View>
-        </View>
-      </View>
+      <ScrollView>
+        {
+          this.state.cancelorder.map((item) => {
+            return (
+              <View>
+                <OtherOrderItem props={this.props} num={item.a} tomorrow={true} cancel={item.b}></OtherOrderItem>
+              </View>
+            )
+          })
+        }
+      </ScrollView>
     )
   }
 }
