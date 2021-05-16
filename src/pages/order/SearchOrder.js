@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text,TextInput, Button, Image, StyleSheet,ScrollView,TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, Button, Image, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 
 //待完善
 export default class SearchOrder extends Component {
@@ -115,7 +115,7 @@ export default class SearchOrder extends Component {
                 {/*监听页面，刷新搜索本地历史历史*/}
                 <View style={styles.inputBox}>
                     <View style={styles.inputIcon}>
-                        <Image source={require('../../assets/images/png/search.png')} />
+                        <Image style={{ width: 20, height: 20 }} source={require('../../assets/images/png/search.png')} />
                     </View>
                     <TextInput style={styles.inputText}
                         autoCapitalize="none"
@@ -151,7 +151,7 @@ export default class SearchOrder extends Component {
                             <View style={styles.head1}>
                                 <Text style={{ fontSize: 14, color: "#333" }}>{"历史搜索"}</Text>
                                 <TouchableOpacity activeOpacity={0.3} onPress={() => this._deleteHistory()}>
-                                    <Image source={require('../../assets/images/png/search.png')} />
+                                    <Image style={{ width: 20, height: 20 }} source={require('../../assets/images/png/search.png')} />
                                 </TouchableOpacity>
                             </View>
                             {

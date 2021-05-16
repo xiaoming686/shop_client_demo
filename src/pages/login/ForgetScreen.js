@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, TextInput, Image } from 'react-native';
-import BouncyCheckbox from "react-native-bouncy-checkbox";
 
 export default class ForgetScreen extends Component {
   render() {

@@ -10,9 +10,11 @@ export default class App extends Component {
     return (
       <NavigationContainer>
         <StatusBar
-          backgroundColor="black"
+          backgroundColor="transparent"
+          barStyle="dark-content"
           translucent={true}
-          animated={true}></StatusBar>
+          animated={true}>
+        </StatusBar>
         <Nav />
       </NavigationContainer>
     )

@@ -9,7 +9,9 @@ import ForgetScreen from '../login/ForgetScreen'
 import LanguageScreen from '../login/LanguageScreen'
 import NavTab from './NavTab'
 import SearchOrder from '../order/SearchOrder'
-import OrderDetail from '../orderDetail/OrderDetail'
+import OtherOrderDetail from '../orderDetail/OtherOrderDetail'
+import TakeoutOrderDetail from '../orderDetail/TakeoutOrderDetail'
+
 
 const Stack = createStackNavigator();
 function Nav() {
@@ -57,9 +59,14 @@ function Nav() {
       />
       {/* 订单详情根据不同的详情决定组件个数 */}
       <Stack.Screen
-        name="OrderDetail"
-        component={OrderDetail}
-        options={{ title: '订单详情', headerShown: true }}
+        name="OtherOrderDetail"
+        component={OtherOrderDetail}
+        options={{ title: '其他订单详情', headerShown: false }}
+      />
+      <Stack.Screen
+        name="TakeoutOrderDetail"
+        component={TakeoutOrderDetail}
+        options={{ title: '外卖订单详情', headerShown: false }}
       />
     </Stack.Navigator>
   );

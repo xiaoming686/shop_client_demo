@@ -4,51 +4,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { View, Text, Image, Dimensions } from 'react-native'
 import OrderScreen from '../order/OrderScreen';
 import MyScreen from '../my/MyScreen';
-import MyDetail from '../my/MyDetail';
 import I18n from '../../utils/languages/languages'
 //93行类比更改语言，跟随系统语言切换
 const Tab = createBottomTabNavigator();
 const TabStack = createStackNavigator();
-
-// tab中订单组件
-function OrderNavigator() {
-  return (
-    <TabStack.Navigator>
-      <TabStack.Screen
-        name="Order"
-        component={OrderScreen}
-        options={{
-          headerShown: false,
-        }}
-      />
-    </TabStack.Navigator>
-  );
-}
-// tab中我的组件
-function MyNavigator() {
-  return (
-    <TabStack.Navigator>
-      <TabStack.Screen
-        name="My"
-        component={MyScreen}
-        options={{
-          headerTitle: '我的',
-          headerLeft: null,
-          headerTitleAlign: 'center',
-        }}
-      />
-      <TabStack.Screen
-        name="MyDetail"
-        component={MyDetail}
-        options={{
-          headerTitle: '我的详情',
-          headerLeft: null,
-          headerTitleAlign: 'center',
-        }}
-      />
-    </TabStack.Navigator>
-  );
-}
 
 // 底部tab栏
 export default function Navigation() {
@@ -56,7 +15,7 @@ export default function Navigation() {
     <Tab.Navigator>
       <Tab.Screen
         name="order"
-        component={OrderNavigator}
+        component={OrderScreen}
         options={{
           title: I18n.t('order'),
           headerMode: 'none',
@@ -76,7 +35,7 @@ export default function Navigation() {
       />
       <Tab.Screen
         name="my"
-        component={MyNavigator}
+        component={MyScreen}
         options={{
           title: '我的',
           tabBarIcon: ({ focused, horizontal, tintColor }) => {
