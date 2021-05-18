@@ -12,7 +12,7 @@ const TabStack = createStackNavigator();
 // 底部tab栏
 export default function Navigation() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator backBehavior='none' initialRouteName='order'>
       <Tab.Screen
         name="order"
         component={OrderScreen}

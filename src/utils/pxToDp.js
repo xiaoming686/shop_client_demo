@@ -8,3 +8,4 @@ export const screenHeight = Dimensions.get('window').height;
 
 // px转dp  设计稿为dp时不用转换
 export const pxToDp = (elePx) => screenWidth * elePx / 375;
+

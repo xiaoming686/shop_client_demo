@@ -34,7 +34,7 @@ export default function TakeOutOrder() {
 // 1-1进行中组件
 class DoingOrder extends Component {
   state = {
-    doingorder: [{ a: 1, b: 2 }, { a: 3, b: 4 }, { a: 5, b: 4 }, { a: 7, b: 4 }]
+    doingorder: [{ id: 1, a: 1, b: 2 }, { id:2,a: 3, b: 4 }, { id: 3,a: 5, b: 4 }, { id: 4,a: 7, b: 4 }]
   }
   render() {
     return (
@@ -42,7 +42,7 @@ class DoingOrder extends Component {
         {
           this.state.doingorder.map((item) => {
             return (
-              <TakeOutOrderItem props={this.props} doing={item.a}></TakeOutOrderItem>
+              <TakeOutOrderItem key={item.id} props={this.props} doing={item.a}></TakeOutOrderItem>
             )
           })
         }
@@ -79,7 +79,7 @@ class ReservedOrder extends Component {
 // 1-2-1即将到时组件
 class ReservedSoonOrder extends Component {
   state = {
-    reservedsoonorder: [{ a: 1, b: 2 }, { a: 3, b: 4 }, { a: 5, b: 4 }, { a: 7, b: 4 }]
+    reservedsoonorder: [{ id: 1, a: 1, b: 2 }, { id:2,a: 3, b: 4 }, { id: 3,a: 5, b: 4 }, { id: 4,a: 7, b: 4 }]
   }
   render() {
     return (
@@ -87,7 +87,7 @@ class ReservedSoonOrder extends Component {
         {
           this.state.reservedsoonorder.map((item) => {
             return (
-              <View>
+              <View key={item.id}>
                 <TakeOutOrderItem props={this.props} num={item.a}></TakeOutOrderItem>
               </View>
             )
@@ -100,7 +100,7 @@ class ReservedSoonOrder extends Component {
 // 1-2-2今日组件
 class ReservedTodayOrder extends Component {
   state = {
-    reservedtodayorder: [{ a: 1, b: 2 }, { a: 3, b: 4 }, { a: 5, b: 4 }, { a: 7, b: 4 }]
+    reservedtodayorder: [{ id: 1, a: 1, b: 2 }, { id:2,a: 3, b: 4 }, { id: 3,a: 5, b: 4 }, { id: 4,a: 7, b: 4 }]
   }
   render() {
     return (
@@ -108,7 +108,7 @@ class ReservedTodayOrder extends Component {
         {
           this.state.reservedtodayorder.map((item) => {
             return (
-              <TakeOutOrderItem props={this.props} num={item.a}></TakeOutOrderItem>
+              <TakeOutOrderItem key={item.id} props={this.props} num={item.a}></TakeOutOrderItem>
             )
           })
         }
@@ -119,7 +119,7 @@ class ReservedTodayOrder extends Component {
 // 1-2-3明日组件
 class ReservedTomorrowOrder extends Component {
   state = {
-    reservedtomorroworder: [{ a: 1, b: 2 }, { a: 3, b: 4 }, { a: 5, b: 4 }, { a: 7, b: 4 }]
+    reservedtomorroworder: [{ id: 1, a: 1, b: 2 }, { id:2,a: 3, b: 4 }, { id: 3,a: 5, b: 4 }, { id: 4,a: 7, b: 4 }]
   }
   render() {
     return (
@@ -127,7 +127,7 @@ class ReservedTomorrowOrder extends Component {
         {
           this.state.reservedtomorroworder.map((item) => {
             return (
-              <View>
+              <View key={item.id}>
                 <TakeOutOrderItem props={this.props} num={item.a}></TakeOutOrderItem>
               </View>
             )
@@ -140,7 +140,7 @@ class ReservedTomorrowOrder extends Component {
 // 1-3退款组件
 class Refund extends Component {
   state = {
-    refund: [{ a: 1, b: 2 }, { a: 3, b: 4 }, { a: 5, b: 4 }, { a: 7, b: 4 }]
+    refund: [{ id: 1, a: 1, b: 2 }, { id:2,a: 3, b: 4 }, { id: 3,a: 5, b: 4 }, { id: 4,a: 7, b: 4 }]
   }
   render() {
     return (
@@ -148,7 +148,7 @@ class Refund extends Component {
         {
           this.state.refund.map((item) => {
             return (
-              <View>
+              <View key={item.id}>
                 <TakeOutOrderItem props={this.props} refund={item.a}></TakeOutOrderItem>
               </View>
             )

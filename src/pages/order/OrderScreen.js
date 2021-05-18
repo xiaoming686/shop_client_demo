@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, Image, TouchableOpacity, BackHandler, Alert } from 'react-native';
+import { View, Text, Image, TouchableOpacity, Alert, BackHandler } from 'react-native';
 import TakeOutOrder from './TakeOutOrder'
 import OtherOrder from './OtherOrder'
 import HistoryOrder from './HistoryOrder'
@@ -9,27 +9,30 @@ export default class OrderScreen extends Component {
         active: 1
     }
     // 监听返回按钮直接退出程序，全局监听，待优化
-    // backAction = () => {
-    //     Alert.alert("注意!", "是否退出", [
-    //         {
-    //             text: "取消",
-    //             onPress: () => null,
-    //             style: "cancel"
-    //         },
-    //         { text: "确定", onPress: () => BackHandler.exitApp() }
-    //     ],
-    //         {
-    //             cancelable: true,
-    //         }
-    //     );
-    //     return true;
-    // };
-    // componentDidMount() {
-    //     this.backHandler = BackHandler.addEventListener(
-    //         "hardwareBackPress",
-    //         this.backAction
-    //     );
-    // }
+    backAction = () => {
+        Alert.alert("注意!", "是否退出", [
+            {
+                text: "取消",
+                onPress: () => null,
+                style: "cancel"
+            },
+            { text: "确定", onPress: () => BackHandler.exitApp() }
+        ],
+            {
+                cancelable: true,
+            }
+        );
+        return true;
+    }
+    componentDidMount() {
+        console.log(this.props.route.name);
+        if (this.props.route.name !== 'order') {
+            this.backHandler = BackHandler.addEventListener(
+                "hardwareBackPress",
+                this.backAction
+            );
+        }
+    }
     render() {
         return (
             <View style={{ flex: 1, marginTop: 40 }}>
@@ -49,7 +52,7 @@ export default class OrderScreen extends Component {
                     </TouchableOpacity>
                 </View>
                 <View style={{ flex: 1, marginTop: 10 }}>
-                    {this.state.active == 1 ? <TakeOutOrder></TakeOutOrder> : this.state.active == 2 ? <OtherOrder></OtherOrder> : <HistoryOrder></HistoryOrder>}
+                    {this.state.active == 1 ? <TakeOutOrder></TakeOutOrder> : this.state.active == 2 ? <OtherOrder></OtherOrder> : <HistoryOrder props={this.props}></HistoryOrder>}
                 </View>
             </View>
         )

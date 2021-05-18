@@ -20,7 +20,7 @@ function Nav() {
       <Stack.Screen
         name="Login"
         component={LoginScreen}
-        options={{ title: '登录', headerTitleAlign: 'center', headerTransparent:true}}
+        options={{ title: '登录', headerShown: false, headerTransparent:true}}
       />
       <Stack.Screen
         name="Register"
@@ -40,12 +40,12 @@ function Nav() {
       <Stack.Screen
         name="Forget"
         component={ForgetScreen}
-        options={{ title: '忘记密码', headerTitleAlign: 'center', }}
+        options={{ title: '忘记密码', headerTitleAlign: 'center',headerStyle:{backgroundColor:'transparent'} }}
       />
       <Stack.Screen
         name="Language"
         component={LanguageScreen}
-        options={{ title: '语言切换', headerTitleAlign: 'center', }}
+        options={{ title: '语言切换', headerTitleAlign: 'center',headerStyle:{backgroundColor:'transparent'} }}
       />
       <Stack.Screen
         name="NavTab"

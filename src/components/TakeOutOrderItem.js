@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, Button, TouchableOpacity, Image } from 'react-native'
 import {Checkbox} from 'teaset'
 
-export default class OtherOrderItem extends Component {
+export default class TakeOutOrderItem extends Component {
   render() {
     return (
       <View style={{ margin: 20, marginTop: 30, marginBottom: 0, padding: 20, backgroundColor: '#FFFFFF', borderRadius: 20 }}>
@@ -44,7 +44,7 @@ export default class OtherOrderItem extends Component {
         <View style={{ alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between', paddingTop: 20, paddingBottom: 20, borderBottomColor: '#ECECEC', borderBottomWidth: 1, borderStyle: 'dashed' }}>
           <View>
             <Text style={{ fontSize: 16, color: '#3F3C3C', fontWeight: 'bold' }}>李先生尾号1234</Text>
-            <Text style={{ color: ' #3F3C3C ', fontSize: 14, marginTop: 5 }}>2.3km/具体位置</Text>
+            <Text style={{ color: '#3F3C3C', fontSize: 14, marginTop: 5 }}>2.3km/具体位置</Text>
           </View>
           <View style={{ flexDirection: 'row' }}>
             <Image source={require('../assets/images/png/dw_dianhuaicon.png')}></Image>

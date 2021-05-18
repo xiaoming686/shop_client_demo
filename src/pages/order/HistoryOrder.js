@@ -1,109 +1,123 @@
 import React, { Component } from 'react'
-import { View, Text, Button,ScrollView,TouchableOpacity } from 'react-native'
+import { View, Text, Button, ScrollView, TouchableOpacity, Image } from 'react-native'
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 import OtherOrderItem from '../../components/OtherOrderItem'
+import TakeOutOrderItem from '../../components/TakeOutOrderItem'
+import DropDownMenu from '../../utils/dropDownMenu'
 
 export default class HistoryOrder extends Component {
   state = {
-    active: 1
+    active: 1,
+    isDatePickerVisible: false,
   }
+  // 打开日期选择器
+  showDatePicker = () => {
+    // setDatePickerVisibility(true);
+    this.setState({ isDatePickerVisible: true })
+    console.log(this.props);
+  };
+  hideDatePicker = () => {
+    // setDatePickerVisibility(false);
+    this.setState({ isDatePickerVisible: false })
+  };
+  handleConfirm = (date) => {
+    console.warn("A date has been picked: ", date);
+    hideDatePicker();
+  };
+
   render() {
+    var data = [["第一项目项目项目", "第二项目", "1111111111"], ["第三项目", "第四项目", "22222222222222"]]
     return (
-      <View>
-        <View style={{ marginTop:20,flexDirection: 'row', justifyContent: 'space-around' }}>
-          <TouchableOpacity style={{padding:5,paddingLeft:10,paddingRight:10,borderRadius:10,backgroundColor:this.state.active==1?'gray':'transparent'}} onPress={() => { this.setState({active:1}) }}>
-            <Text>4.23</Text>
+      <ScrollView>
+        <View style={{ marginLeft: 10, marginRight: 10, flexDirection: 'row', justifyContent: 'space-around' }}>
+          <TouchableOpacity style={{ alignItems: 'center', flexDirection: 'row', padding: 15, paddingLeft: 10, paddingRight: 10, borderRadius: 10, backgroundColor: '#030000' }} onPress={this.showDatePicker}>
+            <Text style={{ color: '#ffffff' }}>4.23</Text>
+            <Image style={{ width: 15, height: 15, marginLeft: 5 }} source={require('../../assets/images/png/downangle.png')} ></Image>
+            <DateTimePickerModal
+              isVisible={this.state.isDatePickerVisible}
+              mode="date"
+              onConfirm={this.handleConfirm}
+              onCancel={this.hideDatePicker}
+            />
           </TouchableOpacity>
-          <TouchableOpacity style={{padding:5,paddingLeft:10,paddingRight:10,borderRadius:10,backgroundColor:this.state.active==2?'gray':'transparent'}} onPress={() => { this.setState({active:2}) }}>
-            <Text>外卖单</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={{padding:5,paddingLeft:10,paddingRight:10,borderRadius:10,backgroundColor:this.state.active==3?'gray':'transparent'}} onPress={() => { this.setState({active:3}) }}>
-            <Text>其它单</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={{padding:5,paddingLeft:10,paddingRight:10,borderRadius:10,backgroundColor:this.state.active==3?'gray':'transparent'}} onPress={() => { this.setState({active:3}) }}>
-            <Text>取消单</Text>
-          </TouchableOpacity>
+          <View style={{ flexDirection: 'row', backgroundColor: '#030000', borderRadius: 10 }}>
+            <TouchableOpacity style={{ padding: 15, paddingLeft: 21, paddingRight: 21, }} onPress={() => { this.setState({ active: 1 }) }}>
+              <Text style={{ color: this.state.active == 1 ? '#ffffff' : '#989897' }}>外卖单</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={{ padding: 15, paddingLeft: 21, paddingRight: 21, }} onPress={() => { this.setState({ active: 2 }) }}>
+              <Text style={{ color: this.state.active == 2 ? '#ffffff' : '#989897' }}>其它单</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={{ padding: 15, paddingLeft: 21, paddingRight: 21, }} onPress={() => { this.setState({ active: 3 }) }}>
+              <Text style={{ color: this.state.active == 3 ? '#ffffff' : '#989897' }}>取消单</Text>
+            </TouchableOpacity>
+          </View>
         </View>
         <View>
-          {this.state.active==1?<ReservedSoonOrder props={this.props}></ReservedSoonOrder>:this.state.active==2?<ReservedTodayOrder props={this.props}></ReservedTodayOrder>:<ReservedTomorrowOrder props={this.props}></ReservedTomorrowOrder>}
+          {this.state.active == 1 ? <HistoryTakeOutOrder props={this.props.props}></HistoryTakeOutOrder> : this.state.active == 2 ? <HistoryOtherOrder props={this.props.props}></HistoryOtherOrder> : <HistoryCancleOrder props={this.props.props}></HistoryCancleOrder>}
         </View>
+      </ScrollView>
+    )
+  }
+}
+// 1-2-1外卖单组件
+class HistoryTakeOutOrder extends Component {
+  state = {
+    historytakeoutorder: [{ id: 1, a: 1, b: 2 }, { id: 2, a: 3, b: 4 }, { id: 3, a: 5, b: 4 }, { id: 4, a: 7, b: 4 }]
+  }
+  render() {
+    return (
+      <View>
+        {
+          this.state.historytakeoutorder.map((item) => {
+            return (
+              <View key={item.id}>
+                <TakeOutOrderItem props={this.props.props} num={item.a} tomorrow={item.b}></TakeOutOrderItem>
+              </View>
+            )
+          })
+        }
       </View>
     )
   }
 }
-// 1-2-1即将到时组件
-class ReservedSoonOrder extends Component {
+// 1-2-2其它单组件
+class HistoryOtherOrder extends Component {
+  state = {
+    historyotherorder: [{ id: 1, a: 1, b: 2 }, { id: 2, a: 3, b: 4 }, { id: 3, a: 5, b: 4 }, { id: 4, a: 7, b: 4 }]
+  }
   render() {
     return (
       <View>
-        {/* 1-需要遍历外卖即将到时的订单 */}
-        <TouchableOpacity onPress={() => { this.props.props.navigation.navigate('OrderDetail') }} style={{ margin: 20, padding: 10, backgroundColor: '#FFFFFF',borderRadius:20 }}>
-          <View style={{ flexDirection: 'row', }}>
-            <Text style={{ fontSize: 24 }}>A8554</Text>
-            <View style={{ flexDirection: 'row', width: '65%', justifyContent: 'space-between', marginTop: 8, marginLeft: 10 }}>
-              <Text style={{ color: '#5D5757' }}>桌号：58</Text>
-              <Text style={{ color: 'green', }}>外带</Text>
-            </View>
-          </View>
-          <View style={{ marginTop: 10, marginBottom: 10, paddingTop: 20, paddingBottom: 20, borderTopWidth: 1, borderStyle: 'dotted' }}>
-            <Text style={{ textAlign: 'center', fontSize: 16 }}>备注：麻烦师傅不要给我放辣椒我很怕辣，也不要放蒜，也不要放洋葱.</Text>
-          </View>
-          <View style={{ flexDirection: 'row-reverse', }}>
-            <View style={{ width: 60, borderRadius: 10, overflow: 'hidden' }}><Button title="完成" color="#00CB88"></Button></View>
-            <View style={{ width: 60, marginRight: 20, borderRadius: 10, overflow: 'hidden' }}><Button title="提醒" color="#5FA6EE"></Button></View>
-          </View>
-        </TouchableOpacity>
+        {
+          this.state.historyotherorder.map((item) => {
+            return (
+              <View key={item.id}>
+                <OtherOrderItem props={this.props.props} num={item.a} tomorrow={item.b}></OtherOrderItem>
+              </View>
+            )
+          })
+        }
       </View>
     )
   }
 }
-// 1-2-2今日组件
-class ReservedTodayOrder extends Component {
-  render() {
-    return (
-      <View>
-        {/* 1-需要遍历外卖今日的订单 */}
-        <TouchableOpacity onPress={() => { this.props.props.navigation.navigate('OrderDetail') }} style={{ margin: 20, padding: 10, backgroundColor: '#FFFFFF',borderRadius:20 }}>
-          <View style={{ flexDirection: 'row', }}>
-            <Text style={{ fontSize: 24 }}>A8554</Text>
-            <View style={{ flexDirection: 'row', width: '65%', justifyContent: 'space-between', marginTop: 8, marginLeft: 10 }}>
-              <Text style={{ color: '#5D5757' }}>桌号：5888</Text>
-              <Text style={{ color: 'green', }}>外带</Text>
-            </View>
-          </View>
-          <View style={{ marginTop: 10, marginBottom: 10, paddingTop: 20, paddingBottom: 20, borderTopWidth: 1, borderStyle: 'dotted' }}>
-            <Text style={{ textAlign: 'center', fontSize: 16 }}>备注：麻烦师傅不要给我放辣椒我很怕辣，也不要放蒜，也不要放洋葱.</Text>
-          </View>
-          <View style={{ flexDirection: 'row-reverse', }}>
-            <View style={{ width: 60, borderRadius: 10, overflow: 'hidden' }}><Button title="完成" color="#00CB88"></Button></View>
-            <View style={{ width: 60, marginRight: 20, borderRadius: 10, overflow: 'hidden' }}><Button title="提醒" color="#5FA6EE"></Button></View>
-          </View>
-        </TouchableOpacity>
-      </View>
-    )
+// 1-2-3取消单组件
+class HistoryCancleOrder extends Component {
+  state = {
+    historyotherorder: [{ id: 1, a: 1, b: 2 }, { id: 2, a: 3, b: 4 }, { id: 3, a: 5, b: 4 }, { id: 4, a: 7, b: 4 }]
   }
-}
-// 1-2-3明日组件
-class ReservedTomorrowOrder extends Component {
   render() {
     return (
       <View>
-        {/* 1-需要遍历外卖明日的订单 */}
-        <TouchableOpacity onPress={() => { this.props.props.navigation.navigate('OrderDetail') }} style={{ margin: 20, padding: 10, backgroundColor: '#FFFFFF',borderRadius:20 }}>
-          <View style={{ flexDirection: 'row', }}>
-            <Text style={{ fontSize: 24 }}>A8554</Text>
-            <View style={{ flexDirection: 'row', width: '65%', justifyContent: 'space-between', marginTop: 8, marginLeft: 10 }}>
-              <Text style={{ color: '#5D5757' }}>桌号：5899</Text>
-              <Text style={{ color: 'green', }}>外带</Text>
-            </View>
-          </View>
-          <View style={{ marginTop: 10, marginBottom: 10, paddingTop: 20, paddingBottom: 20, borderTopWidth: 1, borderStyle: 'dotted' }}>
-            <Text style={{ textAlign: 'center', fontSize: 16 }}>备注：麻烦师傅不要给我放辣椒我很怕辣，也不要放蒜，也不要放洋葱.</Text>
-          </View>
-          <View style={{ flexDirection: 'row-reverse', }}>
-            <View style={{ width: 60, borderRadius: 10, overflow: 'hidden' }}><Button title="完成" color="#00CB88"></Button></View>
-            <View style={{ width: 60, marginRight: 20, borderRadius: 10, overflow: 'hidden' }}><Button title="提醒" color="#5FA6EE"></Button></View>
-          </View>
-        </TouchableOpacity>
+        {
+          this.state.historyotherorder.map((item) => {
+            return (
+              <View key={item.id}>
+                <OtherOrderItem props={this.props.props} num={item.a} tomorrow={item.b} cancel={true}></OtherOrderItem>
+              </View>
+            )
+          })
+        }
       </View>
     )
   }

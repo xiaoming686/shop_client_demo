@@ -34,7 +34,7 @@ export default function OtherOrder() {
 // 1-1进行中组件
 class DoingOrder extends Component {
   state = {
-    doingorder: [{ a: 1, b: 2 }, { a: 3, b: 4 }, { a: 5, b: 4 }, { a: 7, b: 4 }]
+    doingorder: [{ id: 1, a: 1, b: 2 }, { id:2,a: 3, b: 4 }, { id: 3,a: 5, b: 4 }, { id: 4,a: 7, b: 4 }]
   }
   render() {
     return (
@@ -42,7 +42,7 @@ class DoingOrder extends Component {
         {
           this.state.doingorder.map((item) => {
             return (
-              <View>
+              <View key={item.id}>
                 <OtherOrderItem props={this.props} num={item.a}></OtherOrderItem>
               </View>
             )
@@ -81,7 +81,7 @@ class ReservedOrder extends Component {
 // 1-2-1即将到时组件
 class ReservedSoonOrder extends Component {
   state = {
-    reservedsoonorder: [{ a: 1, b: 2 }, { a: 3, b: 4 }, { a: 5, b: 4 }, { a: 7, b: 4 }]
+    reservedsoonorder: [{ id: 1, a: 1, b: 2 }, { id:2,a: 3, b: 4 }, { id: 3,a: 5, b: 4 }, { id: 4,a: 7, b: 4 }]
   }
   render() {
     return (
@@ -89,7 +89,7 @@ class ReservedSoonOrder extends Component {
         {
           this.state.reservedsoonorder.map((item) => {
             return (
-              <View>
+              <View key={item.id}>
                 <OtherOrderItem props={this.props.props} num={item.a}></OtherOrderItem>
               </View>
             )
@@ -102,7 +102,7 @@ class ReservedSoonOrder extends Component {
 // 1-2-2今日组件
 class ReservedTodayOrder extends Component {
   state = {
-    reservedtodayorder: [{ a: 1, b: 2 }, { a: 3, b: 4 }, { a: 5, b: 4 }, { a: 7, b: 4 }]
+    reservedtodayorder: [{ id: 1, a: 1, b: 2 }, { id:2,a: 3, b: 4 }, { id: 3,a: 5, b: 4 }, { id: 4,a: 7, b: 4 }]
   }
   render() {
     return (
@@ -110,7 +110,7 @@ class ReservedTodayOrder extends Component {
         {
           this.state.reservedtodayorder.map((item) => {
             return (
-              <View>
+              <View key={item.id}>
                 <OtherOrderItem props={this.props.props} num={item.a} byself={true}></OtherOrderItem>
               </View>
             )
@@ -123,7 +123,7 @@ class ReservedTodayOrder extends Component {
 // 1-2-3明日组件
 class ReservedTomorrowOrder extends Component {
   state = {
-    reservedtomorroworder: [{ a: 1, b: 2 }, { a: 3, b: 4 }, { a: 5, b: 4 }, { a: 7, b: 4 }]
+    reservedtomorroworder: [{ id: 1, a: 1, b: 2 }, { id:2,a: 3, b: 4 }, { id: 3,a: 5, b: 4 }, { id: 4,a: 7, b: 4 }]
   }
   render() {
     return (
@@ -131,7 +131,7 @@ class ReservedTomorrowOrder extends Component {
         {
           this.state.reservedtomorroworder.map((item) => {
             return (
-              <OtherOrderItem props={this.props.props} num={item.a} cancel={false} tomorrow={item.b} byself={true}></OtherOrderItem>
+              <OtherOrderItem key={item.id} props={this.props.props} num={item.a} cancel={false} tomorrow={item.b} byself={true}></OtherOrderItem>
             )
           })
         }
@@ -142,7 +142,7 @@ class ReservedTomorrowOrder extends Component {
 // 1-3-取消单组件
 class CancelOrder extends Component {
   state = {
-    cancelorder: [{ a: 1, b: 2 }, { a: 3, b: 4 }, { a: 5, b: 4 }, { a: 7, b: 4 }]
+    cancelorder: [{ id: 1, a: 1, b: 2 }, { id:2,a: 3, b: 4 }, { id: 3,a: 5, b: 4 }, { id: 4,a: 7, b: 4 }]
   }
   render() {
     return (
@@ -150,7 +150,7 @@ class CancelOrder extends Component {
         {
           this.state.cancelorder.map((item) => {
             return (
-              <View>
+              <View key={item.id}>
                 <OtherOrderItem props={this.props} num={item.a} tomorrow={true} cancel={item.b}></OtherOrderItem>
               </View>
             )

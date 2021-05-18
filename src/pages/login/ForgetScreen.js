@@ -5,7 +5,7 @@ export default class ForgetScreen extends Component {
   render() {
     return (
       <View style={{ flex: 1, alignItems: 'center' }}>
-        <View style={{marginTop:40,width:'100%',marginLeft:40}}>
+        <View style={{ marginTop: 40, width: '100%', marginLeft: 40 }}>
           <Text>账号</Text>
         </View>
         <View style={{ justifyContent: 'center', borderBottomWidth: 1, height: 50, width: '92%', }}>

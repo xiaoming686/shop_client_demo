@@ -23,7 +23,7 @@ export default class OrderDetail extends Component {
         <View style={{ alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10, paddingBottom: 10, borderBottomColor: '#ECECEC', borderBottomWidth: 1, borderStyle: 'dashed' }}>
           <View>
             <Text style={{ fontSize: 16, color: '#3F3C3C', fontWeight: 'bold' }}>李先生尾号1234</Text>
-            <Text style={{ color: ' #3F3C3C ', fontSize: 13, marginTop: 5 }}>2.3km/具体位置</Text>
+            <Text style={{ color: '#3F3C3C ', fontSize: 13, marginTop: 5 }}>2.3km/具体位置</Text>
           </View>
           <View style={{ flexDirection: 'row' }}>
             <Image source={require('../../assets/images/png/dw_dianhuaicon.png')}></Image>
