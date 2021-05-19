@@ -3,52 +3,48 @@ import { View, Text, Button, ScrollView, TouchableOpacity, Image } from 'react-n
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import OtherOrderItem from '../../components/OtherOrderItem'
 import TakeOutOrderItem from '../../components/TakeOutOrderItem'
-import DropDownMenu from '../../utils/dropDownMenu'
+import MyDatePick from '../../utils/mydatePick'
 
 export default class HistoryOrder extends Component {
   state = {
     active: 1,
-    isDatePickerVisible: false,
+    isMyDatePickVisible: false,
   }
-  // 打开日期选择器
-  showDatePicker = () => {
-    // setDatePickerVisibility(true);
-    this.setState({ isDatePickerVisible: true })
-    console.log(this.props);
-  };
-  hideDatePicker = () => {
-    // setDatePickerVisibility(false);
-    this.setState({ isDatePickerVisible: false })
-  };
-  handleConfirm = (date) => {
-    console.warn("A date has been picked: ", date);
-    hideDatePicker();
-  };
-
+  ensureMyToast = (a) => {
+    console.log(a);
+    this.setState({ isMyDatePickVisible: false });
+  }
+  cancelMyToast = () => {
+    this.setState({ isMyDatePickVisible: false });
+  }
+  showDatePick = () => {
+    this.setState({ isMyDatePickVisible: true });
+  }
   render() {
-    var data = [["第一项目项目项目", "第二项目", "1111111111"], ["第三项目", "第四项目", "22222222222222"]]
     return (
       <ScrollView>
-        <View style={{ marginLeft: 10, marginRight: 10, flexDirection: 'row', justifyContent: 'space-around' }}>
-          <TouchableOpacity style={{ alignItems: 'center', flexDirection: 'row', padding: 15, paddingLeft: 10, paddingRight: 10, borderRadius: 10, backgroundColor: '#030000' }} onPress={this.showDatePicker}>
-            <Text style={{ color: '#ffffff' }}>4.23</Text>
+        <View style={{ marginLeft: 20, marginRight: 20, flexDirection: 'row', justifyContent: 'space-around' }}>
+          <TouchableOpacity style={{ alignItems: 'center', flexDirection: 'row', width: 70, height: 51, borderRadius: 5, backgroundColor: '#3f3c3c', }} onPress={this.showDatePick}>
+            <Text style={{ color: '#ffffff', marginLeft: 10 }}>4.23</Text>
             <Image style={{ width: 15, height: 15, marginLeft: 5 }} source={require('../../assets/images/png/downangle.png')} ></Image>
-            <DateTimePickerModal
-              isVisible={this.state.isDatePickerVisible}
-              mode="date"
-              onConfirm={this.handleConfirm}
-              onCancel={this.hideDatePicker}
-            />
           </TouchableOpacity>
-          <View style={{ flexDirection: 'row', backgroundColor: '#030000', borderRadius: 10 }}>
-            <TouchableOpacity style={{ padding: 15, paddingLeft: 21, paddingRight: 21, }} onPress={() => { this.setState({ active: 1 }) }}>
-              <Text style={{ color: this.state.active == 1 ? '#ffffff' : '#989897' }}>外卖单</Text>
+          <MyDatePick
+            confirm={this.ensureMyToast}
+            cancel={this.cancelMyToast}
+            visible={this.state.isMyDatePickVisible}>
+          </MyDatePick>
+          <View style={{ flexDirection: 'row', backgroundColor: '#3f3c3c', borderRadius: 5, marginLeft: 5 }}>
+            <TouchableOpacity style={{ padding: 15, flexDirection: 'row', alignItems: 'center' }} onPress={() => { this.setState({ active: 1 }) }}>
+              <Text style={{ backgroundColor: this.state.active == 1 ? '#00cb88' : '#3f3c3c', width: 6, height: 6, borderRadius: 3 }}></Text>
+              <Text style={{ marginLeft: 3, color: this.state.active == 1 ? '#ffffff' : '#989897' }}>外卖单</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={{ padding: 15, paddingLeft: 21, paddingRight: 21, }} onPress={() => { this.setState({ active: 2 }) }}>
-              <Text style={{ color: this.state.active == 2 ? '#ffffff' : '#989897' }}>其它单</Text>
+            <TouchableOpacity style={{ padding: 15, flexDirection: 'row', alignItems: 'center' }} onPress={() => { this.setState({ active: 2 }) }}>
+              <Text style={{ backgroundColor: this.state.active == 2 ? '#00cb88' : '#3f3c3c', width: 6, height: 6, borderRadius: 3 }}></Text>
+              <Text style={{ marginLeft: 3, color: this.state.active == 2 ? '#ffffff' : '#989897' }}>其它单</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={{ padding: 15, paddingLeft: 21, paddingRight: 21, }} onPress={() => { this.setState({ active: 3 }) }}>
-              <Text style={{ color: this.state.active == 3 ? '#ffffff' : '#989897' }}>取消单</Text>
+            <TouchableOpacity style={{ padding: 15, flexDirection: 'row', alignItems: 'center' }} onPress={() => { this.setState({ active: 3 }) }}>
+              <Text style={{ backgroundColor: this.state.active == 3 ? '#00cb88' : '#3f3c3c', width: 6, height: 6, borderRadius: 3 }}></Text>
+              <Text style={{ marginLeft: 3, color: this.state.active == 3 ? '#ffffff' : '#989897' }}>取消单</Text>
             </TouchableOpacity>
           </View>
         </View>

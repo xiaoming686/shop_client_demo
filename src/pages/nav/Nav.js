@@ -16,7 +16,7 @@ import TakeoutOrderDetail from '../orderDetail/TakeoutOrderDetail'
 const Stack = createStackNavigator();
 function Nav() {
   return (
-    <Stack.Navigator initialRouteName="LoginScreen">
+    <Stack.Navigator initialRouteName="LoginScreen" >
       <Stack.Screen
         name="Login"
         component={LoginScreen}
@@ -55,7 +55,7 @@ function Nav() {
       <Stack.Screen
         name="Search"
         component={SearchOrder}
-        options={{ title: '搜索', headerShown: true }}
+        options={{ title: '搜索', headerShown: false }}
       />
       {/* 订单详情根据不同的详情决定组件个数 */}
       <Stack.Screen

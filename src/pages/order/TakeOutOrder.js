@@ -19,13 +19,16 @@ export default function TakeOutOrder() {
         marginLeft: 15
       },
       style: {
-        marginLeft: 15,
-        marginRight: 15,
-        borderRadius: 10,
-        backgroundColor: '#030000',
+        marginLeft: 20,
+        marginRight: 20,
+        borderRadius: 7,
+        backgroundColor: '#3f3c3c',
+      },
+      labelStyle:{
+        fontSize:16
       }
     }}>
-      <Tab.Screen name="DoingOrder" component={DoingOrder} options={{ tabBarLabel: '进行中', }} />
+      <Tab.Screen name="DoingOrder" component={DoingOrder} options={{ tabBarLabel: '进行中' }} />
       <Tab.Screen name="ReservedOrder" component={ReservedOrder} options={{ tabBarLabel: '预定单', }} />
       <Tab.Screen name="Refund" component={Refund} options={{ tabBarLabel: '退款', }} />
     </Tab.Navigator>
@@ -38,7 +41,7 @@ class DoingOrder extends Component {
   }
   render() {
     return (
-      <ScrollView>
+      <ScrollView style={{backgroundColor:'#f8f8f9'}}>
         {
           this.state.doingorder.map((item) => {
             return (
@@ -57,16 +60,16 @@ class ReservedOrder extends Component {
   }
   render() {
     return (
-      <ScrollView>
-        <View style={{ marginTop: 20, flexDirection: 'row', justifyContent: 'space-around' }}>
-          <TouchableOpacity style={{ padding: 5, paddingLeft: 10, paddingRight: 10, borderRadius: 10, backgroundColor: this.state.active == 1 ? '#e5e4e4' : 'transparent' }} onPress={() => { this.setState({ active: 1 }) }}>
-            <Text>即将到时</Text>
+      <ScrollView style={{backgroundColor:'#f8f8f9'}}>
+        <View style={{ marginTop: 20, flexDirection: 'row', justifyContent: 'space-around',marginLeft:40,width:280 }}>
+          <TouchableOpacity style={{ width:85,height:30,alignItems:'center', borderRadius: 10, backgroundColor: this.state.active == 1 ? '#e5e4e4' : 'transparent' }} onPress={() => { this.setState({ active: 1 }) }}>
+            <Text style={{fontSize:15,marginTop:4,color:'#3f3c3c'}}>即将到时</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={{ padding: 5, paddingLeft: 10, paddingRight: 10, borderRadius: 10, backgroundColor: this.state.active == 2 ? '#e5e4e4' : 'transparent' }} onPress={() => { this.setState({ active: 2 }) }}>
-            <Text>今日</Text>
+          <TouchableOpacity style={{ width:85,height:30,alignItems:'center', borderRadius: 10, backgroundColor: this.state.active == 2 ? '#e5e4e4' : 'transparent' }} onPress={() => { this.setState({ active: 2 }) }}>
+            <Text style={{fontSize:15,marginTop:4,color:'#3f3c3c'}}>今日</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={{ padding: 5, paddingLeft: 10, paddingRight: 10, borderRadius: 10, backgroundColor: this.state.active == 3 ? '#e5e4e4' : 'transparent' }} onPress={() => { this.setState({ active: 3 }) }}>
-            <Text>明日</Text>
+          <TouchableOpacity style={{ width:85,height:30,alignItems:'center', borderRadius: 10, backgroundColor: this.state.active == 3 ? '#e5e4e4' : 'transparent' }} onPress={() => { this.setState({ active: 3 }) }}>
+            <Text style={{fontSize:15,marginTop:4,color:'#3f3c3c'}}>明日</Text>
           </TouchableOpacity>
         </View>
         <View>
@@ -144,7 +147,7 @@ class Refund extends Component {
   }
   render() {
     return (
-      <ScrollView>
+      <ScrollView style={{backgroundColor:'#f8f8f9'}}>
         {
           this.state.refund.map((item) => {
             return (

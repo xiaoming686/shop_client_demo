@@ -5,20 +5,22 @@ import I18n from "i18n-js";
 import * as RNLocalize from "react-native-localize";
 import cn from './cn';
 import en from './en';
+import jap from './jap';
 
-const locales = RNLocalize.getLocales();
-const systemLanguage = locales[0]?.languageCode;  // 用户系统偏好语言
+// const locales = RNLocalize.getLocales();
+// const systemLanguage = locales[0]?.languageCode;
 
-if (systemLanguage) {
-  I18n.locale = systemLanguage;
-} else {
-  I18n.locale = 'en';  // 默认语言为英文  
-}
+// if (systemLanguage) {
+//   I18n.locale = systemLanguage;
+// } else {
+//   I18n.locale = 'en';
+// }
 
 I18n.fallbacks = true;
 I18n.translations = {
-  zh: cn,
+  cn,
   en,
+  jap,
 };
 
 export default I18n;

@@ -10,7 +10,7 @@ const MyScreen = ({ navigation }) => {
             <Button title={"回到登录页"} onPress={() => {
                 navigation.navigate('Login');
             }} />
-            <Button title={"前往我的详情"} onPress={() => {
+            <Button title={"前往详情"} onPress={() => {
                 navigation.navigate('MyDetail');
             }} />
             <Button title={"详情页面传参测试"} onPress={() => {

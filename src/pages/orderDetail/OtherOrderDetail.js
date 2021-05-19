@@ -12,16 +12,19 @@ export default class OrderDetail extends Component {
               style={styles.orderStatusIconStyle} />
             <Text>已下单</Text>
           </View>
+          <Image source={require('../../assets/images/png/dd_liuchengxian.png')} style={{ width: 27.5, height: 3.5, marginTop: 10, marginLeft: 9, marginRight: 9 }}></Image>
           <View style={styles.box}>
             <Image source={require('../../assets/images/png/doing.png')}
               style={styles.orderStatusIconStyle} />
             <Text>备餐中</Text>
           </View>
+          <Image source={require('../../assets/images/png/dd_liuchengxian.png')} style={{ width: 27.5, height: 3.5, marginTop: 10, marginLeft: 9, marginRight: 9 }}></Image>
           <View style={styles.box}>
             <Image source={require('../../assets/images/png/waiting.png')}
               style={styles.orderStatusIconStyle} />
             <Text>待取餐</Text>
           </View>
+          <Image source={require('../../assets/images/png/dd_liuchengxian.png')} style={{ width: 27.5, height: 3.5, marginTop: 10, marginLeft: 9, marginRight: 9 }}></Image>
           <View style={styles.box}>
             <Image source={require('../../assets/images/png/waiting.png')}
               style={styles.orderStatusIconStyle} />
@@ -31,24 +34,30 @@ export default class OrderDetail extends Component {
         {/* 2 */}
         <View style={styles.orderShop}>
           {/* 2-1 */}
-          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', borderBottomColor: '#ECECEC', borderBottomWidth: 1, borderStyle: 'dashed', paddingBottom: 10 }}>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <Text style={{ backgroundColor: '#00CB88', borderRadius: 4, width: 7, height: 21 }}></Text>
-              <Text style={{ fontSize: 19, color: '#2A2A2A', paddingLeft: 8 }}>店铺名</Text>
+              <Text style={{ fontSize: 19, color: 'black', paddingLeft: 5, fontWeight: 'bold' }}>店铺名</Text>
+              <Text style={{ fontSize: 14, color: '#838181', marginLeft: 10 }}>桌号：30</Text>
             </View>
-            <Text style={{ fontWeight: 'bold', fontSize: 22, color: '#3F3C3C' }}>取餐号: 6E84</Text>
+            <View style={{ flexDirection: 'row',alignItems:'baseline' }}>
+              <Text style={{ fontWeight: 'bold', fontSize: 19, color: 'balck' }}>取餐号: </Text>
+              <Text style={{ color: '#00CB88', fontSize: 18, fontWeight: 'bold' }}>A8554</Text>
+            </View>
           </View>
           {/* 2-2 */}
           <View style={{ borderBottomColor: '#ECECEC', borderBottomWidth: 1, borderStyle: 'dashed', paddingBottom: 3 }}>
-            <View style={{ marginTop: 10, flexDirection: "row" }}>
-              <View style={{ marginLeft: 10, overflow: 'hidden' }}><Image source={require('../../assets/images/png/1.png')} style={{ height: 70, width: 70, borderRadius: 2 }} /></View>
+            <View style={{ marginTop: 15, flexDirection: "row" }}>
+              <View style={{ marginLeft: 10, overflow: 'hidden' }}>
+                <Image source={require('../../assets/images/png/1.png')} style={{ height: 70, width: 70, borderRadius: 2 }} />
+              </View>
               <View style={{ marginLeft: 20, flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                 <View>
-                  <Text style={{ fontSize: 14, color: '#3F3C3C' }}>碳烤全羊</Text>
-                  <Text style={{ fontSize: 12, color: '#3F3C3C' }}>数量*1</Text>
-                  <Text style={{ fontSize: 12, color: '#3F3C3C' }}>类型:L</Text>
+                  <Text style={{ fontSize: 17, color: '#2A2A2A', lineHeight: 20 }}>碳烤全羊</Text>
+                  <Text style={{ fontSize: 13, color: '#3F3C3C', lineHeight: 20 }}>数量*1</Text>
+                  <Text style={{ fontSize: 13, color: '#3F3C3C', lineHeight: 20 }}>类型:L</Text>
                 </View>
-                <View><Text style={{ color: '#2A2A2A', fontSize: 15, fontWeight: 'bold' }}>￥1280</Text></View>
+                <View><Text style={{ color: '#2A2A2A', fontSize: 17, fontWeight: 'bold' }}>￥1280</Text></View>
               </View>
             </View>
             <View style={{ alignItems: 'flex-end' }}><Text style={{ color: '#3F3C3C', fontSize: 11 }}>*上述价格已含税</Text></View>
@@ -65,35 +74,41 @@ export default class OrderDetail extends Component {
             </View>
           </View>
           {/* 2-4 */}
-          <View style={{ marginTop: 10 }}>
+          <View style={{ marginTop: 10, borderBottomColor: '#ECECEC', borderBottomWidth: 1, borderStyle: 'dashed', paddingBottom: 15 }}>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <Text style={{ backgroundColor: '#00CB88', borderRadius: 4, width: 7, height: 21 }}></Text>
-              <Text style={{ fontSize: 19, color: '#2A2A2A', paddingLeft: 8 }}>订单信息</Text>
+              <Text style={{ fontSize: 19, color: '#2A2A2A', paddingLeft: 5 }}>订单信息</Text>
             </View>
             <View style={styles.orderTimeItems}>
               <Text style={{ fontSize: 13, color: '#3F3C3C' }}>订单编号</Text>
-              <Text style={{ fontSize: 13, color: '#3F3C3C' }}>1366676554</Text>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <Text style={{ fontSize: 13, color: '#3F3C3C' }}>1366676554</Text>
+                <View style={{ width: 45, height: 20, backgroundColor: '#F8F8F9', marginLeft: 3, borderRadius: 8 }}>
+                  <Text style={{ fontSize: 13, color: '#BAB9B9', textAlign: 'center', lineHeight: 20 }}>复制</Text>
+                </View>
+              </View>
             </View>
             <View style={styles.orderTimeItems}>
               <Text style={{ fontSize: 13, color: '#3F3C3C' }}>就餐方式</Text>
-              <Text style={{ fontSize: 13, color: '#3F3C3C' }}>堂食</Text>
+              <Text style={{ fontSize: 14, color: '#3F3C3C', marginRight: 7 }}>堂食</Text>
             </View>
             <View style={styles.orderTimeItems}>
               <Text style={{ fontSize: 13, color: '#3F3C3C' }}>下单时间</Text>
-              <Text style={{ fontSize: 13, color: '#3F3C3C' }}>2020-05-19 12:53</Text>
+              <Text style={{ fontSize: 13, color: '#3F3C3C', marginRight: 7 }}>2020-05-19 12:53</Text>
             </View>
           </View>
           {/* 3 */}
-          <View style={{ height: 120,marginTop:10 }}>
+          <View style={{ height: 120, marginTop: 10 }}>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <Text style={{ backgroundColor: '#00CB88', borderRadius: 4, width: 7, height: 21 }}></Text>
-              <Text style={{ fontSize: 19, color: '#2A2A2A', paddingLeft: 8 }}>备注</Text>
+              <Text style={{ fontSize: 19, color: '#2A2A2A', paddingLeft: 5 }}>备注</Text>
             </View>
             <TextInput
               style={{ paddingLeft: 10, height: 80 }}
               editable={false}
               multiline
-              placeholder={'不要香菜，少放点辣椒，我不喜欢洋葱，可以多放点孜然，希望师傅生活美满幸福。'} />
+              placeholder={'不要香菜，少放点辣椒，我不喜欢洋葱，可以多放点孜然，希望师傅生活美满幸福。'}
+              placeholderTextColor="#3F3C3C" />
           </View>
         </View>
       </ScrollView>
@@ -106,14 +121,14 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollView: {
-    backgroundColor: 'transparent',
-    marginTop: 50,
+    backgroundColor: '#f8f8f9',
+    paddingTop: 50,
   },
   orderStatus: {
     height: 60,
-    paddingTop: 15,
-    marginLeft:20,
-    marginRight:20,
+    padding: 15,
+    marginLeft: 15,
+    marginRight: 15,
     flexDirection: "row",
   },
   orderNumber: {
@@ -139,10 +154,9 @@ const styles = StyleSheet.create({
   orderTimeItems: {
     flexDirection: "row",
     justifyContent: 'space-between',
-    marginTop: 15,
+    marginTop: 10,
   },
   box: {
-    width: '25%',
     alignItems: "center"
   },
   orderStatusIconStyle: {
