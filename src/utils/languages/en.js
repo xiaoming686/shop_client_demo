@@ -1,5 +1,5 @@
 export default {
-  filter: 'filters',
+  my: 'my',
   delayTime: 'delay time',
   order: 'Order',
   languageChanged: 'language changed',

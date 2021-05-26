@@ -22,10 +22,15 @@ export default class MyToast extends Component {
         <TouchableOpacity style={{ flex: 1 }} onPress={() => { this.props.cancel() }}>
           <View style={styles.dialogContainer}>
             <View style={styles.innerContainer}>
-              <Text style={{fontSize:16,marginTop:35,marginBottom:20}}>{this.props.content}</Text>
-              <TouchableOpacity onPress={() => { this.props.confirm() }}>
-                <Text style={{fontSize:18,backgroundColor:'#00cb88',padding:8,paddingLeft:60,paddingRight:60,color:'#ffffff',borderRadius:10}}>确认</Text>
-              </TouchableOpacity>
+              <Text style={{ fontSize: 18, marginTop: 30, marginBottom: 20,color:'#3f3c3c',width:232,textAlign:'center' }}>{this.props.content}</Text>
+              <View style={{flexDirection:'row',justifyContent:'space-around',width:270}}>
+                <TouchableOpacity activeOpacity={1} onPress={() => { this.props.cancel() }}>
+                  <Text style={{ fontSize: 17, backgroundColor: '#e5e4e4', padding: 9, paddingLeft: 38, paddingRight: 38, color: '#2a2a2a', borderRadius: 10 }}>取消</Text>
+                </TouchableOpacity>
+                <TouchableOpacity activeOpacity={1} onPress={() => { this.props.confirm() }}>
+                  <Text style={{ fontSize: 17, backgroundColor: '#00cb88', padding: 9, paddingLeft: 38, paddingRight: 38, color: '#ffffff', borderRadius: 10 }}>确认</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
         </TouchableOpacity>
@@ -53,8 +58,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center',
     backgroundColor: '#fff',
-    width: 270,
-    height: 160
+    width: 307,
+    height: 159
   },
   // 文本区域
   contentContainer: {
@@ -107,8 +112,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 16,
     padding: 8,
-    paddingLeft: 60,
-    paddingRight: 60,
+    paddingLeft: 38,
+    paddingRight: 38,
     backgroundColor: '#00cb88',
     color: '#ffffff',
     borderRadius: 10

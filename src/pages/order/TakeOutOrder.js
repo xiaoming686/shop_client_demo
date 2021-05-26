@@ -19,8 +19,8 @@ export default function TakeOutOrder() {
         marginLeft: 15
       },
       style: {
-        marginLeft: 20,
-        marginRight: 20,
+        marginLeft: 23,
+        marginRight: 23,
         borderRadius: 7,
         backgroundColor: '#3f3c3c',
       },

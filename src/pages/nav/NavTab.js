@@ -36,23 +36,27 @@ const TabStack = createStackNavigator();
 // 底部tab栏
 export default function Navigation() {
   return (
-    <Tab.Navigator backBehavior='none' initialRouteName='order'>
+    <Tab.Navigator backBehavior='none' initialRouteName='order' tabBarOptions={{ showLabel: false }} >
       <Tab.Screen
         name="order"
         component={OrderScreen}
         options={{
-          title: I18n.t('order'),
+          label: I18n.t('order'),
           headerMode: 'none',
           tabBarIcon: ({ focused, horizontal, tintColor }) => {
-            tintColor = 'red';
+            tintColor = 'red'
             return (
-              <Image
-                style={{ width: 25, height: 25 }}
-                source={
-                  focused
-                    ? require('../../assets/images/png/orderA.png')
-                    : require('../../assets/images/png/orderB.png')
-                }></Image>
+              <View style={{ alignItems: 'center', marginLeft: 50 }}>
+                <Image
+                  style={{ width: 20, height: 22, }}
+                  source={
+                    focused
+                      ? require('../../assets/images/png/orderA.png')
+                      : require('../../assets/images/png/orderB.png')
+                  }>
+                </Image>
+                <Text style={{ fontSize: 11, marginTop: 5 }}>{I18n.t('order')}</Text>
+              </View>
             );
           }
         }}
@@ -65,13 +69,17 @@ export default function Navigation() {
           tabBarIcon: ({ focused, horizontal, tintColor }) => {
             tintColor = 'red';
             return (
-              <Image
-                style={{ width: 25, height: 25 }}
-                source={
-                  focused
-                    ? require('../../assets/images/png/myA.png')
-                    : require('../../assets/images/png/myB.png')
-                }></Image>
+              <View style={{ alignItems: 'center', marginRight: 50 }}>
+                <Image
+                  style={{ width: 20, height: 22, }}
+                  source={
+                    focused
+                      ? require('../../assets/images/png/myA.png')
+                      : require('../../assets/images/png/myB.png')
+                  }>
+                </Image>
+                <Text style={{ fontSize: 11, marginTop: 5 }}>{I18n.t('my')}</Text>
+              </View>
             );
           }
         }}

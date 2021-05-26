@@ -1,48 +1,28 @@
-
 import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
   View,
   Modal,
-  TouchableOpacity
+  TouchableOpacity,
+  ScrollView,
+  FlatList
 } from 'react-native';
+import Picker from 'react-native-picker';
 
 // 利用modal实现弹窗
-export default class MyDatePick extends Component {
-  state={
-    date:[4.18,4.19]
-  }
+export default class MyHourPick extends Component {
   render() {
     return (
       <Modal style={styles.container}
         transparent={true}
         visible={this.props.visible}
+        animationType='fade'
         onRequestClose={() => {
           this.props.cancel()
         }}>
         <TouchableOpacity style={{ flex: 1 }} onPress={() => { this.props.cancel() }}>
           <View style={styles.dialogContainer}>
-            <View style={styles.innerContainer}>
-              <TouchableOpacity onPress={() => { this.props.confirm() }}>
-                <Text style={{fontSize:15,borderBottomWidth:1,borderBottomColor:'#333333',height:25}}>4.18</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => { this.props.confirm(this.state.date) }}>
-                <Text style={{fontSize:15,borderBottomWidth:1,borderBottomColor:'#333333',height:25}}>4.19</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => { this.props.confirm() }}>
-                <Text style={{fontSize:15,borderBottomWidth:1,borderBottomColor:'#333333',height:25}}>4.20</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => { this.props.confirm() }}>
-                <Text style={{fontSize:15,borderBottomWidth:1,borderBottomColor:'#333333',height:25}}>4.21</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => { this.props.confirm() }}>
-                <Text style={{fontSize:15,borderBottomWidth:1,borderBottomColor:'#333333',height:25}}>4.22</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => { this.props.confirm() }}>
-                <Text style={{fontSize:15,borderBottomWidth:1,borderBottomColor:'#333333',height:25}}>4.23</Text>
-              </TouchableOpacity>
-            </View>
           </View>
         </TouchableOpacity>
       </Modal>
@@ -60,18 +40,17 @@ const styles = StyleSheet.create({
   // 半透明背景
   dialogContainer: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0)'
+    justifyContent: 'flex-end',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)'
   },
   // 弹窗区域
   innerContainer: {
     borderRadius: 10,
     alignItems: 'center',
     backgroundColor: '#f3f3f3',
-    marginTop:140,
-    marginLeft:20,
-    paddingTop:7,
-    width: 71,
-    height: 166
+    marginBottom: 0,
+    width: 360,
+    height: 294
   },
   // 文本区域
   contentContainer: {
@@ -88,7 +67,7 @@ const styles = StyleSheet.create({
   // 文本样式
   dialogContentTextStyle: {
     fontSize: 16,
-    color: '#333333',
+    color: '#ececec',
     marginLeft: 25,
     marginRight: 25
   },

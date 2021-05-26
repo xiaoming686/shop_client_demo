@@ -13,7 +13,7 @@ import jap from './jap';
 // if (systemLanguage) {
 //   I18n.locale = systemLanguage;
 // } else {
-//   I18n.locale = 'en';
+I18n.locale = 'cn';
 // }
 
 I18n.fallbacks = true;

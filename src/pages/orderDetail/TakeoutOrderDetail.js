@@ -80,7 +80,7 @@ export default class OrderDetail extends Component {
               <View style={{ alignItems: 'flex-end' }}><Text style={{ color: '#3F3C3C', fontSize: 11 }}>*上述价格已含税</Text></View>
             </View>
             {/* 5-3 */}
-            <View style={{ borderBottomColor: '#ECECEC', borderBottomWidth: 1, borderStyle: 'dashed', paddingBottom: 10 }}>
+            <View style={{ borderBottomColor: '#ECECEC', borderBottomWidth: 1, borderStyle: 'dashed', paddingBottom: 10,marginLeft:12 }}>
               <View style={styles.orderTimeItems}><Text style={{ fontSize: 13, color: '#3F3C3C' }}>商品总数</Text><Text style={{ fontSize: 13, color: '#3F3C3C' }}>2</Text></View>
               <View style={styles.orderTimeItems}><Text style={{ fontSize: 13, color: '#3F3C3C' }}>10%对象 (消费税)</Text><Text style={{ fontSize: 13, color: '#3F3C3C' }}>¥1830 (¥1830)</Text></View>
               <View style={styles.orderTimeItems}><Text style={{ fontSize: 13, color: '#3F3C3C' }}>优惠金额</Text><Text style={{ fontSize: 13, color: '#3F3C3C' }}>0</Text></View>
@@ -95,7 +95,7 @@ export default class OrderDetail extends Component {
           </View>
           {/* 6 */}
           <View style={styles.orderTime}>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center',marginLeft:-12 }}>
               <Text style={{ backgroundColor: '#00CB88', borderRadius: 4, width: 7, height: 21 }}></Text>
               <Text style={{ fontSize: 19, color: '#2A2A2A', marginLeft: 5 }}>订单信息</Text>
             </View>
@@ -151,6 +151,7 @@ const styles = StyleSheet.create({
   },
   orderTime: {
     marginTop: 10,
+    marginLeft:12,
     backgroundColor: 'transparent',
   },
   orderTimeItems: {

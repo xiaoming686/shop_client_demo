@@ -1,50 +1,62 @@
 import React, { Component } from 'react'
 import { View, Text, Button, ScrollView, TouchableOpacity, Image } from 'react-native'
-import DateTimePickerModal from "react-native-modal-datetime-picker";
 import OtherOrderItem from '../../components/OtherOrderItem'
 import TakeOutOrderItem from '../../components/TakeOutOrderItem'
-import MyDatePick from '../../utils/mydatePick'
 
 export default class HistoryOrder extends Component {
   state = {
     active: 1,
-    isMyDatePickVisible: false,
+    clickDay: false,
+    clickDayItem: 6,
+    pickday: [{ id: 1, day: '4.18' }, { id: 2, day: '4.19' }, { id: 3, day: '4.20' }, { id: 4, day: '4.21' }, { id: 5, day: '4.22' }, { id: 6, day: '4.23' },]
   }
-  ensureMyToast = (a) => {
-    console.log(a);
-    this.setState({ isMyDatePickVisible: false });
-  }
-  cancelMyToast = () => {
-    this.setState({ isMyDatePickVisible: false });
-  }
-  showDatePick = () => {
-    this.setState({ isMyDatePickVisible: true });
+  showDayPick = () => {
+    this.setState({ clickDay: !this.state.clickDay });
   }
   render() {
     return (
       <ScrollView>
-        <View style={{ marginLeft: 20, marginRight: 20, flexDirection: 'row', justifyContent: 'space-around' }}>
-          <TouchableOpacity style={{ alignItems: 'center', flexDirection: 'row', width: 70, height: 51, borderRadius: 5, backgroundColor: '#3f3c3c', }} onPress={this.showDatePick}>
-            <Text style={{ color: '#ffffff', marginLeft: 10 }}>4.23</Text>
-            <Image style={{ width: 15, height: 15, marginLeft: 5 }} source={require('../../assets/images/png/downangle.png')} ></Image>
-          </TouchableOpacity>
-          <MyDatePick
-            confirm={this.ensureMyToast}
-            cancel={this.cancelMyToast}
-            visible={this.state.isMyDatePickVisible}>
-          </MyDatePick>
-          <View style={{ flexDirection: 'row', backgroundColor: '#3f3c3c', borderRadius: 5, marginLeft: 5 }}>
-            <TouchableOpacity style={{ padding: 15, flexDirection: 'row', alignItems: 'center' }} onPress={() => { this.setState({ active: 1 }) }}>
+        <View style={{ marginLeft: 15, marginRight: 15, flexDirection: 'row', justifyContent: 'space-around' }}>
+          <View>
+            {/* 弹出日期选择框 */}
+            <TouchableOpacity activeOpacity={1} style={{ alignItems: 'center', flexDirection: 'row', width: 60, height: 51, borderRadius: 5, backgroundColor: '#3f3c3c', }} onPress={this.showDayPick}>
+              <Text style={{ color: '#ffffff', marginLeft: 8 }}>{this.state.pickday[this.state.clickDayItem - 1].day}</Text>
+              <Image style={{ width: 15, height: 15, marginLeft: 3 }} source={require('../../assets/images/png/downangle.png')} ></Image>
+            </TouchableOpacity>
+            {
+              this.state.clickDay ?
+                <View style={{ position: 'absolute', top: 55, borderRadius: 15, backgroundColor: '#f3f3f3', zIndex: 10, width: 64, height: 175, paddingVertical: 5 }}>
+                  {
+                    this.state.pickday.map((item) => {
+                      return (
+                        <TouchableOpacity onPress={() => { this.setState({ clickDayItem: item.id, clickDay: false }) }} activeOpacity={1} key={item.id} style={{ alignItems: 'center' }}>
+                          <Text style={{ fontSize: 13, color: this.state.clickDayItem == item.id ? '#000000' : '#989897', lineHeight: 28 }}>{item.day}</Text>
+                        </TouchableOpacity>
+                      )
+                    })
+                  }
+                </View>
+                :
+                <></>
+            }
+          </View>
+          {/* 导航 */}
+          <View style={{ flexDirection: 'row', backgroundColor: '#3f3c3c', borderRadius: 5, }}>
+            <TouchableOpacity style={{ padding: 6, flexDirection: 'row', alignItems: 'center' }} onPress={() => { this.setState({ active: 1 }) }}>
               <Text style={{ backgroundColor: this.state.active == 1 ? '#00cb88' : '#3f3c3c', width: 6, height: 6, borderRadius: 3 }}></Text>
               <Text style={{ marginLeft: 3, color: this.state.active == 1 ? '#ffffff' : '#989897' }}>外卖单</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={{ padding: 15, flexDirection: 'row', alignItems: 'center' }} onPress={() => { this.setState({ active: 2 }) }}>
+            <TouchableOpacity style={{ padding: 6, flexDirection: 'row', alignItems: 'center' }} onPress={() => { this.setState({ active: 2 }) }}>
               <Text style={{ backgroundColor: this.state.active == 2 ? '#00cb88' : '#3f3c3c', width: 6, height: 6, borderRadius: 3 }}></Text>
               <Text style={{ marginLeft: 3, color: this.state.active == 2 ? '#ffffff' : '#989897' }}>其它单</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={{ padding: 15, flexDirection: 'row', alignItems: 'center' }} onPress={() => { this.setState({ active: 3 }) }}>
+            <TouchableOpacity style={{ padding: 6, flexDirection: 'row', alignItems: 'center' }} onPress={() => { this.setState({ active: 3 }) }}>
               <Text style={{ backgroundColor: this.state.active == 3 ? '#00cb88' : '#3f3c3c', width: 6, height: 6, borderRadius: 3 }}></Text>
               <Text style={{ marginLeft: 3, color: this.state.active == 3 ? '#ffffff' : '#989897' }}>取消单</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={{ padding: 6, flexDirection: 'row', alignItems: 'center' }} onPress={() => { this.setState({ active: 4 }) }}>
+              <Text style={{ backgroundColor: this.state.active == 4 ? '#00cb88' : '#3f3c3c', width: 6, height: 6, borderRadius: 3 }}></Text>
+              <Text style={{ marginLeft: 3, color: this.state.active == 4 ? '#ffffff' : '#989897' }}>退款单</Text>
             </TouchableOpacity>
           </View>
         </View>

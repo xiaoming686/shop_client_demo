@@ -6,7 +6,7 @@ export default class OtherOrderItem extends Component {
     return (
       <View style={{ margin:17.5,marginBottom:0,padding: 15.5, backgroundColor: '#FFFFFF', borderRadius: 20,width:328.5}}>
         {/* 1 */}
-        <TouchableOpacity onPress={() => { this.props.props.navigation.navigate('OtherOrderDetail') }} >
+        <TouchableOpacity activeOpacity={1} onPress={() => { this.props.props.navigation.navigate('OtherOrderDetail') }} >
           <View style={{ flexDirection: 'row',height:30,alignItems:'center'}}>
             <Text style={{ fontSize: 19,color:'#3F3C3C',fontWeight:'bold',lineHeight:30}}>取餐号{this.props.num}</Text>
             <View style={{ flexDirection: 'row', width: '70%', justifyContent: 'space-between',marginLeft:14}}>

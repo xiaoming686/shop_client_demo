@@ -5,13 +5,13 @@ import { Checkbox } from 'teaset'
 export default class TakeOutOrderItem extends Component {
   render() {
     return (
-      <View style={{ margin: 19, marginTop: 23, padding: 20, backgroundColor: '#FFFFFF', borderRadius: 20 }}>
+      <View style={{ marginHorizontal: 19, marginTop: 23, padding: 20, backgroundColor: '#FFFFFF', borderRadius: 20 }}>
         {/* 1 */}
         <View style={{ borderBottomColor: '#ECECEC', borderBottomWidth: 1, borderStyle: 'dashed', paddingBottom: 15 }}>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <Text style={{ backgroundColor: '#00CB88', borderRadius: 4, width: 7, height: 21 }}></Text>
-              <Text style={{ fontSize: 19, color: '#3F3C3C', marginLeft: 5 }}>#1</Text>
+              <Text style={{ fontSize: 19, color: '#3F3C3C', marginLeft: 5, }}>#1</Text>
               {
                 this.props.doing || this.props.refund ?
                   <></>
@@ -44,7 +44,7 @@ export default class TakeOutOrderItem extends Component {
         {/* 2 */}
         <View style={{ alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between', paddingTop: 20, paddingBottom: 20, borderBottomColor: '#ECECEC', borderBottomWidth: 1, borderStyle: 'dashed' }}>
           <View>
-            <Text style={{ fontSize: 16, color: '#3F3C3C', }}>李先生尾号1234</Text>
+            <Text style={{ fontSize: 16, color: '#3F3C3C' }}>李先生尾号1234</Text>
             <Text style={{ color: '#3F3C3C', fontSize: 13, marginTop: 5 }}>2.3km/具体位置</Text>
           </View>
           <View style={{ flexDirection: 'row' }}>
@@ -75,7 +75,7 @@ export default class TakeOutOrderItem extends Component {
             {/* 5 */}
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 20, paddingBottom: 20, borderBottomColor: '#ECECEC', borderBottomWidth: 1, borderStyle: 'dashed' }}>
               <Text style={{ fontSize: 16, color: '#3F3C3C', }}>待骑手接单</Text>
-              <Text style={{ fontSize: 12, color: '#FF6127' }}>已等到 00:30:30</Text>
+              <Text style={{ fontSize: 12, color: '#FF6127' }}>已等待 00:30:30</Text>
             </View>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 20, paddingBottom: 20, borderBottomColor: '#ECECEC', borderBottomWidth: 1, borderStyle: 'dashed' }}>
               <Text style={{ fontSize: 16, color: '#3F3C3C', }}>1种商品，共2件</Text>
@@ -88,7 +88,7 @@ export default class TakeOutOrderItem extends Component {
           <Text style={{ fontSize: 19, color: '#3F3C3C', marginLeft: 5 }}>备注：</Text>
         </View>
         {/* 7 */}
-        <Text style={{ fontSize: 14, color: '#3F3C3C', marginTop: 17 }}>师傅你好，麻烦少放辣椒，我真的很怕辣，可以多放点洋葱和香菜。可以多放点孜然，谢谢！</Text>
+        <Text style={{ fontSize: 14, color: '#3F3C3C', marginTop: 12 }}>师傅你好，麻烦少放辣椒，我真的很怕辣，可以多放点洋葱和香菜。可以多放点孜然，谢谢！</Text>
         {/* 8 */}
         <TouchableOpacity onPress={() => { this.props.props.navigation.navigate('TakeoutOrderDetail') }} style={{ flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', marginTop: 50 }}>
           <Text style={{ fontSize: 14, color: '#3F3C3C', marginRight: 5 }}>订单详情</Text>

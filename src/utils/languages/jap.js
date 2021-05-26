@@ -1,5 +1,5 @@
 export default {
-  filter: '筛选',
+  my: '筛选',
   delayTime: '延时',
   order: '注文書',
   languageChanged: '言語切り替え',
