@@ -15,7 +15,6 @@ export default class SearchOrder extends Component {
     componentDidMount() {
         this._getHotWords()
     }
-    componentWillMount() { }
 
     //获取搜索历史列表数据
     _getHotWords() {
@@ -89,13 +88,13 @@ export default class SearchOrder extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <StatusBar backgroundColor='#F8F8F9'></StatusBar>
-                <View style={{ flexDirection: 'row', marginLeft: 17, marginRight: 17, alignItems: 'center', marginTop: 10, justifyContent: 'space-between', height: 40, backgroundColor: '#F8F8F9' }}>
-                    <Image style={{width:20,height:20,resizeMode:'contain'}} source={require('../../assets/images/png/back.png')}>
-                    </Image>
+                <View style={{ flexDirection: 'row', marginHorizontal: 15, alignItems: 'center', marginTop: 20, justifyContent: 'space-between', height: 40, backgroundColor: '#F8F8F9' }}>
+                    <TouchableOpacity onPress={() => { this.props.navigation.goBack() }}>
+                        <Image style={{ width: 17, height: 17, resizeMode: 'contain' }} source={require('../../assets/images/png/sousuo_gengduo_icon.png')}></Image>
+                    </TouchableOpacity>
                     <View style={styles.inputBox}>
-                        <View style={styles.inputIcon}>
-                            <Image style={{ width: 20, height: 20 }} source={require('../../assets/images/png/search.png')} />
+                        <View style={styles.inputIcon} >
+                            <Image style={{ width: 17, height: 17 }} source={require('../../assets/images/png/search.png')} />
                         </View>
                         <TextInput style={styles.inputText}
                             autoCapitalize="none"
@@ -113,12 +112,12 @@ export default class SearchOrder extends Component {
                             defaultValue={this.state.value}
                             keyboardType="default" />
                     </View>
-                    <Text style={{ color: '#2A2A2A', fontSize: 16, marginLeft: 8 }}>取消</Text>
+                    <Text style={{ color: '#2A2A2A', fontSize: 16, fontWeight: 'bold' }}>取消</Text>
                 </View>
 
                 {/*监听页面，刷新搜索本地历史历史*/}
                 {
-                    (this.state.isPostList) ? <></> : (this.state.orderList.length > 0) ?
+                    (this.state.isPostList) ? <></> : (this.state.orderList.length = 0) ?
                         //搜索到的内容
                         <ScrollView style={styles.scrollView}>
                             {/* 循环遍历内容 */}
@@ -133,8 +132,8 @@ export default class SearchOrder extends Component {
                             }
                         </ScrollView> :
                         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#F8F8F9' }}>
-                            <Image style={{ width: 74, height: 95 }} source={require('../../assets/images/png/search.png')}></Image>
-                            <Text style={{ fontSize: 16, color: '#A09E9E' }}>暂无订单</Text>
+                            <Image style={{ width: 82, height: 107 }} source={require('../../assets/images/png/sousuoye_zanwudingdanIcon.png')}></Image>
+                            <Text style={{ fontSize: 19, color: '#A09E9E', marginTop: 10 }}>暂无订单</Text>
                         </View>
                 }
             </View>
@@ -150,21 +149,22 @@ const styles = StyleSheet.create({
     },
     inputBox: {
         // height: Platform.OS === 'ios' ? 25 : 35,
-        marginLeft: 15,
         backgroundColor: '#E5E4E4',
         width: 267,
         height: 40,
-        borderRadius: 8,
+        borderRadius: 15,
+        justifyContent: 'center'
     },
     inputIcon: {
-        margin: Platform.OS === 'ios'
+        marginLeft: Platform.OS === 'ios'
             ? 5
-            : 10
+            : 20
     },
     inputText: {
         position: 'absolute',
-        marginLeft: 40,
-        paddingTop: 5,
-        paddingVertical: 0
+        marginLeft: 50,
+        paddingVertical: 0,
+        fontSize: 16,
+        color: '#a09e9e'
     }
 });

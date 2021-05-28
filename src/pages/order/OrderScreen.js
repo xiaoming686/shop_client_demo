@@ -14,20 +14,20 @@ export default class OrderScreen extends Component {
                 {/* 1-顶部tab栏，搜索框跳转搜索界面 */}
                 <View style={{ width: 325, marginLeft: 20, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
                     <TouchableOpacity style={{ borderBottomColor: this.state.active == 1 ? '#00CB88' : 'transparent', borderBottomWidth: this.state.active == 1 ? 4 : 0 }} onPress={() => { this.setState({ active: 1 }) }}>
-                        <Text style={{ color: this.state.active == 1 ? '#3f3c3c' : '#989897',fontSize:17 }}>外卖单</Text>
+                        <Text style={{ color: this.state.active == 1 ? '#3f3c3c' : '#989897',fontSize:17 }}>外卖</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={{ borderBottomColor: this.state.active == 2 ? '#00CB88' : 'transparent', borderBottomWidth: this.state.active == 2 ? 4 : 0 }} onPress={() => { this.setState({ active: 2 }) }}>
-                        <Text style={{ color: this.state.active == 2 ? '#3f3c3c' : '#989897',fontSize:17 }}>其他单</Text>
+                        <Text style={{ color: this.state.active == 2 ? '#3f3c3c' : '#989897',fontSize:17 }}>其他</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={{ borderBottomColor: this.state.active == 3 ? '#00CB88' : 'transparent', borderBottomWidth: this.state.active == 3 ? 4 : 0 }} onPress={() => { this.setState({ active: 3 }) }}>
-                        <Text style={{ color: this.state.active == 3 ? '#3f3c3c' : '#989897',fontSize:17 }}>历史订单</Text>
+                        <Text style={{ color: this.state.active == 3 ? '#3f3c3c' : '#989897',fontSize:17 }}>历史</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => { this.props.navigation.navigate('Search') }} style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#e5e5e4', width: 90, height: 28.5, borderRadius: 15 }}>
-                        <Image style={{ resizeMode: 'contain', width: 14, height: 14, marginLeft: 22 }} source={require('../../assets/images/png/search.png')}></Image><Text style={{ color: '#a09e9e', marginLeft: 5,fontWeight:'bold' }}>搜索</Text>
+                    <TouchableOpacity onPress={() => { this.props.navigation.navigate('Search') }} style={{ alignItems: 'center', backgroundColor: '#e5e5e4', width: 60, height: 28.5, borderRadius: 15,justifyContent:'center' }}>
+                        <Image style={{ resizeMode: 'contain', width: 14, height: 14, }} source={require('../../assets/images/png/search.png')}></Image>
                     </TouchableOpacity>
                 </View>
                 <View style={{ flex: 1, marginTop: 20 }}>
-                    {this.state.active == 1 ? <TakeOutOrder></TakeOutOrder> : this.state.active == 2 ? <OtherOrder></OtherOrder> : <HistoryOrder props={this.props}></HistoryOrder>}
+                    {this.state.active == 1 ? <TakeOutOrder props={this.props}></TakeOutOrder> : this.state.active == 2 ? <OtherOrder props={this.props}></OtherOrder> : <HistoryOrder props={this.props}></HistoryOrder>}
                 </View>
             </View>
         )

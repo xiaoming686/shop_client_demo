@@ -3,45 +3,42 @@ import { View, Text, Button, Image, ScrollView, TouchableOpacity } from 'react-n
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import TakeOutOrderItem from '../../components/TakeOutOrderItem'
 
-const Tab = createMaterialTopTabNavigator();
-
-export default function TakeOutOrder() {
-  return (
-    <Tab.Navigator tabBarOptions={{
-      showLabel: true,
-      activeTintColor: '#FFFFFF',
-      indicatorStyle: {
-        backgroundColor: '#00CB88',
-        width: 8,
-        height: 8,
-        borderRadius: 5,
-        marginBottom: 20,
-        marginLeft: 15
-      },
-      style: {
-        marginLeft: 23,
-        marginRight: 23,
-        borderRadius: 7,
-        backgroundColor: '#3f3c3c',
-      },
-      labelStyle:{
-        fontSize:16
-      }
-    }}>
-      <Tab.Screen name="DoingOrder" component={DoingOrder} options={{ tabBarLabel: '进行中' }} />
-      <Tab.Screen name="ReservedOrder" component={ReservedOrder} options={{ tabBarLabel: '预定单', }} />
-      <Tab.Screen name="Refund" component={Refund} options={{ tabBarLabel: '退款', }} />
-    </Tab.Navigator>
-  );
+export default class OtherOrder extends Component {
+  state = {
+    active: 1
+  }
+  render() {
+    return (
+      <View style={{ flex: 1 }}>
+        <View style={{ height: 50, marginHorizontal: 25, backgroundColor: '#3f3c3c', borderRadius: 5, flexDirection: 'row', justifyContent: 'space-around' }}>
+          <TouchableOpacity style={{ padding: 6, flexDirection: 'row', alignItems: 'center' }} onPress={() => { this.setState({ active: 1 }) }}>
+            <Text style={{ backgroundColor: this.state.active == 1 ? '#00cb88' : '#3f3c3c', width: 6, height: 6, borderRadius: 3 }}></Text>
+            <Text style={{ marginLeft: 3, color: this.state.active == 1 ? '#ffffff' : '#989897', fontSize: 17 }}>进行中</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={{ padding: 6, flexDirection: 'row', alignItems: 'center' }} onPress={() => { this.setState({ active: 2 }) }}>
+            <Text style={{ backgroundColor: this.state.active == 2 ? '#00cb88' : '#3f3c3c', width: 6, height: 6, borderRadius: 3 }}></Text>
+            <Text style={{ marginLeft: 3, color: this.state.active == 2 ? '#ffffff' : '#989897', fontSize: 17 }}>预定单</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={{ padding: 6, flexDirection: 'row', alignItems: 'center' }} onPress={() => { this.setState({ active: 3 }) }}>
+            <Text style={{ backgroundColor: this.state.active == 3 ? '#00cb88' : '#3f3c3c', width: 6, height: 6, borderRadius: 3 }}></Text>
+            <Text style={{ marginLeft: 3, color: this.state.active == 3 ? '#ffffff' : '#989897', fontSize: 17 }}>退款单</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={{ flex: 1 }}>
+          {this.state.active == 1 ? <DoingOrder props={this.props.props}></DoingOrder> : this.state.active == 2 ? <ReservedOrder props={this.props.props}></ReservedOrder> : <Refund props={this.props.props}></Refund>}
+        </View>
+      </View>
+    );
+  }
 }
 // 1-1进行中组件
 class DoingOrder extends Component {
   state = {
-    doingorder: [{ id: 1, a: 1, b: 2 }, { id:2,a: 3, b: 4 }, { id: 3,a: 5, b: 4 }, { id: 4,a: 7, b: 4 }]
+    doingorder: [{ id: 1, a: 1, b: 2 }, { id: 2, a: 3, b: 4 }, { id: 3, a: 5, b: 4 }, { id: 4, a: 7, b: 4 }]
   }
   render() {
     return (
-      <ScrollView style={{backgroundColor:'#f8f8f9'}}>
+      <ScrollView style={{ backgroundColor: '#f8f8f9' }}>
         {
           this.state.doingorder.map((item) => {
             return (
@@ -60,16 +57,16 @@ class ReservedOrder extends Component {
   }
   render() {
     return (
-      <ScrollView style={{backgroundColor:'#f8f8f9'}}>
-        <View style={{ marginTop: 20, flexDirection: 'row', justifyContent: 'space-around',marginLeft:40,width:280 }}>
-          <TouchableOpacity style={{ width:85,height:30,alignItems:'center', borderRadius: 10, backgroundColor: this.state.active == 1 ? '#e5e4e4' : 'transparent' }} onPress={() => { this.setState({ active: 1 }) }}>
-            <Text style={{fontSize:15,marginTop:4,color:'#3f3c3c'}}>即将到时</Text>
+      <ScrollView style={{ backgroundColor: '#f8f8f9' }}>
+        <View style={{ marginTop: 20, flexDirection: 'row', justifyContent: 'space-around', marginLeft: 40, width: 280 }}>
+          <TouchableOpacity style={{ width: 85, height: 30, alignItems: 'center', borderRadius: 10, backgroundColor: this.state.active == 1 ? '#e5e4e4' : 'transparent' }} onPress={() => { this.setState({ active: 1 }) }}>
+            <Text style={{ fontSize: 15, marginTop: 4, color: '#3f3c3c' }}>即将到时</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={{ width:85,height:30,alignItems:'center', borderRadius: 10, backgroundColor: this.state.active == 2 ? '#e5e4e4' : 'transparent' }} onPress={() => { this.setState({ active: 2 }) }}>
-            <Text style={{fontSize:15,marginTop:4,color:'#3f3c3c'}}>今日</Text>
+          <TouchableOpacity style={{ width: 85, height: 30, alignItems: 'center', borderRadius: 10, backgroundColor: this.state.active == 2 ? '#e5e4e4' : 'transparent' }} onPress={() => { this.setState({ active: 2 }) }}>
+            <Text style={{ fontSize: 15, marginTop: 4, color: '#3f3c3c' }}>今日</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={{ width:85,height:30,alignItems:'center', borderRadius: 10, backgroundColor: this.state.active == 3 ? '#e5e4e4' : 'transparent' }} onPress={() => { this.setState({ active: 3 }) }}>
-            <Text style={{fontSize:15,marginTop:4,color:'#3f3c3c'}}>明日</Text>
+          <TouchableOpacity style={{ width: 85, height: 30, alignItems: 'center', borderRadius: 10, backgroundColor: this.state.active == 3 ? '#e5e4e4' : 'transparent' }} onPress={() => { this.setState({ active: 3 }) }}>
+            <Text style={{ fontSize: 15, marginTop: 4, color: '#3f3c3c' }}>明日</Text>
           </TouchableOpacity>
         </View>
         <View>
@@ -82,7 +79,7 @@ class ReservedOrder extends Component {
 // 1-2-1即将到时组件
 class ReservedSoonOrder extends Component {
   state = {
-    reservedsoonorder: [{ id: 1, a: 1, b: 2 }, { id:2,a: 3, b: 4 }, { id: 3,a: 5, b: 4 }, { id: 4,a: 7, b: 4 }]
+    reservedsoonorder: [{ id: 1, a: 1, b: 2 }, { id: 2, a: 3, b: 4 }, { id: 3, a: 5, b: 4 }, { id: 4, a: 7, b: 4 }]
   }
   render() {
     return (
@@ -103,7 +100,7 @@ class ReservedSoonOrder extends Component {
 // 1-2-2今日组件
 class ReservedTodayOrder extends Component {
   state = {
-    reservedtodayorder: [{ id: 1, a: 1, b: 2 }, { id:2,a: 3, b: 4 }, { id: 3,a: 5, b: 4 }, { id: 4,a: 7, b: 4 }]
+    reservedtodayorder: [{ id: 1, a: 1, b: 2 }, { id: 2, a: 3, b: 4 }, { id: 3, a: 5, b: 4 }, { id: 4, a: 7, b: 4 }]
   }
   render() {
     return (
@@ -122,7 +119,7 @@ class ReservedTodayOrder extends Component {
 // 1-2-3明日组件
 class ReservedTomorrowOrder extends Component {
   state = {
-    reservedtomorroworder: [{ id: 1, a: 1, b: 2 }, { id:2,a: 3, b: 4 }, { id: 3,a: 5, b: 4 }, { id: 4,a: 7, b: 4 }]
+    reservedtomorroworder: [{ id: 1, a: 1, b: 2 }, { id: 2, a: 3, b: 4 }, { id: 3, a: 5, b: 4 }, { id: 4, a: 7, b: 4 }]
   }
   render() {
     return (
@@ -143,11 +140,11 @@ class ReservedTomorrowOrder extends Component {
 // 1-3退款组件
 class Refund extends Component {
   state = {
-    refund: [{ id: 1, a: 1, b: 2 }, { id:2,a: 3, b: 4 }, { id: 3,a: 5, b: 4 }, { id: 4,a: 7, b: 4 }]
+    refund: [{ id: 1, a: 1, b: 2 }, { id: 2, a: 3, b: 4 }, { id: 3, a: 5, b: 4 }, { id: 4, a: 7, b: 4 }]
   }
   render() {
     return (
-      <ScrollView style={{backgroundColor:'#f8f8f9'}}>
+      <ScrollView style={{ backgroundColor: '#f8f8f9' }}>
         {
           this.state.refund.map((item) => {
             return (

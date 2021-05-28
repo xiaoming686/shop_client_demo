@@ -3,36 +3,50 @@ import { View, Text, Button, StyleSheet, Image, TouchableOpacity } from 'react-n
 
 export default class StoreSetting extends Component {
     state = {
-        isShow: false
-    }
-    choice = () => {
-        this.setState({
-            isShow: !this.state.isShow
-        })
+        inside: false,
+        insidestop: false,
+        takeout: false,
+        takeoutstop: false
     }
     render() {
         let { isShow } = this.state
         return (
             <View style={{ flex: 1, backgroundColor: '#F8F8F9' }}>
                 <View style={styles.container}>
-                    <View style={styles.item}>
+                    <View style={styles.checkitem}>
                         <Text style={styles.font}>营业状态 <Text style={{ fontSize: 14, color: '#5D5757' }}>(食堂/自提)</Text></Text>
-                        <View style={{ width: 77, height: 28.5, backgroundColor: '#00CB88', borderRadius: 14, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', position: 'absolute', top: 25, right: 0 }}>
-                            <TouchableOpacity onPress={this.choice} style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={{ color: 'white', fontSize: 15, paddingRight: 2 }}>营业中</Text>
+                        <View>
+                            {/* 2-1营业中弹出框 */}
+                            <TouchableOpacity activeOpacity={1} style={{backgroundColor: this.state.insidestop?'#FF6127':'#00CB88', width: 77, height: 28,borderRadius: 15,flexDirection:'row',alignItems:'center',justifyContent:'center'}} onPress={() => { this.setState({ inside: !this.state.inside }) }}>
+                                <Text style={{  color: '#ffffff', fontSize: 15, }}>{this.state.insidestop ? '歇业中' : '营业中'}</Text>
                                 <Image source={require('../../../assets/images/png/dw_sanjiaoicon.png')}></Image>
                             </TouchableOpacity>
-                            {isShow ? <View style={{ width: 77, height: 28.5, backgroundColor: '#FF6127', borderRadius: 14, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', position: 'absolute', top: 33, right: 0 }}><Text style={{ color: 'white', fontSize: 15, paddingRight: 2 }}>歇业中</Text></View> : <></>}
+                            {
+                                this.state.inside ?
+                                    <TouchableOpacity activeOpacity={1} style={{ position: 'absolute', top: 30 }} onPress={() => { this.setState({ insidestop: !this.state.insidestop, inside: !this.state.inside }) }}>
+                                        <Text style={{ backgroundColor: !this.state.insidestop?'#FF6127':'#00CB88', borderRadius: 15, color: '#ffffff', fontSize: 15, width: 77, height: 28, lineHeight: 28, textAlign: 'center' }}>{this.state.insidestop ? '营业中' : '歇业中'}</Text>
+                                    </TouchableOpacity>
+                                    :
+                                    <></>
+                            }
                         </View>
                     </View>
-                    <View style={styles.item}>
-                        <Text style={styles.font}>营业状态<Text style={{ fontSize: 14, color: '#5D5757' }}>(外卖)</Text></Text>
-                        <View style={{ width: 77, height: 28.5, backgroundColor: '#00CB88', borderRadius: 14, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', position: 'absolute', top: 25, right: 0 }}>
-                            <TouchableOpacity onPress={this.choice} style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={{ color: 'white', fontSize: 15, paddingRight: 2 }}>营业中</Text>
+                    <View style={styles.checkitem}>
+                        <Text style={styles.font}>营业状态 <Text style={{ fontSize: 14, color: '#5D5757' }}>(外卖)</Text></Text>
+                        <View>
+                            {/* 2-1营业中弹出框 */}
+                            <TouchableOpacity activeOpacity={1} style={{backgroundColor: this.state.takeoutstop?'#FF6127':'#00CB88', width: 77, height: 28,borderRadius: 15,flexDirection:'row',alignItems:'center',justifyContent:'center'}} onPress={() => { this.setState({ takeout: !this.state.takeout }) }}>
+                                <Text style={{  color: '#ffffff', fontSize: 15, }}>{this.state.takeoutstop ? '歇业中' : '营业中'}</Text>
                                 <Image source={require('../../../assets/images/png/dw_sanjiaoicon.png')}></Image>
                             </TouchableOpacity>
-                            {isShow ? <View style={{ width: 77, height: 28.5, backgroundColor: '#FF6127', borderRadius: 14, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', position: 'absolute', top: 33, right: 0 }}><Text style={{ color: 'white', fontSize: 15, paddingRight: 2 }}>歇业中</Text></View> : <></>}
+                            {
+                                this.state.takeout ?
+                                    <TouchableOpacity activeOpacity={1} style={{ position: 'absolute', top: 30 }} onPress={() => { this.setState({ takeoutstop: !this.state.takeoutstop, takeout: !this.state.takeout }) }}>
+                                        <Text style={{ backgroundColor: !this.state.takeoutstop?'#FF6127':'#00CB88', borderRadius: 15, color: '#ffffff', fontSize: 15, width: 77, height: 28, lineHeight: 28, textAlign: 'center' }}>{this.state.takeoutstop ? '营业中' : '歇业中'}</Text>
+                                    </TouchableOpacity>
+                                    :
+                                    <></>
+                            }
                         </View>
                     </View>
                     <TouchableOpacity style={styles.item} onPress={() => { this.props.navigation.push('OpeningTime') }} activeOpacity={1}>
@@ -49,13 +63,13 @@ export default class StoreSetting extends Component {
                             <Image source={require('../../../assets/images/png/dy_gengduoicon.png')}></Image>
                         </View>
                     </TouchableOpacity>
-                    <View style={[styles.item, { borderBottomWidth: 0 }]}>
+                    <TouchableOpacity onPress={() => { this.props.navigation.push('BusinessCategory') }} style={[styles.item, { borderBottomWidth: 0 }]}>
                         <Text style={styles.font}>经营品类 </Text>
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                             <Text style={{ color: '#838181', fontSize: 15, paddingRight: 7 }}>川菜</Text>
                             <Image source={require('../../../assets/images/png/dy_gengduoicon.png')}></Image>
                         </View>
-                    </View>
+                    </TouchableOpacity>
                 </View>
             </View>
 
@@ -65,12 +79,20 @@ export default class StoreSetting extends Component {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: 'white',
-        marginLeft: 18.5,
-        marginRight: 18.5,
-        paddingLeft: 17.5,
-        paddingRight: 22,
+        marginHorizontal: 17,
+        paddingHorizontal: 20,
+        paddingVertical: 10,
         borderRadius: 20,
         position: 'relative'
+    },
+    checkitem: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        borderBottomWidth: 1,
+        borderStyle: 'dotted',
+        borderBottomColor: '#ECECEC',
+        height: 88,
     },
     item: {
         flexDirection: 'row',
@@ -80,7 +102,6 @@ const styles = StyleSheet.create({
         borderStyle: 'dotted',
         borderBottomColor: '#ECECEC',
         height: 67.5,
-
     },
     font: {
         color: '#5D5757',
