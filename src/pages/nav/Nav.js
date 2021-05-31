@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, Image, Dimensions } from 'react-native'
 import { createStackNavigator, HeaderBackButton } from '@react-navigation/stack';
 import LoginScreen from '../login/LoginScreen'
+import Test from '../login/test'
 import LanguageScreen from '../login/LanguageScreen'
 import NavTab from './NavTab'
 import SearchOrder from '../order/SearchOrder'
@@ -17,7 +18,6 @@ import Agreement from '../my/Agreement'
 import Contract from '../my/agreement/Contract'
 import PrivacyClause from '../my/agreement/PrivacyClause'
 import UseClause from '../my/agreement/UseClause'
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 function BackImage() {
   return (
@@ -29,7 +29,12 @@ function BackImage() {
 const Stack = createStackNavigator();
 function Nav() {
   return (
-    <Stack.Navigator initialRouteName="NavTab" >
+    <Stack.Navigator initialRouteName="test" >
+      <Stack.Screen
+        name="test"
+        component={Test}
+        options={{ title: '测试', headerShown: false, headerTransparent: true }}
+      />
       <Stack.Screen
         name="Login"
         component={LoginScreen}
@@ -99,7 +104,7 @@ function Nav() {
       <Stack.Screen
         name="OrderSetting"
         component={OrderSetting}
-        options={{ title: '订单设置', headerTitleAlign: 'center', headerTitleStyle: { fontSize: 19 }, headerStyle: { backgroundColor: '#f8f8f9' } }}
+        options={{ title: '订单设置', headerShown:false,headerTitleAlign: 'center', headerTitleStyle: { fontSize: 19 }, headerStyle: { backgroundColor: '#f8f8f9' } }}
       />
       <Stack.Screen
         name="Agreement"

@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { View, Text, Switch, TouchableOpacity, Modal } from 'react-native'
+import { View, Text, Switch, TouchableOpacity, Modal, StatusBar } from 'react-native'
 import MyMinPick from '../../utils/mytoast/myminPick'
 import Picker from 'react-native-picker'
+import EventBus from 'react-native-event-bus'
 
 export default class OrderSetting extends Component {
   state = {
@@ -51,6 +52,14 @@ export default class OrderSetting extends Component {
           !this.state.isshade ? <></> :
             <View style={{ backgroundColor: 'rgba(0,0,0,0.5)', width: '100%', height: '100%', zIndex: 10, position: 'absolute', top: 0 }}></View>
         }
+        <StatusBar
+          backgroundColor={this.state.isshade?'rgba(0,0,0,0.01)':"#f8f8f9"}>
+        </StatusBar>
+        <View style={{ marginTop: 50, flexDirection: 'row', justifyContent: 'space-between', marginBottom: 20 }}>
+          <Text>    小于</Text>
+          <Text>订单设置</Text>
+          <Text>            </Text>
+        </View>
         {/* 0-时间选择器待优化 */}
         <View style={{ backgroundColor: '#ffffff', marginHorizontal: 15, paddingVertical: 20, borderRadius: 15, paddingHorizontal: 20 }}>
           <Text style={{ fontSize: 18, color: '#5d5757' }}>出餐时间设置</Text>
@@ -109,7 +118,7 @@ export default class OrderSetting extends Component {
                     {
                       this.state.pickhour.map((item) => {
                         return (
-                          <TouchableOpacity onPress={() => { this.setState({ clickHourItem: item.id,clickHour:false }) }} activeOpacity={1} key={item.id}>
+                          <TouchableOpacity onPress={() => { this.setState({ clickHourItem: item.id, clickHour: false }) }} activeOpacity={1} key={item.id}>
                             <Text style={{ fontSize: 15, color: this.state.clickHourItem == item.id ? '#000000' : '#9d9b9b', lineHeight: 28 }}>{item.hour}</Text>
                           </TouchableOpacity>
                         )

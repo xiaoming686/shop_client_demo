@@ -5,17 +5,16 @@ import 'react-native-gesture-handler';
 import Nav from './src/pages/nav/Nav'
 
 export default class App extends Component {
-
   render() {
     return (
       <NavigationContainer>
         <StatusBar
-          backgroundColor="#f8f8f9"
+          backgroundColor="#f8f8f9" 
           barStyle="dark-content"
           translucent={true}
           animated={true}>
         </StatusBar>
-        <Nav />
+        <Nav/>
       </NavigationContainer>
     )
   }

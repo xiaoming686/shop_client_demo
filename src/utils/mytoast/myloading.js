@@ -1,5 +1,4 @@
 
-import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
@@ -8,27 +7,28 @@ import {
   TouchableOpacity,
   ActivityIndicator
 } from 'react-native';
+import React from 'react'
+
 
 // 利用modal实现loading
-export default class MyLoading extends Component {
-  render() {
-    return (
-      <Modal style={styles.container}
-        transparent={true}
-        visible={this.props.visible}
-      >
-        <TouchableOpacity style={{ flex: 1 }} onPress={() => { this.props.cancel() }}>
-          <View style={styles.dialogContainer}>
-            <View style={styles.innerContainer}>
-              <ActivityIndicator style={{marginTop:40}} size="large" color="#00ff00" />
-              <Text style={{ fontSize: 16, }}>登录中</Text>
-            </View>
+export default function MyLoading(props) {
+  return (
+    <Modal style={styles.container}
+      transparent={true}
+      visible={props.visible}
+    >
+      <TouchableOpacity style={{ flex: 1 }} onPress={() => { props.cancel() }}>
+        <View style={styles.dialogContainer}>
+          <View style={styles.innerContainer}>
+            <ActivityIndicator style={{ marginTop: 40 }} size="large" color="#00ff00" />
+            <Text style={{ fontSize: 16, }}>登录中</Text>
           </View>
-        </TouchableOpacity>
-      </Modal>
-    );
-  }
+        </View>
+      </TouchableOpacity>
+    </Modal>
+  );
 }
+
 
 const styles = StyleSheet.create({
   container: {
