@@ -1,5 +1,3 @@
-
-import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,36 +5,35 @@ import {
   Modal,
   TouchableOpacity
 } from 'react-native';
+import React from 'react'
+
 
 // 利用modal实现弹窗
-export default class MyToast extends Component {
-
-  render() {
-    return (
-      <Modal style={styles.container}
-        transparent={true}
-        visible={this.props.visible}
-        onRequestClose={() => {
-          this.props.cancel()
-        }}>
-        <TouchableOpacity style={{ flex: 1 }} onPress={() => { this.props.cancel() }}>
-          <View style={styles.dialogContainer}>
-            <View style={styles.innerContainer}>
-              <Text style={{ fontSize: 18, marginTop: 30, marginBottom: 20,color:'#3f3c3c',width:232,textAlign:'center' }}>{this.props.content}</Text>
-              <View style={{flexDirection:'row',justifyContent:'space-around',width:270}}>
-                <TouchableOpacity activeOpacity={1} onPress={() => { this.props.cancel() }}>
-                  <Text style={{ fontSize: 17, backgroundColor: '#e5e4e4', padding: 9, paddingLeft: 38, paddingRight: 38, color: '#2a2a2a', borderRadius: 10 }}>取消</Text>
-                </TouchableOpacity>
-                <TouchableOpacity activeOpacity={1} onPress={() => { this.props.confirm() }}>
-                  <Text style={{ fontSize: 17, backgroundColor: '#00cb88', padding: 9, paddingLeft: 38, paddingRight: 38, color: '#ffffff', borderRadius: 10 }}>确认</Text>
-                </TouchableOpacity>
-              </View>
+export default function MyLogout(props) {
+  return (
+    <Modal style={styles.container}
+      transparent={true}
+      visible={props.visible}
+      onRequestClose={() => {
+        props.cancel()
+      }}>
+      <TouchableOpacity style={{ flex: 1 }} onPress={() => { props.cancel() }}>
+        <View style={styles.dialogContainer}>
+          <View style={styles.innerContainer}>
+            <Text style={{ fontSize: 18, marginTop: 30, marginBottom: 20, color: '#3f3c3c', width: 232, textAlign: 'center' }}>{props.content}</Text>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-around', width: 270 }}>
+              <TouchableOpacity activeOpacity={1} onPress={() => { props.cancel() }}>
+                <Text style={{ fontSize: 17, backgroundColor: '#e5e4e4', padding: 9, paddingLeft: 38, paddingRight: 38, color: '#2a2a2a', borderRadius: 10 }}>取消</Text>
+              </TouchableOpacity>
+              <TouchableOpacity activeOpacity={1} onPress={() => { props.confirm() }}>
+                <Text style={{ fontSize: 17, backgroundColor: '#00cb88', padding: 9, paddingLeft: 38, paddingRight: 38, color: '#ffffff', borderRadius: 10 }}>确认</Text>
+              </TouchableOpacity>
             </View>
           </View>
-        </TouchableOpacity>
-      </Modal>
-    );
-  }
+        </View>
+      </TouchableOpacity>
+    </Modal>
+  );
 }
 
 const styles = StyleSheet.create({

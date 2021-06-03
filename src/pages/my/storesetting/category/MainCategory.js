@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native'
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 
 export default class MainCategory extends Component {
     state = {
         active: 1,
-        cateitem:0,
+        cateitem: 0,
         foodList: [
             {
                 "id": 1,
@@ -37,8 +37,17 @@ export default class MainCategory extends Component {
     render() {
         return (
             <View style={{ flex: 1, backgroundColor: '#F8F8F9' }}>
+                <View style={{ marginTop: 50, flexDirection: 'row', marginBottom: 20, marginHorizontal: 20, justifyContent: 'space-between', alignItems: 'center', }}>
+                    <TouchableOpacity style={{ padding: 10, paddingLeft: 0 }} activeOpacity={1} onPress={() => { this.props.navigation.goBack() }}>
+                        <Image style={{ width: 10, height: 15, resizeMode: 'contain', }} source={require('../../../../assets/images/png/sousuo_gengduo_icon.png')}></Image>
+                    </TouchableOpacity>
+                    <Text style={{ fontSize: 19, fontWeight: 'bold' }}>经营品类</Text>
+                    <View style={{ padding: 10, paddingLeft: 0 }}>
+                        <Image style={{ opacity: 0, width: 10, height: 15 }} source={require('../../../../assets/images/png/sousuo_gengduo_icon.png')}></Image>
+                    </View>
+                </View>
                 {/* 2 */}
-                <View style={{ flexDirection: 'row', marginTop: 40, height: '90%' }}>
+                <View style={{ flexDirection: 'row', height: '90%' }}>
                     {/* 左边 */}
                     <View style={{ width: '34%', borderRightColor: '#5D5757', borderRightWidth: 1 }} >
                         {

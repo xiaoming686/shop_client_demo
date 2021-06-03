@@ -1,5 +1,3 @@
-
-import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,28 +5,27 @@ import {
   Modal,
   TouchableOpacity
 } from 'react-native';
+import React from 'react'
+
 
 // 利用modal实现弹窗
-export default class MyToast extends Component {
-
-  render() {
-    return (
-      <Modal style={styles.container}
-        transparent={true}
-        visible={this.props.visible}
-        onRequestClose={() => {
-          this.props.cancel()
-        }}>
-        <TouchableOpacity style={{ flex: 1 }} onPress={() => { this.props.cancel() }}>
-          <View style={styles.dialogContainer}>
-            <View style={styles.innerContainer}>
-              <Text style={{fontSize:16,lineHeight:50}}>{this.props.content}</Text>
-            </View>
+export default function MyLogin(props) {
+  return (
+    <Modal style={styles.container}
+      transparent={true}
+      visible={props.visible}
+      onRequestClose={() => {
+        props.cancel()
+      }}>
+      <TouchableOpacity style={{ flex: 1 }} onPress={() => { props.cancel() }}>
+        <View style={styles.dialogContainer}>
+          <View style={styles.innerContainer}>
+            <Text style={{ fontSize: 16, lineHeight: 50 }}>{props.content}</Text>
           </View>
-        </TouchableOpacity>
-      </Modal>
-    );
-  }
+        </View>
+      </TouchableOpacity>
+    </Modal>
+  );
 }
 
 const styles = StyleSheet.create({

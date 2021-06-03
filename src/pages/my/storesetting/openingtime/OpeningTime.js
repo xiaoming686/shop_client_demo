@@ -73,7 +73,7 @@ export default class OpeningTime extends Component {
         })
     }
     addTime = () => {
-        if(this.state.choiceBusinessTime==1||this.state.choiceBusinessTime==2){
+        if (this.state.choiceBusinessTime == 1 || this.state.choiceBusinessTime == 2) {
             this.setState({
                 choiceBusinessTime: 2,
             })
@@ -92,6 +92,15 @@ export default class OpeningTime extends Component {
                     !this.state.isshade ? <></> :
                         <View style={{ backgroundColor: 'rgba(0,0,0,0.5)', width: '100%', height: '100%', zIndex: 10, position: 'absolute', top: 0 }}></View>
                 }
+                <View style={{ marginTop: 50, flexDirection: 'row', marginBottom: 20, marginHorizontal: 20, justifyContent: 'space-between', alignItems: 'center', }}>
+                    <TouchableOpacity style={{ padding: 10, paddingLeft: 0 }} activeOpacity={1} onPress={() => { this.props.navigation.goBack() }}>
+                        <Image style={{ width: 10, height: 15, resizeMode: 'contain', }} source={require('../../../../assets/images/png/sousuo_gengduo_icon.png')}></Image>
+                    </TouchableOpacity>
+                    <Text style={{ fontSize: 19, fontWeight: 'bold' }}>营业时间</Text>
+                    <View style={{ padding: 10, paddingLeft: 0 }}>
+                        <Image style={{ opacity: 0, width: 10, height: 15 }} source={require('../../../../assets/images/png/sousuo_gengduo_icon.png')}></Image>
+                    </View>
+                </View>
                 <View style={{ alignItems: 'center' }}>
                     <Image style={{ width: 96.5, height: 96.5 }} source={require('../../../../assets/images/png/dw-dianpukuang.png')}></Image>
                     <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#3F3C3C', paddingTop: 12, paddingBottom: 25 }}>盐忆</Text>
@@ -168,18 +177,18 @@ export default class OpeningTime extends Component {
                                 </View>
                             </View>
                             {/* 时间段的选择 */}
-                            {choiceBusinessTime==1||choiceBusinessTime==2 ? <View><Text style={{ fontSize: 14, color: '#5D5757' }}>最多可添加三项</Text></View> : <></>}
+                            {choiceBusinessTime == 1 || choiceBusinessTime == 2 ? <View><Text style={{ fontSize: 14, color: '#5D5757' }}>最多可添加三项</Text></View> : <></>}
                             {!businessTime ? <TouchableOpacity onPress={this.showMinPick} style={{ height: 34.5, backgroundColor: '#E5E4E4', borderRadius: 15, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', marginTop: 20 }}>
                                 <Text style={{ fontSize: 15, color: '#5D5757' }}>10:30</Text>
                                 <Text style={{ fontSize: 15, color: '#5D5757' }}>至</Text>
                                 <Text style={{ fontSize: 15, color: '#5D5757' }}>21:30</Text>
                             </TouchableOpacity> : <></>}
-                            {choiceBusinessTime==1||choiceBusinessTime==2 ? <TouchableOpacity onPress={this.showMinPick} style={{ height: 34.5, backgroundColor: '#E5E4E4', borderRadius: 15, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', marginTop: 20 }}>
+                            {choiceBusinessTime == 1 || choiceBusinessTime == 2 ? <TouchableOpacity onPress={this.showMinPick} style={{ height: 34.5, backgroundColor: '#E5E4E4', borderRadius: 15, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', marginTop: 20 }}>
                                 <Text style={{ fontSize: 15, color: '#5D5757' }}>选择开始时间</Text>
                                 <Text style={{ fontSize: 15, color: '#5D5757' }}>至</Text>
                                 <Text style={{ fontSize: 15, color: '#5D5757' }}>选择结束时间</Text>
                             </TouchableOpacity> : <></>}
-                            {choiceBusinessTime==2 ? <TouchableOpacity onPress={this.showMinPick} style={{ height: 34.5, backgroundColor: '#E5E4E4', borderRadius: 15, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', marginTop: 20 }}>
+                            {choiceBusinessTime == 2 ? <TouchableOpacity onPress={this.showMinPick} style={{ height: 34.5, backgroundColor: '#E5E4E4', borderRadius: 15, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', marginTop: 20 }}>
                                 <Text style={{ fontSize: 15, color: '#5D5757' }}>选择开始时间</Text>
                                 <Text style={{ fontSize: 15, color: '#5D5757' }}>至</Text>
                                 <Text style={{ fontSize: 15, color: '#5D5757' }}>选择结束时间</Text>

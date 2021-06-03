@@ -102,10 +102,10 @@ export default class LoginScreen extends Component {
         <MyLoading
           visible={this.state.isShowMyLoading} />
         {/* 7-语言选择 */}
-        <View style={{ width: 305, flexDirection: 'row', marginTop: 110, alignItems: 'center' }}>
-          <Image style={{ width: 20, height: 20, resizeMode: 'contain' }} source={require('../../assets/images/png/dl_yuyantubiao.png')} />
+        <View style={{ width: 305, flexDirection: 'row', marginTop: 90, alignItems: 'center', }}>
+          <Image style={{ width: 20, height: 20, resizeMode: 'contain' }} source={require('../../assets/images/png/dw_yuyanqiehuan.png')} />
           <TouchableOpacity onPress={() => { this.props.navigation.navigate('Language') }}>
-            <Text style={{ marginLeft: 6, fontSize: 19.53 }}>语言</Text>
+            <Text style={{ marginLeft: 6, fontSize: 19.53,color:'#5d5757' }}>语言</Text>
           </TouchableOpacity>
         </View>
       </View>

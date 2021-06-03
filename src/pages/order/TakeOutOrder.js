@@ -59,14 +59,14 @@ class ReservedOrder extends Component {
     return (
       <ScrollView style={{ backgroundColor: '#f8f8f9' }}>
         <View style={{ marginTop: 20, flexDirection: 'row', justifyContent: 'space-around', marginLeft: 40, width: 280 }}>
-          <TouchableOpacity style={{ width: 85, height: 30, alignItems: 'center', borderRadius: 10, backgroundColor: this.state.active == 1 ? '#e5e4e4' : 'transparent' }} onPress={() => { this.setState({ active: 1 }) }}>
-            <Text style={{ fontSize: 15, marginTop: 4, color: '#3f3c3c' }}>即将到时</Text>
+          <TouchableOpacity style={{ width: 85, height: 30, alignItems: 'center', borderRadius: 15, backgroundColor: this.state.active == 1 ? '#e5e4e4' : 'transparent' }} onPress={() => { this.setState({ active: 1 }) }}>
+            <Text style={{ fontSize: 15, marginTop: 4, color: this.state.active == 1 ? '#5d5757' : '#a09e9e' }}>即将到时</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={{ width: 85, height: 30, alignItems: 'center', borderRadius: 10, backgroundColor: this.state.active == 2 ? '#e5e4e4' : 'transparent' }} onPress={() => { this.setState({ active: 2 }) }}>
-            <Text style={{ fontSize: 15, marginTop: 4, color: '#3f3c3c' }}>今日</Text>
+          <TouchableOpacity style={{ width: 85, height: 30, alignItems: 'center', borderRadius: 15, backgroundColor: this.state.active == 2 ? '#e5e4e4' : 'transparent' }} onPress={() => { this.setState({ active: 2 }) }}>
+            <Text style={{ fontSize: 15, marginTop: 4, color: this.state.active == 2 ? '#5d5757' : '#a09e9e' }}>今日</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={{ width: 85, height: 30, alignItems: 'center', borderRadius: 10, backgroundColor: this.state.active == 3 ? '#e5e4e4' : 'transparent' }} onPress={() => { this.setState({ active: 3 }) }}>
-            <Text style={{ fontSize: 15, marginTop: 4, color: '#3f3c3c' }}>明日</Text>
+          <TouchableOpacity style={{ width: 85, height: 30, alignItems: 'center', borderRadius: 15, backgroundColor: this.state.active == 3 ? '#e5e4e4' : 'transparent' }} onPress={() => { this.setState({ active: 3 }) }}>
+            <Text style={{ fontSize: 15, marginTop: 4, color: this.state.active == 3 ? '#5d5757' : '#a09e9e' }}>明日</Text>
           </TouchableOpacity>
         </View>
         <View>

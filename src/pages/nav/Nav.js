@@ -29,11 +29,11 @@ function BackImage() {
 const Stack = createStackNavigator();
 function Nav() {
   return (
-    <Stack.Navigator initialRouteName="test" >
+    <Stack.Navigator initialRouteName="NavTab" >
       <Stack.Screen
         name="test"
         component={Test}
-        options={{ title: '测试', headerShown: false, headerTransparent: true }}
+        options={{ title: '测试', headerShown: false, }}
       />
       <Stack.Screen
         name="Login"
@@ -43,7 +43,7 @@ function Nav() {
       <Stack.Screen
         name="Language"
         component={LanguageScreen}
-        options={{ title: '语言切换', headerTitleAlign: 'center', headerTitleStyle: { fontSize: 19 }, headerStyle: { backgroundColor: '#f8f8f9' } }}
+        options={{ title: '语言切换', headerShown: false, }}
       />
       <Stack.Screen
         name="NavTab"
@@ -69,62 +69,52 @@ function Nav() {
       <Stack.Screen
         name="StoreSetting"
         component={StoreSetting}
-        options={{
-          title: '门店设置',
-          headerBackImage: () => { return <BackImage></BackImage> },
-          headerTitleAlign: 'center', headerTitleStyle: { fontSize: 19 }, headerStyle: { backgroundColor: '#f8f8f9' }
-        }}
+        options={{ title: '门店设置', headerShown: false }}
       />
       <Stack.Screen
         name="OpeningTime"
         component={OpeningTime}
-        options={{ title: '营业时间', headerTitleAlign: 'center', headerTitleStyle: { fontSize: 19 }, headerStyle: { backgroundColor: '#f8f8f9' } }}
+        options={{ title: '营业时间', headerShown: false }}
       />
       <Stack.Screen
         name="CheckTime"
         component={CheckTime}
-        options={{ title: '核销时间', headerTitleAlign: 'center', headerTitleStyle: { fontSize: 19 }, headerStyle: { backgroundColor: '#f8f8f9' } }}
+        options={{ title: '核销时间', headerShown: false }}
       />
       <Stack.Screen
         name="BusinessCategory"
         component={BusinessCategory}
-        options={{ title: '经营品类', headerTitleAlign: 'center', headerTitleStyle: { fontSize: 19 }, headerStyle: { backgroundColor: '#f8f8f9' } }}
+        options={{ title: '经营品类', headerShown: false }}
       />
       <Stack.Screen
         name="MainCategory"
         component={MainCategory}
-        options={{
-          title: '经营品类',
-          headerTitleAlign: 'center',
-          headerRight:()=>{return <TouchableOpacity style={{marginRight:26}}><Text style={{fontSize:15,color:'#2a2a2a',fontWeight:'bold'}}>保存</Text></TouchableOpacity>},
-          headerTitleStyle: { fontSize: 19 },
-          headerStyle: { backgroundColor: '#f8f8f9' }
-        }}
+        options={{ title: '经营品类', headerShown: false }}
       />
       <Stack.Screen
         name="OrderSetting"
         component={OrderSetting}
-        options={{ title: '订单设置', headerShown:false,headerTitleAlign: 'center', headerTitleStyle: { fontSize: 19 }, headerStyle: { backgroundColor: '#f8f8f9' } }}
+        options={{ title: '订单设置', headerShown: false, }}
       />
       <Stack.Screen
         name="Agreement"
         component={Agreement}
-        options={{ title: '合同协议', headerTitleAlign: 'center', headerTitleStyle: { fontSize: 19 }, headerStyle: { backgroundColor: '#f8f8f9' } }}
+        options={{ title: '合同协议', headerShown: false }}
       />
       <Stack.Screen
         name="Contract"
         component={Contract}
-        options={{ title: '商家合同', headerTitleAlign: 'center', headerTitleStyle: { fontSize: 19 }, headerStyle: { backgroundColor: '#f8f8f9' } }}
+        options={{ title: '商家合同', headerShown: false }}
       />
       <Stack.Screen
         name="PrivacyClause"
         component={PrivacyClause}
-        options={{ title: '隐私条款', headerTitleAlign: 'center', headerTitleStyle: { fontSize: 19 }, headerStyle: { backgroundColor: '#f8f8f9' } }}
+        options={{ title: '隐私条款', headerShown: false }}
       />
       <Stack.Screen
         name="UseClause"
         component={UseClause}
-        options={{ title: '使用条款', headerTitleAlign: 'center', headerTitleStyle: { fontSize: 19 }, headerStyle: { backgroundColor: '#f8f8f9' } }}
+        options={{ title: '使用条款', headerShown: false }}
       />
     </Stack.Navigator>
   );

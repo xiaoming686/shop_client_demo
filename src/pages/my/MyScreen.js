@@ -29,34 +29,34 @@ export default class MyScreen extends Component {
                 <View style={{ backgroundColor: '#ffffff', paddingHorizontal: 20, marginHorizontal: 20, borderRadius: 15, paddingTop: 110, paddingBottom: 33 }}>
                     <TouchableOpacity onPress={() => { this.props.navigation.push('StoreSetting') }} activeOpacity={1} style={{ alignItems: 'center', paddingVertical: 22, justifyContent: 'space-between', flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: '#ececec' }}>
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <Image source={require('../../assets/images/png/dw_mendiantubiao.png')}></Image>
+                            <Image style={{width:20,height:20,resizeMode:'contain'}} source={require('../../assets/images/png/dw_mendiantubiao.png')}></Image>
                             <Text style={{ marginLeft: 5, fontSize: 18 }}>门店设置</Text>
                         </View>
-                        <Text style={{ fontSize: 16, color: '#3f3c3c' }}>></Text>
+                        <Image style={{ width: 8, height: 12, resizeMode: 'contain', }} source={require('../../assets/images/png/gr_gengduo_icon1.png')}></Image>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => { this.props.navigation.push('OrderSetting') }} activeOpacity={1} style={{ paddingVertical: 22, justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: '#ececec' }}>
-                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <Image source={require('../../assets/images/png/dw_dingdanicon.png')}></Image>
+                        <View style={{ flexDirection: 'row', alignItems: 'baseline' }}>
+                            <Image style={{width:20,height:20,resizeMode:'contain'}} source={require('../../assets/images/png/dw_dingdanicon.png')}></Image>
                             <Text style={{ marginLeft: 5, fontSize: 18 }}>订单设置</Text>
                         </View>
-                        <Text style={{ fontSize: 16, color: '#3f3c3c' }}>></Text>
+                        <Image style={{ width: 8, height: 12, resizeMode: 'contain', }} source={require('../../assets/images/png/gr_gengduo_icon1.png')}></Image>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => { this.props.navigation.push('Language') }} activeOpacity={1} style={{ paddingVertical: 22, justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: '#ececec' }}>
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <Image source={require('../../assets/images/png/dw_yuyanicon.png')}></Image>
+                            <Image style={{width:20,height:20,resizeMode:'contain'}} source={require('../../assets/images/png/dw_yuyanqiehuan.png')}></Image>
                             <Text style={{ marginLeft: 5, fontSize: 18 }}>语言切换</Text>
                         </View>
-                        <Text style={{ fontSize: 16, color: '#3f3c3c' }}>></Text>
+                        <Image style={{ width: 8, height: 12, resizeMode: 'contain', }} source={require('../../assets/images/png/gr_gengduo_icon1.png')}></Image>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => { this.props.navigation.push('Agreement') }} activeOpacity={1} style={{ paddingVertical: 22, justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: '#ececec' }}>
-                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <Image source={require('../../assets/images/png/dw_hetongicon.png')}></Image>
+                        <View style={{ flexDirection: 'row', alignItems: 'baseline' }}>
+                            <Image style={{width:20,height:20,resizeMode:'contain'}} source={require('../../assets/images/png/dw_hetongicon.png')}></Image>
                             <Text style={{ marginLeft: 5, fontSize: 18 }}>合同协议</Text>
                         </View>
-                        <Text style={{ fontSize: 16, color: '#3f3c3c' }}>></Text>
+                        <Image style={{ width: 8, height: 12, resizeMode: 'contain', }} source={require('../../assets/images/png/gr_gengduo_icon1.png')}></Image>
                     </TouchableOpacity>
-                    <View style={{ paddingVertical: 22, flexDirection: 'row', alignItems: 'center' }}>
-                        <Image source={require('../../assets/images/png/dw_wodicon.png')}></Image>
+                    <View style={{ paddingVertical: 22, flexDirection: 'row', alignItems: 'baseline' }}>
+                        <Image style={{width:20,height:20,resizeMode:'contain'}} source={require('../../assets/images/png/dw_wodicon.png')}></Image>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline', flex: 1 }}>
                             <Text style={{ marginLeft: 5, fontSize: 18 }}>当前账号</Text>
                             <Text style={{ fontSize: 13, color: '#938f8f' }}>今天就要点外卖</Text>

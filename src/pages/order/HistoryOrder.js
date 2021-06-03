@@ -15,17 +15,17 @@ export default class HistoryOrder extends Component {
   }
   render() {
     return (
-      <ScrollView>
-        <View style={{ marginLeft: 15, marginRight: 15, flexDirection: 'row', justifyContent: 'space-around' }}>
+      <View>
+        <View style={{ flexDirection: 'row', paddingLeft: 35, height: 40, alignItems: 'center', }}>
           <View>
             {/* 弹出日期选择框 */}
-            <TouchableOpacity activeOpacity={1} style={{ alignItems: 'center', flexDirection: 'row', width: 60, height: 51, borderRadius: 5, backgroundColor: '#3f3c3c', }} onPress={this.showDayPick}>
-              <Text style={{ color: '#ffffff', marginLeft: 8 }}>{this.state.pickday[this.state.clickDayItem - 1].day}</Text>
-              <Image style={{ width: 15, height: 15, marginLeft: 3 }} source={require('../../assets/images/png/downangle.png')} ></Image>
+            <TouchableOpacity activeOpacity={1} style={{ alignItems: 'center', flexDirection: 'row', width: 70, }} onPress={this.showDayPick}>
+              <Text style={{ color: '#5d5757', fontSize: 15 }}>{this.state.pickday[this.state.clickDayItem - 1].day}</Text>
+              <Image style={{ width: 12, height: 18, marginLeft: 3, resizeMode: 'contain' }} source={require('../../assets/images/png/downangle.png')} ></Image>
             </TouchableOpacity>
             {
               this.state.clickDay ?
-                <View style={{ position: 'absolute', top: 55, borderRadius: 15, backgroundColor: '#f3f3f3', zIndex: 10, width: 64, height: 175, paddingVertical: 5 }}>
+                <View style={{ position: 'absolute', top: 30, left:-5,borderRadius: 15, backgroundColor: '#f3f3f3', zIndex: 10, width: 52, height: 175, }}>
                   {
                     this.state.pickday.map((item) => {
                       return (
@@ -41,29 +41,34 @@ export default class HistoryOrder extends Component {
             }
           </View>
           {/* 导航 */}
-          <View style={{ flexDirection: 'row', backgroundColor: '#3f3c3c', borderRadius: 5, }}>
-            <TouchableOpacity style={{ padding: 6, flexDirection: 'row', alignItems: 'center' }} onPress={() => { this.setState({ active: 1 }) }}>
-              <Text style={{ backgroundColor: this.state.active == 1 ? '#00cb88' : '#3f3c3c', width: 6, height: 6, borderRadius: 3 }}></Text>
-              <Text style={{ marginLeft: 3, color: this.state.active == 1 ? '#ffffff' : '#989897' }}>外卖单</Text>
+          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+            <TouchableOpacity style={{ width: 75, }} onPress={() => { this.setState({ active: 1 }) }}>
+              <Text style={{ color: this.state.active == 1 ? '#5d5757' : '#a09e9e' }}>外卖单</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={{ padding: 6, flexDirection: 'row', alignItems: 'center' }} onPress={() => { this.setState({ active: 2 }) }}>
-              <Text style={{ backgroundColor: this.state.active == 2 ? '#00cb88' : '#3f3c3c', width: 6, height: 6, borderRadius: 3 }}></Text>
-              <Text style={{ marginLeft: 3, color: this.state.active == 2 ? '#ffffff' : '#989897' }}>其它单</Text>
+            <TouchableOpacity style={{ width: 75, }} onPress={() => { this.setState({ active: 2 }) }}>
+              <Text style={{ color: this.state.active == 2 ? '#5d5757' : '#a09e9e' }}>其它单</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={{ padding: 6, flexDirection: 'row', alignItems: 'center' }} onPress={() => { this.setState({ active: 3 }) }}>
-              <Text style={{ backgroundColor: this.state.active == 3 ? '#00cb88' : '#3f3c3c', width: 6, height: 6, borderRadius: 3 }}></Text>
-              <Text style={{ marginLeft: 3, color: this.state.active == 3 ? '#ffffff' : '#989897' }}>取消单</Text>
+            <TouchableOpacity style={{ width: 75, }} onPress={() => { this.setState({ active: 3 }) }}>
+              <Text style={{ color: this.state.active == 3 ? '#5d5757' : '#a09e9e' }}>取消单</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={{ padding: 6, flexDirection: 'row', alignItems: 'center' }} onPress={() => { this.setState({ active: 4 }) }}>
-              <Text style={{ backgroundColor: this.state.active == 4 ? '#00cb88' : '#3f3c3c', width: 6, height: 6, borderRadius: 3 }}></Text>
-              <Text style={{ marginLeft: 3, color: this.state.active == 4 ? '#ffffff' : '#989897' }}>退款单</Text>
+            <TouchableOpacity style={{ width: 75, }} onPress={() => { this.setState({ active: 4 }) }}>
+              <Text style={{ color: this.state.active == 4 ? '#5d5757' : '#a09e9e' }}>退款单</Text>
             </TouchableOpacity>
-          </View>
+          </ScrollView>
         </View>
-        <View>
-          {this.state.active == 1 ? <HistoryTakeOutOrder props={this.props.props}></HistoryTakeOutOrder> : this.state.active == 2 ? <HistoryOtherOrder props={this.props.props}></HistoryOtherOrder> : <HistoryCancleOrder props={this.props.props}></HistoryCancleOrder>}
-        </View>
-      </ScrollView>
+        <ScrollView>
+          {
+            this.state.active == 1 ?
+              <HistoryTakeOutOrder props={this.props.props}></HistoryTakeOutOrder>
+              :
+              this.state.active == 2 ?
+                <HistoryOtherOrder props={this.props.props}></HistoryOtherOrder>
+                : this.state.active == 3 ?
+                  <HistoryCancleOrder props={this.props.props}></HistoryCancleOrder>
+                  :
+                  <HistoryRefundOrder props={this.props.props}></HistoryRefundOrder>}
+        </ScrollView>
+      </View>
     )
   }
 }
@@ -111,6 +116,27 @@ class HistoryOtherOrder extends Component {
 }
 // 1-2-3取消单组件
 class HistoryCancleOrder extends Component {
+  state = {
+    historyotherorder: [{ id: 1, a: 1, b: 2 }, { id: 2, a: 3, b: 4 }, { id: 3, a: 5, b: 4 }, { id: 4, a: 7, b: 4 }]
+  }
+  render() {
+    return (
+      <View>
+        {
+          this.state.historyotherorder.map((item) => {
+            return (
+              <View key={item.id}>
+                <OtherOrderItem props={this.props.props} num={item.a} can={true}></OtherOrderItem>
+              </View>
+            )
+          })
+        }
+      </View>
+    )
+  }
+}
+// 1-2-3退款单组件
+class HistoryRefundOrder extends Component {
   state = {
     historyotherorder: [{ id: 1, a: 1, b: 2 }, { id: 2, a: 3, b: 4 }, { id: 3, a: 5, b: 4 }, { id: 4, a: 7, b: 4 }]
   }

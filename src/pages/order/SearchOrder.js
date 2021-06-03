@@ -11,16 +11,6 @@ export default class SearchOrder extends Component {
         keyword: '',//搜索关键字
         orderList: [{ id: 1, a: 1, b: 2 }, { id: 2, a: 3, b: 4 }, { id: 3, a: 5, b: 4 }, { id: 4, a: 7, b: 4 }],//订单列表
     }
-
-    componentDidMount() {
-        this._getHotWords()
-    }
-
-    //获取搜索历史列表数据
-    _getHotWords() {
-        let params = '{"data":{}}'
-    }
-
     //搜索
     onChanegeTextKeyword() {
         console.log(this.state.value)
@@ -51,45 +41,11 @@ export default class SearchOrder extends Component {
     }
 
 
-    //获取历史记录
-    _getHistory() {
-        // 查询本地历史
-        getItems("searchHistory").then(data => {
-            if (data == null) {
-                this.setState({
-                    searchHistory: [],
-                })
-            } else {
-                this.setState({
-                    searchHistory: data,
-                })
-            }
-        })
-    }
-    // 保存搜索标签
-    _insertSearch(newText) {
-        let text = newText.replace(/(^\s*)|(\s*$)/g, "")
-        if (!_.isEmpty(text)) {
-            if (this.state.searchHistory.indexOf(text) != -1) {
-                // 本地历史 已有 搜索内容
-                let index = this.state.searchHistory.indexOf(text);
-                let tempArr = arrDelete(this.state.searchHistory, index)
-                tempArr.unshift(text);
-                setItem("searchHistory", tempArr);
-            } else {
-                // 本地历史 无 搜索内容
-                let tempArr = this.state.searchHistory;
-                tempArr.unshift(text);
-                setItem("searchHistory", tempArr);
-            }
-        }
-    }
-
     render() {
         return (
             <View style={styles.container}>
                 <View style={{ flexDirection: 'row', marginHorizontal: 15, alignItems: 'center', marginTop: 20, justifyContent: 'space-between', height: 40, backgroundColor: '#F8F8F9' }}>
-                    <TouchableOpacity onPress={() => { this.props.navigation.goBack() }}>
+                    <TouchableOpacity style={{width:20,height:20}} activeOpacity={1} onPress={() => { this.props.navigation.goBack() }}>
                         <Image style={{ width: 17, height: 17, resizeMode: 'contain' }} source={require('../../assets/images/png/sousuo_gengduo_icon.png')}></Image>
                     </TouchableOpacity>
                     <View style={styles.inputBox}>
@@ -112,22 +68,27 @@ export default class SearchOrder extends Component {
                             defaultValue={this.state.value}
                             keyboardType="default" />
                     </View>
-                    <Text style={{ color: '#2A2A2A', fontSize: 16, fontWeight: 'bold' }}>取消</Text>
+                    <TouchableOpacity activeOpacity={1} onPress={() => { this.props.navigation.goBack() }}>
+                        <Text style={{ color: '#2A2A2A', fontSize: 16, }}>取消</Text>
+                    </TouchableOpacity>
                 </View>
 
                 {/*监听页面，刷新搜索本地历史历史*/}
                 {
-                    (this.state.isPostList) ? <></> : (this.state.orderList.length = 0) ?
+                    this.state.isPostList ?
                         //搜索到的内容
                         <ScrollView style={styles.scrollView}>
                             {/* 循环遍历内容 */}
                             {
                                 this.state.orderList.map((item, index) => {
                                     return (
-                                        <View key={index}>
-                                            <OtherOrderItem props={this.props} num={item.a}></OtherOrderItem>
-                                        </View>
+                                        item.id == this.state.value ?
+                                            <View key={index}>
+                                                <OtherOrderItem props={this.props} num={item.a}></OtherOrderItem>
+                                            </View> :
+                                            <></>
                                     )
+
                                 })
                             }
                         </ScrollView> :
@@ -150,7 +111,7 @@ const styles = StyleSheet.create({
     inputBox: {
         // height: Platform.OS === 'ios' ? 25 : 35,
         backgroundColor: '#E5E4E4',
-        width: 267,
+        width: 260,
         height: 40,
         borderRadius: 15,
         justifyContent: 'center'
@@ -163,7 +124,7 @@ const styles = StyleSheet.create({
     inputText: {
         position: 'absolute',
         marginLeft: 50,
-        paddingVertical: 0,
+        paddingBottom: 10,
         fontSize: 16,
         color: '#a09e9e'
     }

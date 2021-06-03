@@ -12,7 +12,7 @@ export default class OrderScreen extends Component {
         return (
             <View style={{ flex: 1, paddingTop: 50, backgroundColor: '#f8f8f9' }}>
                 {/* 1-顶部tab栏，搜索框跳转搜索界面 */}
-                <View style={{ width: 325, marginLeft: 20, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
+                <View style={{ width: 340, marginLeft: 10, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
                     <TouchableOpacity style={{ borderBottomColor: this.state.active == 1 ? '#00CB88' : 'transparent', borderBottomWidth: this.state.active == 1 ? 4 : 0 }} onPress={() => { this.setState({ active: 1 }) }}>
                         <Text style={{ color: this.state.active == 1 ? '#3f3c3c' : '#989897',fontSize:17 }}>外卖</Text>
                     </TouchableOpacity>
