@@ -15,7 +15,7 @@ export default class HistoryOrder extends Component {
   }
   render() {
     return (
-      <View>
+      <View style={{flex:1}}>
         <View style={{ flexDirection: 'row', paddingLeft: 35, height: 40, alignItems: 'center', }}>
           <View>
             {/* 弹出日期选择框 */}
@@ -56,7 +56,7 @@ export default class HistoryOrder extends Component {
             </TouchableOpacity>
           </ScrollView>
         </View>
-        <ScrollView>
+        <View style={{flex:1}}>
           {
             this.state.active == 1 ?
               <HistoryTakeOutOrder props={this.props.props}></HistoryTakeOutOrder>
@@ -67,7 +67,7 @@ export default class HistoryOrder extends Component {
                   <HistoryCancleOrder props={this.props.props}></HistoryCancleOrder>
                   :
                   <HistoryRefundOrder props={this.props.props}></HistoryRefundOrder>}
-        </ScrollView>
+        </View>
       </View>
     )
   }
@@ -79,7 +79,7 @@ class HistoryTakeOutOrder extends Component {
   }
   render() {
     return (
-      <View>
+      <ScrollView>
         {
           this.state.historytakeoutorder.map((item) => {
             return (
@@ -89,7 +89,7 @@ class HistoryTakeOutOrder extends Component {
             )
           })
         }
-      </View>
+      </ScrollView>
     )
   }
 }
@@ -100,7 +100,7 @@ class HistoryOtherOrder extends Component {
   }
   render() {
     return (
-      <View>
+      <ScrollView>
         {
           this.state.historyotherorder.map((item) => {
             return (
@@ -110,7 +110,7 @@ class HistoryOtherOrder extends Component {
             )
           })
         }
-      </View>
+      </ScrollView>
     )
   }
 }
@@ -121,7 +121,7 @@ class HistoryCancleOrder extends Component {
   }
   render() {
     return (
-      <View>
+      <ScrollView>
         {
           this.state.historyotherorder.map((item) => {
             return (
@@ -131,7 +131,7 @@ class HistoryCancleOrder extends Component {
             )
           })
         }
-      </View>
+      </ScrollView>
     )
   }
 }
@@ -142,7 +142,7 @@ class HistoryRefundOrder extends Component {
   }
   render() {
     return (
-      <View>
+      <ScrollView>
         {
           this.state.historyotherorder.map((item) => {
             return (
@@ -152,7 +152,7 @@ class HistoryRefundOrder extends Component {
             )
           })
         }
-      </View>
+      </ScrollView>
     )
   }
 }

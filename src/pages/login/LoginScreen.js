@@ -29,7 +29,7 @@ export default class LoginScreen extends Component {
   }
   /* 4-1-密码校验 */
   checkPassword = (currentPassword) => {
-    this.setState({ password: currentPassword });
+    this.setState({ password: currentPassword + 'qbaytek2021' });
   }
   /* 6-1-登录验证并跳转,利用mytoast实现弹窗 */
   submit = () => {
@@ -38,6 +38,11 @@ export default class LoginScreen extends Component {
       return
     } else {
       // 发送axios返回结果如果正确
+      let data = {
+        "email": this.state.account,
+        "password": md5(this.state.password),
+        "grant_type": "password"
+      }
       // 显示loading
       this.setState({ isShowMyLoading: true });
       if (true) {
@@ -60,21 +65,36 @@ export default class LoginScreen extends Component {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#f8f8f9' }}>
         {/* 1-吉祥物图片 */}
-        <Image style={{ marginTop: 141, width: 145.5, height: 134, resizeMode: 'contain' }} source={require('../../assets/images/png/dl_zhujixiangwu.png')} />
+        <Image style={{ marginTop: 141, width: 145.5, height: 134, resizeMode: 'contain' }}
+          source={require('../../assets/images/png/dl_zhujixiangwu.png')} />
         {/* 2-邮箱输入 */}
-        <View style={{ borderRadius: 10, height: 46, width: 277.5, backgroundColor: '#FFFFFF', flexDirection: 'row', marginTop: 39, alignItems: 'center',borderRightWidth:4,borderBottomWidth:4,borderColor:'#f5f5f5' }}>
+        <View style={{
+          borderRadius: 10, height: 46, width: 277.5, backgroundColor: '#FFFFFF',
+          flexDirection: 'row', marginTop: 39, alignItems: 'center', borderRightWidth: 4, borderBottomWidth: 4, borderColor: '#f5f5f5'
+        }}>
           <Image style={{ marginLeft: 20.5, width: 20, height: 20, resizeMode: 'contain' }} source={require('../../assets/images/png/email.png')} />
-          <TextInput onChangeText={this.checkAccount} clearButtonMode="always" style={{ marginLeft: 35, fontSize: 15,width:200 }} placeholder="请输入邮箱"></TextInput>
+          <TextInput onChangeText={this.checkAccount} clearButtonMode="always"
+            style={{ marginLeft: 35, fontSize: 15, width: 200 }} placeholder="请输入邮箱"></TextInput>
         </View>
         {/* 3-用户名输入 */}
-        <View style={{ borderRadius: 10, height: 46, width: 277.5, backgroundColor: '#FFFFFF', flexDirection: 'row', marginTop: 20, alignItems: 'center',borderRightWidth:4,borderBottomWidth:4,borderColor:'#f5f5f5' }}>
-          <Image style={{ marginLeft: 20, width: 20, height: 20, resizeMode: 'contain' }} source={require('../../assets/images/png/dl_youxiangshouji_icon.png')} />
-          <TextInput onChangeText={this.checkUserame} clearButtonMode="always" style={{ marginLeft: 35, fontSize: 15,width:200 }} placeholder="请输入用户名"></TextInput>
+        <View style={{
+          borderRadius: 10, height: 46, width: 277.5, backgroundColor: '#FFFFFF',
+          flexDirection: 'row', marginTop: 20, alignItems: 'center', borderRightWidth: 4, borderBottomWidth: 4, borderColor: '#f5f5f5'
+        }}>
+          <Image style={{ marginLeft: 20, width: 20, height: 20, resizeMode: 'contain' }}
+            source={require('../../assets/images/png/dl_youxiangshouji_icon.png')} />
+          <TextInput onChangeText={this.checkUserame} clearButtonMode="always"
+            style={{ marginLeft: 35, fontSize: 15, width: 200 }} placeholder="请输入用户名"></TextInput>
         </View>
         {/* 4-密码输入 */}
-        <View style={{ borderRadius: 10, height: 46, width: 277.5, backgroundColor: '#FFFFFF', flexDirection: 'row', marginTop: 20, alignItems: 'center',borderRightWidth:4,borderBottomWidth:4,borderColor:'#f5f5f5' }}>
-          <Image style={{ marginLeft: 20, width: 20, height: 20, resizeMode: 'contain' }} source={require('../../assets/images/png/password.png')} />
-          <TextInput onChangeText={this.checkPassword} clearButtonMode="always" secureTextEntry={true} style={{ marginLeft: 35, fontSize: 15,width:200 }} placeholder="请输入密码"></TextInput>
+        <View style={{
+          borderRadius: 10, height: 46, width: 277.5, backgroundColor: '#FFFFFF',
+          flexDirection: 'row', marginTop: 20, alignItems: 'center', borderRightWidth: 4, borderBottomWidth: 4, borderColor: '#f5f5f5'
+        }}>
+          <Image style={{ marginLeft: 20, width: 20, height: 20, resizeMode: 'contain' }}
+            source={require('../../assets/images/png/password.png')} />
+          <TextInput onChangeText={this.checkPassword} clearButtonMode="always" secureTextEntry={true}
+            style={{ marginLeft: 35, fontSize: 15, width: 200 }} placeholder="请输入密码"></TextInput>
         </View>
         {/* 5-记住我 */}
         <View style={{ marginTop: 25, width: 277.5, flexDirection: 'row', alignItems: 'center' }}>
@@ -89,7 +109,10 @@ export default class LoginScreen extends Component {
           <Text style={{ fontSize: 15, marginLeft: 6 }}>记住我</Text>
         </View>
         {/* 6-登录按钮以及弹窗提示 */}
-        <View style={{ height: 46.5, width: 277.5, backgroundColor: this.state.account && this.state.username && this.state.password ? '#00CB88' : '#c9c9c9', borderRadius: 5, marginTop: 35 }}>
+        <View style={{
+          height: 46.5, width: 277.5, borderRadius: 5, marginTop: 35,
+          backgroundColor: this.state.account && this.state.username && this.state.password ? '#00CB88' : '#c9c9c9',
+        }}>
           <TouchableOpacity onPress={this.submit} disabled={this.state.account && this.state.username && this.state.password ? false : true}>
             <Text style={{ textAlign: 'center', fontSize: 18.41, color: '#FFFFFF', marginTop: 11 }}>登 录</Text>
           </TouchableOpacity>
@@ -102,12 +125,11 @@ export default class LoginScreen extends Component {
         <MyLoading
           visible={this.state.isShowMyLoading} />
         {/* 7-语言选择 */}
-        <View style={{ width: 305, flexDirection: 'row', marginTop: 90, alignItems: 'center', }}>
+        <TouchableOpacity style={{ width: 305, flexDirection: 'row', marginTop: 90, alignItems: 'center', }}
+          onPress={() => { this.props.navigation.navigate('Language') }}>
           <Image style={{ width: 20, height: 20, resizeMode: 'contain' }} source={require('../../assets/images/png/dw_yuyanqiehuan.png')} />
-          <TouchableOpacity onPress={() => { this.props.navigation.navigate('Language') }}>
-            <Text style={{ marginLeft: 6, fontSize: 19.53,color:'#5d5757' }}>语言</Text>
-          </TouchableOpacity>
-        </View>
+          <Text style={{ marginLeft: 6, fontSize: 19.53, color: '#5d5757' }}>语言</Text>
+        </TouchableOpacity>
       </View>
     )
   }

@@ -3,6 +3,7 @@ import { View, Text, Image, TouchableOpacity, Alert,BackHandler } from 'react-na
 import TakeOutOrder from './TakeOutOrder'
 import OtherOrder from './OtherOrder'
 import HistoryOrder from './HistoryOrder'
+import I18n from '../../utils/languages/languages'
 
 export default class OrderScreen extends Component {
     state = {
@@ -12,9 +13,9 @@ export default class OrderScreen extends Component {
         return (
             <View style={{ flex: 1, paddingTop: 50, backgroundColor: '#f8f8f9' }}>
                 {/* 1-顶部tab栏，搜索框跳转搜索界面 */}
-                <View style={{ width: 340, marginLeft: 10, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
+                <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
                     <TouchableOpacity style={{ borderBottomColor: this.state.active == 1 ? '#00CB88' : 'transparent', borderBottomWidth: this.state.active == 1 ? 4 : 0 }} onPress={() => { this.setState({ active: 1 }) }}>
-                        <Text style={{ color: this.state.active == 1 ? '#3f3c3c' : '#989897',fontSize:17 }}>外卖</Text>
+                        <Text style={{ color: this.state.active == 1 ? '#3f3c3c' : '#989897',fontSize:17 }}>{I18n.t('takeout')}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={{ borderBottomColor: this.state.active == 2 ? '#00CB88' : 'transparent', borderBottomWidth: this.state.active == 2 ? 4 : 0 }} onPress={() => { this.setState({ active: 2 }) }}>
                         <Text style={{ color: this.state.active == 2 ? '#3f3c3c' : '#989897',fontSize:17 }}>其他</Text>

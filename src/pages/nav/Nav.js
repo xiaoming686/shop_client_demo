@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { View, Text, Image, Dimensions } from 'react-native'
 import { createStackNavigator, HeaderBackButton } from '@react-navigation/stack';
 import LoginScreen from '../login/LoginScreen'
-import Test from '../login/test'
 import LanguageScreen from '../login/LanguageScreen'
 import NavTab from './NavTab'
 import SearchOrder from '../order/SearchOrder'
@@ -19,22 +18,11 @@ import Contract from '../my/agreement/Contract'
 import PrivacyClause from '../my/agreement/PrivacyClause'
 import UseClause from '../my/agreement/UseClause'
 
-function BackImage() {
-  return (
-    <Image style={{ marginLeft: 10 }} source={require('../../assets/images/png/sousuo_gengduo_icon.png')}></Image>
-  )
-}
-
-
 const Stack = createStackNavigator();
+
 function Nav() {
   return (
     <Stack.Navigator initialRouteName="NavTab" >
-      <Stack.Screen
-        name="test"
-        component={Test}
-        options={{ title: '测试', headerShown: false, }}
-      />
       <Stack.Screen
         name="Login"
         component={LoginScreen}

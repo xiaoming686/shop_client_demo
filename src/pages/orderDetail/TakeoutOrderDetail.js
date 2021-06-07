@@ -13,7 +13,7 @@ export default function TakeoutOrderDetail() {
               <Text style={{ fontSize: 19, color: '#3F3C3C', paddingLeft: 5 }}>#1</Text>
             </View>
             <View style={{ flexDirection: 'row' }}>
-              <Image style={{ width: 20, height: 20 }} source={require('../../assets/images/png/dw_dianhuaicon.png')}></Image>
+              <Image style={{ width: 20, height: 20,resizeMode:'contain' }} source={require('../../assets/images/png/dy_dianpincheicon3x.png')}></Image>
               <Text style={{ fontSize: 15, color: '#FF6127' }}>待骑手接单</Text>
             </View>
           </View>

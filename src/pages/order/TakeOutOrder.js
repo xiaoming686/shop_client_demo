@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, Button, Image, ScrollView, TouchableOpacity } from 'react-native'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import TakeOutOrderItem from '../../components/TakeOutOrderItem'
+import I18n from '../../utils/languages/languages'
 
 export default class OtherOrder extends Component {
   state = {
@@ -13,7 +14,7 @@ export default class OtherOrder extends Component {
         <View style={{ height: 50, marginHorizontal: 25, backgroundColor: '#3f3c3c', borderRadius: 5, flexDirection: 'row', justifyContent: 'space-around' }}>
           <TouchableOpacity style={{ padding: 6, flexDirection: 'row', alignItems: 'center' }} onPress={() => { this.setState({ active: 1 }) }}>
             <Text style={{ backgroundColor: this.state.active == 1 ? '#00cb88' : '#3f3c3c', width: 6, height: 6, borderRadius: 3 }}></Text>
-            <Text style={{ marginLeft: 3, color: this.state.active == 1 ? '#ffffff' : '#989897', fontSize: 17 }}>进行中</Text>
+            <Text style={{ marginLeft: 3, color: this.state.active == 1 ? '#ffffff' : '#989897', fontSize: 17 }}>{I18n.t('doing')}</Text>
           </TouchableOpacity>
           <TouchableOpacity style={{ padding: 6, flexDirection: 'row', alignItems: 'center' }} onPress={() => { this.setState({ active: 2 }) }}>
             <Text style={{ backgroundColor: this.state.active == 2 ? '#00cb88' : '#3f3c3c', width: 6, height: 6, borderRadius: 3 }}></Text>
@@ -58,7 +59,7 @@ class ReservedOrder extends Component {
   render() {
     return (
       <ScrollView style={{ backgroundColor: '#f8f8f9' }}>
-        <View style={{ marginTop: 20, flexDirection: 'row', justifyContent: 'space-around', marginLeft: 40, width: 280 }}>
+        <View style={{ marginTop: 20, flexDirection: 'row', justifyContent: 'space-around', marginHorizontal: 20, flex: 1 }}>
           <TouchableOpacity style={{ width: 85, height: 30, alignItems: 'center', borderRadius: 15, backgroundColor: this.state.active == 1 ? '#e5e4e4' : 'transparent' }} onPress={() => { this.setState({ active: 1 }) }}>
             <Text style={{ fontSize: 15, marginTop: 4, color: this.state.active == 1 ? '#5d5757' : '#a09e9e' }}>即将到时</Text>
           </TouchableOpacity>

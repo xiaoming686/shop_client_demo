@@ -55,15 +55,20 @@ export default class OrderSetting extends Component {
           !this.state.isshade ? <></> :
             <TouchableOpacity
               onPress={() => { this.setState({ isshade: false }); Picker.hide() }}
-              style={{ backgroundColor: 'rgba(0,0,0,0.5)', width: '100%', height: '100%', zIndex: 10, position: 'absolute', top: 0 }}></TouchableOpacity>
+              style={{ backgroundColor: 'rgba(0,0,0,0.5)', width: '100%', height: '100%', zIndex: 10, position: 'absolute', top: 0 }}>
+            </TouchableOpacity>
         }
         {/* 状态栏和头部 */}
         <StatusBar
           backgroundColor={this.state.isshade ? 'rgba(0,0,0,0.01)' : "#f8f8f9"}>
         </StatusBar>
-        <View style={{ marginTop: 50, flexDirection: 'row', marginBottom: 20, marginHorizontal: 20, justifyContent: 'space-between', alignItems: 'center', }}>
+        <View style={{
+          marginTop: 50, flexDirection: 'row', marginBottom: 20, marginHorizontal: 20,
+          justifyContent: 'space-between', alignItems: 'center',
+        }}>
           <TouchableOpacity style={{ padding: 10, paddingLeft: 0 }} activeOpacity={1} onPress={() => { this.props.navigation.goBack() }}>
-            <Image style={{ width: 10, height: 15, resizeMode: 'contain', }} source={require('../../assets/images/png/sousuo_gengduo_icon.png')}></Image>
+            <Image style={{ width: 10, height: 15, resizeMode: 'contain', }}
+              source={require('../../assets/images/png/sousuo_gengduo_icon.png')}></Image>
           </TouchableOpacity>
           <Text style={{ fontSize: 19, fontWeight: 'bold' }}>订单设置</Text>
           <View style={{ padding: 10, paddingLeft: 0 }}>
@@ -74,24 +79,37 @@ export default class OrderSetting extends Component {
         <View style={{ backgroundColor: '#ffffff', marginHorizontal: 15, paddingVertical: 20, borderRadius: 15, paddingHorizontal: 20 }}>
           <Text style={{ fontSize: 18, color: '#5d5757' }}>出餐时间设置</Text>
           <Text style={{ fontSize: 15, color: '#838181', marginTop: 5 }}>出餐时间</Text>
-          <View style={{ flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-between', paddingTop: 19, marginTop: 20, borderTopWidth: 1, borderColor: '#ececec' }}>
+          <View style={{
+            flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-between',
+            paddingTop: 19, marginTop: 20, borderTopWidth: 1, borderColor: '#ececec'
+          }}>
             <Text style={{ fontSize: 18, color: '#5d5757' }}>承诺出餐时间</Text>
-            <TouchableOpacity activeOpacity={1} onPress={this.showMinPick} style={{flexDirection:'row',alignItems:'center'}}>
+            <TouchableOpacity activeOpacity={1} onPress={this.showMinPick} style={{ flexDirection: 'row', alignItems: 'center' }}>
               <Text style={{ fontSize: 15, color: '#838181' }}>{this.state.pickmin}</Text>
-              <Image style={{ width: 8, height: 12, resizeMode: 'contain',marginLeft:5 }} source={require('../../assets/images/png/gr_gengduo_icon1.png')}></Image>
+              <Image style={{ width: 8, height: 12, resizeMode: 'contain', marginLeft: 5 }}
+                source={require('../../assets/images/png/gr_gengduo_icon1.png')}></Image>
             </TouchableOpacity>
           </View>
         </View>
 
-        <View style={{ backgroundColor: '#ffffff', marginHorizontal: 15, paddingVertical: 20, borderRadius: 15, paddingHorizontal: 20, marginTop: 22 }}>
+        <View style={{
+          backgroundColor: '#ffffff', marginHorizontal: 15, paddingVertical: 20,
+          borderRadius: 15, paddingHorizontal: 20, marginTop: 22
+        }}>
           {/* 1 */}
           <Text style={{ fontSize: 18, color: '#5d5757' }}>预订单设置</Text>
           <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 5, justifyContent: 'space-between' }}>
             <Text style={{ fontSize: 16, color: '#5d5757' }}>休息时间支持预定</Text>
-            <TouchableOpacity style={{ width: 50, height: 26, backgroundColor: this.state.swichbar ? '#18dd83' : '#9D9B9B', borderRadius: 20, justifyContent: 'center', paddingHorizontal: 0.5 }}
+            <TouchableOpacity style={{
+              width: 50, height: 26, backgroundColor: this.state.swichbar ? '#18dd83' : '#9D9B9B',
+              borderRadius: 20, justifyContent: 'center', paddingHorizontal: 0.5
+            }}
               activeOpacity={1}
               onPress={() => { this.setState({ swichbar: !this.state.swichbar }); }}>
-              <View style={{ width: 23, height: 23, backgroundColor: '#ffffff', borderRadius: 25, alignSelf: this.state.swichbar ? 'flex-end' : 'flex-start' }}></View>
+              <View style={{
+                width: 23, height: 23, backgroundColor: '#ffffff', borderRadius: 25,
+                alignSelf: this.state.swichbar ? 'flex-end' : 'flex-start'
+              }}></View>
             </TouchableOpacity>
           </View>
           <Text style={{ fontSize: 15, color: '#838181', marginTop: 5 }}>休息时间即非营业时间</Text>
@@ -107,14 +125,20 @@ export default class OrderSetting extends Component {
               <View>
                 {/* 2-1今日明日弹出框 */}
                 <TouchableOpacity onPress={() => { this.setState({ clickToday: !this.state.clickToday }) }}>
-                  <Text style={{ backgroundColor: '#18dd83', padding: 3, borderRadius: 15, paddingHorizontal: 10, color: '#ffffff', fontSize: 15 }}>{this.state.clickTomorrow ? '明天' : '今天'}</Text>
+                  <Text style={{
+                    backgroundColor: '#18dd83', padding: 3, borderRadius: 15,
+                    paddingHorizontal: 10, color: '#ffffff', fontSize: 15
+                  }}>{this.state.clickTomorrow ? '明天' : '今天'}</Text>
                 </TouchableOpacity>
                 {
                   this.state.clickToday ?
                     <TouchableOpacity
                       style={{ position: 'absolute', top: 28 }}
                       onPress={() => { this.setState({ clickTomorrow: !this.state.clickTomorrow, clickToday: !this.state.clickToday }) }}>
-                      <Text style={{ backgroundColor: '#18dd83', padding: 3, borderRadius: 15, paddingHorizontal: 10, color: '#ffffff', fontSize: 15 }}>{this.state.clickTomorrow ? '今天' : '明天'}</Text>
+                      <Text style={{
+                        backgroundColor: '#18dd83', padding: 3, borderRadius: 15,
+                        paddingHorizontal: 10, color: '#ffffff', fontSize: 15
+                      }}>{this.state.clickTomorrow ? '今天' : '明天'}</Text>
                     </TouchableOpacity>
                     :
                     <></>
@@ -134,12 +158,19 @@ export default class OrderSetting extends Component {
               </TouchableOpacity>
               {
                 this.state.clickHour ?
-                  <View style={{ position: 'absolute', top: 30, zIndex: 10, borderRadius: 15, backgroundColor: '#e5e4e4', width: 104, height: 200, alignItems: 'center' }}>
+                  <View style={{
+                    position: 'absolute', top: 30, zIndex: 10, borderRadius: 15,
+                    backgroundColor: '#e5e4e4', width: 104, height: 200, alignItems: 'center'
+                  }}>
                     {
                       this.state.pickhour.map((item) => {
                         return (
-                          <TouchableOpacity onPress={() => { this.setState({ clickHourItem: item.id, clickHour: false }) }} activeOpacity={1} key={item.id}>
-                            <Text style={{ fontSize: 15, color: this.state.clickHourItem == item.id ? '#000000' : '#9d9b9b', lineHeight: 28 }}>{item.hour}</Text>
+                          <TouchableOpacity onPress={() => { this.setState({ clickHourItem: item.id, clickHour: false }) }}
+                            activeOpacity={1} key={item.id}>
+                            <Text style={{
+                              fontSize: 15,
+                              color: this.state.clickHourItem == item.id ? '#000000' : '#9d9b9b', lineHeight: 28
+                            }}>{item.hour}</Text>
                           </TouchableOpacity>
                         )
                       })

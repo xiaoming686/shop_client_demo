@@ -2,6 +2,11 @@ import React, { Component } from 'react'
 import { View, Text, Button, TouchableOpacity, ScrollView } from 'react-native'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import OtherOrderItem from '../../components/OtherOrderItem'
+import Doing from '../../components/OtherOrderItem/Doing'
+import Refund from '../../components/OtherOrderItem/Refund'
+import ReservedSoon from '../../components/OtherOrderItem/ReservedSoon'
+import ReservedToday from '../../components/OtherOrderItem/ReservedToday'
+import ReservedTomorrow from '../../components/OtherOrderItem/ReservedTomorrow'
 
 export default class OtherOrder extends Component {
   state = {
@@ -25,7 +30,7 @@ export default class OtherOrder extends Component {
           </TouchableOpacity>
         </View>
         <View style={{ flex: 1, marginTop: 10 }}>
-          {this.state.active == 1 ? <DoingOrder props={this.props.props}></DoingOrder> : this.state.active == 2 ? <ReservedOrder props={this.props.props}></ReservedOrder> : <CancelOrder props={this.props.props}></CancelOrder>}
+          {this.state.active == 1 ? <DoingOrder props={this.props.props}></DoingOrder> : this.state.active == 2 ? <ReservedOrder props={this.props.props}></ReservedOrder> : <RefundOrder props={this.props.props}></RefundOrder>}
         </View>
       </View>
 
@@ -44,7 +49,7 @@ class DoingOrder extends Component {
           this.state.doingorder.map((item) => {
             return (
               <View key={item.id}>
-                <OtherOrderItem props={this.props} num={item.a}></OtherOrderItem>
+                <Doing props={this.props} num={item.a}></Doing>
               </View>
             )
           })
@@ -61,7 +66,7 @@ class ReservedOrder extends Component {
   render() {
     return (
       <ScrollView style={{ backgroundColor: '#f8f8f9' }}>
-        <View style={{ marginTop: 20, flexDirection: 'row', justifyContent: 'space-around', marginLeft: 40, width: 280 }}>
+        <View style={{ marginTop: 20, flexDirection: 'row', justifyContent: 'space-around', flex: 1,marginHorizontal:20 }}>
           <TouchableOpacity style={{ width: 85, height: 30, alignItems: 'center', borderRadius: 15, backgroundColor: this.state.active == 1 ? '#e5e4e4' : 'transparent' }} onPress={() => { this.setState({ active: 1 }) }}>
             <Text style={{ fontSize: 15, marginTop: 4, color: this.state.active == 1 ? '#5d5757' : '#a09e9e' }}>即将到时</Text>
           </TouchableOpacity>
@@ -91,7 +96,7 @@ class ReservedSoonOrder extends Component {
           this.state.reservedsoonorder.map((item) => {
             return (
               <View key={item.id}>
-                <OtherOrderItem props={this.props.props} num={item.a}></OtherOrderItem>
+                <ReservedSoon props={this.props.props} num={item.a}></ReservedSoon>
               </View>
             )
           })
@@ -112,7 +117,7 @@ class ReservedTodayOrder extends Component {
           this.state.reservedtodayorder.map((item) => {
             return (
               <View key={item.id}>
-                <OtherOrderItem props={this.props.props} num={item.a} byself={true}></OtherOrderItem>
+                <ReservedToday props={this.props.props} num={item.a} byself={true}></ReservedToday>
               </View>
             )
           })
@@ -132,7 +137,7 @@ class ReservedTomorrowOrder extends Component {
         {
           this.state.reservedtomorroworder.map((item) => {
             return (
-              <OtherOrderItem key={item.id} props={this.props.props} num={item.a} cancel={false} tomorrow={item.b} byself={true}></OtherOrderItem>
+              <ReservedTomorrow key={item.id} props={this.props.props} num={item.a} cancel={false} tomorrow={item.b} byself={true}></ReservedTomorrow>
             )
           })
         }
@@ -141,7 +146,7 @@ class ReservedTomorrowOrder extends Component {
   }
 }
 // 1-3-取消单组件
-class CancelOrder extends Component {
+class RefundOrder extends Component {
   state = {
     cancelorder: [{ id: 1, a: 1, b: 2 }, { id: 2, a: 3, b: 4 }, { id: 3, a: 5, b: 4 }, { id: 4, a: 7, b: 4 }]
   }
@@ -152,7 +157,7 @@ class CancelOrder extends Component {
           this.state.cancelorder.map((item) => {
             return (
               <View key={item.id}>
-                <OtherOrderItem props={this.props} num={item.a} cancel={item.b}></OtherOrderItem>
+                <Refund props={this.props} num={item.a} cancel={item.b}></Refund>
               </View>
             )
           })

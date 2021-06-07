@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Text, View, Image, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
-import Picker from 'react-native-picker'
+import { Text, View, Image, StyleSheet, ScrollView, TouchableOpacity,StatusBar } from 'react-native';
 import ChooseWeek from './ChooseWeek'
+import MyScrollPicker from '../../../../utils/MyScrollPicker'
 
 export default class OpeningTime extends Component {
     state = {
@@ -22,29 +22,6 @@ export default class OpeningTime extends Component {
     }
     showMinPick = () => {
         this.setState({ isshade: true });
-        Picker.init({
-            pickerData: this.state.minutes,
-            selectedValue: [59],
-            pickerTitleText: '设置核销时间',
-            pickerToolBarFontSize: 18,
-            pickerConfirmBtnText: 'X',
-            pickerCancelBtnText: '',
-            pickerCancelBtnColor: [0, 0, 0, 1],
-            pickerToolBarBg: [255, 255, 255, 1],
-            pickerBg: [255, 255, 255, 1],
-            onPickerConfirm: data => {
-                console.log(data);
-                this.setState({ isshade: false });
-            },
-            onPickerCancel: data => {
-                this.setState({ isshade: false });
-                console.log(data);
-            },
-            onPickerSelect: data => {
-                console.log(data);
-            }
-        });
-        Picker.show();
     }
     updateOpeningState = () => {
         this.setState({
@@ -90,8 +67,13 @@ export default class OpeningTime extends Component {
                 {/* 遮罩层 */}
                 {
                     !this.state.isshade ? <></> :
-                        <View style={{ backgroundColor: 'rgba(0,0,0,0.5)', width: '100%', height: '100%', zIndex: 10, position: 'absolute', top: 0 }}></View>
+                        <View style={{ backgroundColor: 'rgba(0,0,0,0.5)', width: '100%', height: '100%', zIndex: 10, position: 'absolute', top: 0 }}>
+                            <MyScrollPicker></MyScrollPicker>
+                        </View>
                 }
+                <StatusBar
+                    backgroundColor={this.state.isshade ? 'rgba(0,0,0,0.01)' : "#f8f8f9"}>
+                </StatusBar>
                 <View style={{ marginTop: 50, flexDirection: 'row', marginBottom: 20, marginHorizontal: 20, justifyContent: 'space-between', alignItems: 'center', }}>
                     <TouchableOpacity style={{ padding: 10, paddingLeft: 0 }} activeOpacity={1} onPress={() => { this.props.navigation.goBack() }}>
                         <Image style={{ width: 10, height: 15, resizeMode: 'contain', }} source={require('../../../../assets/images/png/sousuo_gengduo_icon.png')}></Image>
@@ -135,14 +117,14 @@ export default class OpeningTime extends Component {
                             {/* 3-1 */}
                             <View style={{ paddingTop: 14, paddingBottom: 14, flexDirection: 'row', justifyContent: 'space-between', borderBottomWidth: choiceBusinessWeek ? 0 : 1, borderBottomColor: '#ECECEC' }} ref='choose'>
                                 <Text style={styles.fontStyle}>营业日</Text>
-                                <TouchableOpacity activeOpacity={1} style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 57 }} onPress={this.changeBusiness}>
+                                <TouchableOpacity activeOpacity={1} style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 57, height: 20 }} onPress={this.changeBusiness}>
                                     {choiceBusinessWeek ? <Image source={require('../../../../assets/images/png/dw_xuanzhongquanquan.png')}></Image> : <View style={{ position: 'relative' }}>
                                         <Image source={require('../../../../assets/images/png/dw_xuanzhongquanquan.png')} ></Image>
                                         <Image source={require('../../../../assets/images/png/dw_shixinyuan.png')} style={{ width: 5, height: 5, position: 'absolute', left: 3.5, top: 3.5 }}></Image>
                                     </View>}
                                     <Text style={styles.fontStyle}>每日营业</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity activeOpacity={1} style={{ flexDirection: 'row', alignItems: 'center' }} onPress={this.changeBusinessWeek}>
+                                <TouchableOpacity activeOpacity={1} style={{ flexDirection: 'row', alignItems: 'center', height: 20 }} onPress={this.changeBusinessWeek}>
                                     {choiceBusinessWeek ?
                                         <View style={{ position: 'relative' }}>
                                             <Image source={require('../../../../assets/images/png/dw_xuanzhongquanquan.png')} ></Image>
@@ -188,14 +170,15 @@ export default class OpeningTime extends Component {
                                 <Text style={{ fontSize: 15, color: '#5D5757' }}>至</Text>
                                 <Text style={{ fontSize: 15, color: '#5D5757' }}>选择结束时间</Text>
                             </TouchableOpacity> : <></>}
-                            {choiceBusinessTime == 2 ? <TouchableOpacity onPress={this.showMinPick} style={{ height: 34.5, backgroundColor: '#E5E4E4', borderRadius: 15, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', marginTop: 20 }}>
+                            {choiceBusinessTime == 2 ? <TouchableOpacity onPress={this.showMinPick}
+                                style={{ height: 34.5, backgroundColor: '#E5E4E4', borderRadius: 15, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', marginVertical: 20 }}>
                                 <Text style={{ fontSize: 15, color: '#5D5757' }}>选择开始时间</Text>
                                 <Text style={{ fontSize: 15, color: '#5D5757' }}>至</Text>
                                 <Text style={{ fontSize: 15, color: '#5D5757' }}>选择结束时间</Text>
                             </TouchableOpacity> : <></>}
-                            {!businessTime ? <View style={{ alignItems: 'center', paddingBottom: 28, paddingTop: 28 }}>
+                            {choiceBusinessTime == 2 || businessTime ? <></> : <View style={{ alignItems: 'center', paddingBottom: 28, paddingTop: 28 }}>
                                 <Text style={{ fontSize: 15, color: '#5D5757' }} onPress={this.addTime}>+新增时间段</Text>
-                            </View> : <></>}
+                            </View>}
                         </View>
                         {/* 4 */}
                         <View style={{ paddingLeft: 23, paddingRight: 23, backgroundColor: 'white', borderRadius: 20, marginTop: 20.5 }}>
