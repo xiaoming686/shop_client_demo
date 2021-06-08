@@ -16,13 +16,13 @@ export default class MyScrollPicker extends Component {
   translateY = new Animated.Value(this.height)
   // 需要选择的数据
   componentDidMount() {
-    for (var i = 5; i < 61; i++) {
+    for (var i = 0; i < 61; i++) {
       this.state.data.push(i)
     }
     console.log(this.height);
     this.setState({ data: this.state.data })
     Animated.timing(this.translateY, {
-      toValue: this.height - 320,
+      toValue: this.height - 380,
       duration: 500,
       useNativeDriver: true
     }).start()
@@ -37,7 +37,7 @@ export default class MyScrollPicker extends Component {
     return (
       <View style={{ flex: 1 }}>
         <Animated.View style={{
-          height: 320, width: '100%', overflow: 'hidden', backgroundColor: 'white', position: 'absolute', top: 0,
+          height: 380, width: '100%', overflow: 'hidden', backgroundColor: 'white', position: 'absolute', top: 0,
           alignItems: 'center', borderTopStartRadius: 20, borderTopRightRadius: 20, transform: [{ translateY: this.translateY }]
         }}>
           {/* head */}
@@ -46,12 +46,12 @@ export default class MyScrollPicker extends Component {
             justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center'
           }}>
             <Text style={{ opacity: 0, fontSize: 20, marginLeft: 20 }}>×</Text>
-            <Text style={{ fontSize: 20 }}>设置时间</Text>
-            <TouchableOpacity onPress={()=>{this.setState({ show: false })}}>
+            <Text style={{ fontSize: 20 }}>设置营业时间段</Text>
+            <TouchableOpacity onPress={this.props.hide}>
               <Text style={{ fontSize: 20, marginRight: 20 }}>×</Text>
             </TouchableOpacity>
           </View>
-          <View style={{ flexDirection: 'row', justifyContent: 'center', height: 200 }}>
+          <View style={{ flexDirection: 'row', justifyContent: 'center', height: 220 }}>
             {/* 1 */}
             <View style={{ width: '50%', }}>
               <ScrollView
@@ -60,7 +60,6 @@ export default class MyScrollPicker extends Component {
                 scrollEventThrottle={100}
                 onMomentumScrollEnd={this.getPosition}
                 showsVerticalScrollIndicator={false}>
-                <Text style={{ fontSize: 20, height: 40, alignSelf: 'center' }}></Text>
                 <Text style={{ fontSize: 20, height: 40, alignSelf: 'center' }}></Text>
                 {
                   this.state.data.map((item) => {
@@ -85,7 +84,6 @@ export default class MyScrollPicker extends Component {
                 onMomentumScrollEnd={this.abc}
                 showsVerticalScrollIndicator={false}>
                 <Text style={{ fontSize: 20, height: 40, alignSelf: 'center' }}></Text>
-                <Text style={{ fontSize: 20, height: 40, alignSelf: 'center' }}></Text>
                 {
                   this.state.data.map((item) => {
                     return (
@@ -97,11 +95,11 @@ export default class MyScrollPicker extends Component {
                 <Text style={{ fontSize: 20, height: 40, alignSelf: 'center', }}></Text>
               </ScrollView>
             </View>
-            <View style={{ backgroundColor: 'rgba(0,0,0,0.1)', width: '80%', zIndex: -1, height: 40, position: 'absolute', top: 80, borderRadius: 25, alignItems: 'center', justifyContent: 'center' }}>
+            <View style={{ backgroundColor: 'rgba(0,0,0,0.1)', width: '80%', zIndex: -1, height: 40, position: 'absolute', top: 40, borderRadius: 10, alignItems: 'center', justifyContent: 'center' }}>
               <Text style={{ fontSize: 18 }}>至</Text>
             </View>
           </View>
-          <TouchableOpacity style={{ height: 30, width: 250, borderRadius: 20, backgroundColor: '#00cb88' }}>
+          <TouchableOpacity style={{ height: 44, width: 330, borderRadius: 10, backgroundColor: '#00cb88',justifyContent:"center" }}>
             <Text style={{ fontSize: 16, alignSelf: 'center', lineHeight: 30, color: '#ffffff' }}>确定</Text>
           </TouchableOpacity>
         </Animated.View>

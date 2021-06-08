@@ -20,9 +20,9 @@ import UseClause from '../my/agreement/UseClause'
 
 const Stack = createStackNavigator();
 
-function Nav() {
+function Nav(props) {
   return (
-    <Stack.Navigator initialRouteName="NavTab" >
+    <Stack.Navigator initialRouteName={props.haslogin?"NavTab":"Login"} >
       <Stack.Screen
         name="Login"
         component={LoginScreen}

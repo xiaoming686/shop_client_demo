@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-    baseURL: 'https://shop.api.qbaytek.com',
+    baseURL: 'https://vc4ora8cy4.execute-api.ap-northeast-1.amazonaws.com/dev_v2',
     timeout: 3000,
 });
 
@@ -24,13 +24,14 @@ instance.interceptors.response.use(function (response) {
 });
 
 
-export const Net = async (api, params) => {
+export const NetLogin = (api, params) => {
     return new Promise((resolve, reject) => {
         instance.post(api, params)
             .then(res => {
                 resolve(res.data)
             })
             .catch(error => {
+                console.log(error);
                 reject(error)
             })
     })

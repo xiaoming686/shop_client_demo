@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity, TextInput, Image } from 'react-native';
-import EventBus from 'react-native-event-bus';
-import Language from '../../utils/languages/languages';
-import I18n from '../../utils/languages/languages'
+import { View, Text, TouchableOpacity, Image } from 'react-native'
+import EventBus from 'react-native-event-bus'
+import Language from '../../utils/languages/languages'
 import Storage from '../../utils/storage/storage'
 
 export default class LanguageScreen extends Component {

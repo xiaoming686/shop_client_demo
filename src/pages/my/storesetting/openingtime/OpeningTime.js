@@ -13,15 +13,12 @@ export default class OpeningTime extends Component {
         timeLimit: false,
         cancelWeek: true,
         isshade: false,
-        minutes: [],
-    }
-    componentDidMount() {
-        for (var i = 5; i < 61; i++) {
-            this.state.minutes.push(i)
-        }
     }
     showMinPick = () => {
         this.setState({ isshade: true });
+    }
+    hideMinPick = () => {
+        this.setState({ isshade: false });
     }
     updateOpeningState = () => {
         this.setState({
@@ -68,7 +65,7 @@ export default class OpeningTime extends Component {
                 {
                     !this.state.isshade ? <></> :
                         <View style={{ backgroundColor: 'rgba(0,0,0,0.5)', width: '100%', height: '100%', zIndex: 10, position: 'absolute', top: 0 }}>
-                            <MyScrollPicker></MyScrollPicker>
+                            <MyScrollPicker hide={this.hideMinPick}></MyScrollPicker>
                         </View>
                 }
                 <StatusBar
@@ -91,21 +88,24 @@ export default class OpeningTime extends Component {
                     <View style={styles.container}>
                         {/* 1 */}
                         <TouchableOpacity onPress={this.updateOpeningState}>
-                            {openingState ? <View style={{ backgroundColor: '#E7FCE7', borderRadius: 20, paddingTop: 10, paddingBottom: 25, alignItems: 'center' }}>
+                            {openingState ? 
+                            <View style={{ backgroundColor: '#50e4a1', borderRadius: 20, paddingTop: 10, paddingBottom: 30, alignItems: 'center' }}>
                                 <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                                    <Image source={require('../../../../assets/images/png/dw_shixinyuan.png')}></Image>
+                                    <Image source={require('../../../../assets/images/png/dw_xieyeicon.png')}></Image>
                                     <Text style={{ fontSize: 18, color: '#5D5757', paddingLeft: 6 }}>营业中</Text>
                                 </View>
-                                <Text style={{ fontSize: 14, color: '#5D5757' }}>本店正在营业中</Text>
-                            </View> : <View style={{ backgroundColor: '#FD875C', borderRadius: 20, paddingTop: 10, paddingBottom: 25, alignItems: 'center' }}>
-                                <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}><Image source={require('../../../../assets/images/png/dw_xieyeicon.png')}></Image>
+                                <Text style={{ fontSize: 14, color: '#5D5757' }}>本店目前正常营业中</Text>
+                            </View> : 
+                            <View style={{ backgroundColor: '#FD875C', borderRadius: 20, paddingTop: 10, paddingBottom: 25, alignItems: 'center' }}>
+                                <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                                    <Image source={require('../../../../assets/images/png/dw_xieyeicon.png')}></Image>
                                     <Text style={{ fontSize: 18, color: 'white', paddingLeft: 6 }}>歇业中</Text>
                                 </View>
                                 <Text style={{ fontSize: 14, color: 'white' }}>本店正在营业中</Text>
                             </View>}
                         </TouchableOpacity>
                         {/* 2 */}
-                        <View style={{ paddingTop: 25, paddingBottom: 25, paddingLeft: 23, paddingRight: 23, backgroundColor: 'white', borderRadius: 20, marginTop: -15, flexDirection: 'row', justifyContent: 'space-between' }}>
+                        <View style={{ paddingTop: 25, paddingBottom: 25, paddingLeft: 23, paddingRight: 23, backgroundColor: 'white', borderRadius: 20, marginTop: -20, flexDirection: 'row', justifyContent: 'space-between' }}>
                             <Text style={{ color: '#5D5757', fontSize: 17 }}>今日营业时间</Text>
                             <Text style={{ color: '#5D5757', fontSize: 15 }}>10:00～20:00</Text>
                         </View>

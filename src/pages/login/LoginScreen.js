@@ -3,6 +3,9 @@ import { View, Text, Alert, TouchableOpacity, TextInput, StyleSheet, ActivityInd
 import validator from '../../utils/validator'
 import MyLogin from '../../utils/mytoast/myLogin'
 import MyLoading from '../../utils/mytoast/myloading'
+import md5 from 'js-md5'
+import Storage from '../../utils/storage/storage'
+import { NetLogin } from '../../utils/request'
 
 export default class LoginScreen extends Component {
   state = {
@@ -12,7 +15,18 @@ export default class LoginScreen extends Component {
     accountValid: true,
     checked: true,
     isShowMyLogin: false,
+    isShowMyPass: false,
     isShowMyLoading: false,
+  }
+  componentDidMount() {
+    Storage.load({
+      key: 'loginState',
+    }).then(ret => {
+      this.setState({ account: ret.email });
+      console.log(ret.email);
+    }).catch(err => {
+      console.log(err);
+    })
   }
   /* 2-1-邮箱格式校验 */
   checkAccount = (currentAccount) => {
@@ -38,28 +52,41 @@ export default class LoginScreen extends Component {
       return
     } else {
       // 发送axios返回结果如果正确
-      let data = {
-        "email": this.state.account,
-        "password": md5(this.state.password),
-        "grant_type": "password"
+      let loginData = {
+        email: this.state.account,
+        password: md5(this.state.password),
+        grant_type: "password"
       }
       // 显示loading
       this.setState({ isShowMyLoading: true });
-      if (true) {
-        // 关闭loading并跳转
-        let that = this
-        setTimeout(function () {
-          that.setState({ isShowMyLoading: false })
-          that.props.navigation.replace('NavTab')
-        }, 1000)
-      }
+      NetLogin('/get_oauth2_token', loginData).then(() => {
+        // 关闭loading并跳转，是否记住密码
+        this.setState({ isShowMyLoading: false })
+        this.props.navigation.replace('NavTab')
+        if (this.state.checked) {
+          Storage.save({
+            key: 'loginState',
+            data: {
+              email: loginData.email,
+              haslogin: true
+            },
+            expires: 1000 * 3600,
+          })
+        } else {
+          Storage.remove(
+            { key: 'loginState' }
+          )
+        }
+      }).catch(error => {
+        // 关闭loading及提示
+        this.setState({ isShowMyLoading: false })
+        this.setState({ isShowMyPass: true });
+      })
     }
   }
-  ensureMyToast = () => {
-    this.setState({ isShowMyLogin: false });
-  }
+  /* 7-1- 模态框消失函数 */
   cancelMyToast = () => {
-    this.setState({ isShowMyLogin: false });
+    this.setState({ isShowMyPass: false });
   }
   render() {
     return (
@@ -73,7 +100,7 @@ export default class LoginScreen extends Component {
           flexDirection: 'row', marginTop: 39, alignItems: 'center', borderRightWidth: 4, borderBottomWidth: 4, borderColor: '#f5f5f5'
         }}>
           <Image style={{ marginLeft: 20.5, width: 20, height: 20, resizeMode: 'contain' }} source={require('../../assets/images/png/email.png')} />
-          <TextInput onChangeText={this.checkAccount} clearButtonMode="always"
+          <TextInput onChangeText={this.checkAccount} clearButtonMode="always" value={this.state.account}
             style={{ marginLeft: 35, fontSize: 15, width: 200 }} placeholder="请输入邮箱"></TextInput>
         </View>
         {/* 3-用户名输入 */}
@@ -118,10 +145,13 @@ export default class LoginScreen extends Component {
           </TouchableOpacity>
         </View>
         <MyLogin
-          content='请输入邮箱'
-          confirm={this.ensureMyToast}
+          content='请输入正确邮箱'
           cancel={this.cancelMyToast}
           visible={this.state.isShowMyLogin} />
+        <MyLogin
+          content='用户名或密码错误'
+          cancel={this.cancelMyToast}
+          visible={this.state.isShowMyPass} />
         <MyLoading
           visible={this.state.isShowMyLoading} />
         {/* 7-语言选择 */}
