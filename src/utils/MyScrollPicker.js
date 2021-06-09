@@ -1,12 +1,13 @@
 
-import { View, Text, Image, Dimensions, ScrollView, Animated, Button } from 'react-native'
+import { View, Text, Image, Dimensions, ScrollView, Animated, TouchableOpacity } from 'react-native'
 import React, { Component } from 'react'
-import { TouchableOpacity } from 'react-native-gesture-handler'
 
 export default class MyScrollPicker extends Component {
   state = {
-    data: [],
-    yAxis: 0,
+    dataleft: [],
+    yAxisleft: 0,
+    dataright: [],
+    yAxisright: 0,
     show: true
   }
   //屏幕宽高
@@ -17,10 +18,14 @@ export default class MyScrollPicker extends Component {
   // 需要选择的数据
   componentDidMount() {
     for (var i = 0; i < 61; i++) {
-      this.state.data.push(i)
+      this.state.dataleft.push(i)
+    }
+    for (var i = 0; i < 61; i++) {
+      this.state.dataright.push(i)
     }
     console.log(this.height);
-    this.setState({ data: this.state.data })
+    this.setState({ dataleft: this.state.dataleft })
+    this.setState({ dataright: this.state.dataright })
     Animated.timing(this.translateY, {
       toValue: this.height - 380,
       duration: 500,
@@ -28,14 +33,19 @@ export default class MyScrollPicker extends Component {
     }).start()
   }
   // 获取当前滚动位置
-  getPosition = (e) => {
+  getPositionleft = (e) => {
     console.log(e.nativeEvent.contentOffset.y);
-    console.log(this.width);
-    this.setState({ yAxis: e.nativeEvent.contentOffset.y })
+    this.setState({ yAxisleft: e.nativeEvent.contentOffset.y })
   }
+  getPositionright = (e) => {
+    console.log(e.nativeEvent.contentOffset.y);
+    this.setState({ yAxisright: e.nativeEvent.contentOffset.y })
+  }
+
   render() {
     return (
       <View style={{ flex: 1 }}>
+        <View><Text style={{color:'red',fontSize:30,backgroundColor:'white',transform:[{scaleY:0.5}]}}>快点哈可获得绿卡的</Text></View>
         <Animated.View style={{
           height: 380, width: '100%', overflow: 'hidden', backgroundColor: 'white', position: 'absolute', top: 0,
           alignItems: 'center', borderTopStartRadius: 20, borderTopRightRadius: 20, transform: [{ translateY: this.translateY }]
@@ -58,21 +68,23 @@ export default class MyScrollPicker extends Component {
                 snapToInterval={40}
                 snapToAlignment='center'
                 scrollEventThrottle={100}
-                onMomentumScrollEnd={this.getPosition}
+                onMomentumScrollEnd={this.getPositionleft}
                 showsVerticalScrollIndicator={false}>
                 <Text style={{ fontSize: 20, height: 40, alignSelf: 'center' }}></Text>
                 {
-                  this.state.data.map((item) => {
+                  this.state.dataleft.map((item) => {
                     return (
                       <Text style={{
                         fontSize: 20, lineHeight: 40, alignSelf: 'center',
-                        color: (item - 5) * 40 == this.state.yAxis ? 'black' : 'rgba(0,0,0,0.3)'
+                        transform:(item) * 40 == this.state.yAxisleft ? [{scaleY:1}]: [{scaleY:0.7}],
+                        color: (item) * 40 == this.state.yAxisleft ? 'black' : 'rgba(0,0,0,0.3)'
                       }} key={item}>{item}</Text>
                     )
                   })
                 }
                 <Text style={{ fontSize: 20, height: 40, alignSelf: 'center' }}></Text>
                 <Text style={{ fontSize: 20, height: 40, alignSelf: 'center', }}></Text>
+                <Text style={{ fontSize: 20, height: 60, alignSelf: 'center', }}></Text>
               </ScrollView>
             </View>
             {/* 2 */}
@@ -81,18 +93,20 @@ export default class MyScrollPicker extends Component {
                 snapToInterval={40}
                 snapToAlignment='center'
                 scrollEventThrottle={100}
-                onMomentumScrollEnd={this.abc}
+                onMomentumScrollEnd={this.getPositionright}
                 showsVerticalScrollIndicator={false}>
                 <Text style={{ fontSize: 20, height: 40, alignSelf: 'center' }}></Text>
                 {
-                  this.state.data.map((item) => {
+                  this.state.dataright.map((item) => {
                     return (
-                      <Text style={{ fontSize: 20, lineHeight: 40, alignSelf: 'center', color: (item - 5) * 40 == this.state.yAxis ? 'black' : 'rgba(0,0,0,0.3)' }} key={item}>{item}</Text>
+                      <Text style={{ fontSize: 20, lineHeight: 40, transform:(item) * 40 == this.state.yAxisright ? [{scaleY:1}]: [{scaleY:0.7}],
+                        alignSelf: 'center', color: (item) * 40 == this.state.yAxisright ? 'black' : 'rgba(0,0,0,0.3)' }} key={item}>{item}</Text>
                     )
                   })
                 }
                 <Text style={{ fontSize: 20, height: 40, alignSelf: 'center' }}></Text>
                 <Text style={{ fontSize: 20, height: 40, alignSelf: 'center', }}></Text>
+                <Text style={{ fontSize: 20, height: 60, alignSelf: 'center', }}></Text>
               </ScrollView>
             </View>
             <View style={{ backgroundColor: 'rgba(0,0,0,0.1)', width: '80%', zIndex: -1, height: 40, position: 'absolute', top: 40, borderRadius: 10, alignItems: 'center', justifyContent: 'center' }}>

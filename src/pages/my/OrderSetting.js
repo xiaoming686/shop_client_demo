@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, Switch, TouchableOpacity, Modal, StatusBar, Image } from 'react-native'
+import { View, Text, Switch, TouchableOpacity, Modal, StatusBar, Image, ScrollView } from 'react-native'
 import Picker from 'react-native-picker'
 import EventBus from 'react-native-event-bus'
 
@@ -13,7 +13,11 @@ export default class OrderSetting extends Component {
     minutes: [],
     swichbar: true,
     pickmin: '15分钟',
-    pickhour: [{ id: 1, hour: '15分钟' }, { id: 2, hour: '30分钟' }, { id: 3, hour: '45分钟' }, { id: 4, hour: '1小时' }, { id: 5, hour: '1小时15分钟' }, { id: 6, hour: '1小时30分钟' }]
+    pickhour: [{ id: 1, hour: '15分钟' }, { id: 2, hour: '30分钟' },
+    { id: 3, hour: '45分钟' }, { id: 4, hour: '1小时' },
+    { id: 5, hour: '1小时15分钟' }, { id: 6, hour: '1小时30分钟' },
+    { id: 5, hour: '1小时15分钟' }, { id: 6, hour: '1小时30分钟' },
+    { id: 5, hour: '1小时15分钟' }, { id: 6, hour: '1小时30分钟' }]
   }
   componentDidMount() {
     for (var i = 5; i < 61; i++) {
@@ -66,12 +70,12 @@ export default class OrderSetting extends Component {
           marginTop: 50, flexDirection: 'row', marginBottom: 20, marginHorizontal: 20,
           justifyContent: 'space-between', alignItems: 'center',
         }}>
-          <TouchableOpacity style={{ padding: 10, paddingLeft: 0 }} activeOpacity={1} onPress={() => { this.props.navigation.goBack() }}>
+          <TouchableOpacity style={{ padding: 10, paddingLeft: 0, paddingRight: 30 }} activeOpacity={1} onPress={() => { this.props.navigation.goBack() }}>
             <Image style={{ width: 10, height: 15, resizeMode: 'contain', }}
               source={require('../../assets/images/png/sousuo_gengduo_icon.png')}></Image>
           </TouchableOpacity>
           <Text style={{ fontSize: 19, fontWeight: 'bold' }}>订单设置</Text>
-          <View style={{ padding: 10, paddingLeft: 0 }}>
+          <View style={{ padding: 10, paddingLeft: 30, paddingRight: 0 }}>
             <Image style={{ opacity: 0, width: 10, height: 15 }} source={require('../../assets/images/png/sousuo_gengduo_icon.png')}></Image>
           </View>
         </View>
@@ -101,7 +105,7 @@ export default class OrderSetting extends Component {
           <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 5, justifyContent: 'space-between' }}>
             <Text style={{ fontSize: 16, color: '#5d5757' }}>休息时间支持预定</Text>
             <TouchableOpacity style={{
-              width: 50, height: 26, backgroundColor: this.state.swichbar ? '#18dd83' : '#9D9B9B',
+              width: 50, height: 26, backgroundColor: this.state.swichbar ? '#00cb88' : '#9D9B9B',
               borderRadius: 20, justifyContent: 'center', paddingHorizontal: 0.5
             }}
               activeOpacity={1}
@@ -126,7 +130,7 @@ export default class OrderSetting extends Component {
                 {/* 2-1今日明日弹出框 */}
                 <TouchableOpacity onPress={() => { this.setState({ clickToday: !this.state.clickToday }) }}>
                   <Text style={{
-                    backgroundColor: '#18dd83', padding: 3, borderRadius: 15,
+                    backgroundColor: '#00cb88', padding: 3, borderRadius: 15,
                     paddingHorizontal: 10, color: '#ffffff', fontSize: 15
                   }}>{this.state.clickTomorrow ? '明天' : '今天'}</Text>
                 </TouchableOpacity>
@@ -136,7 +140,7 @@ export default class OrderSetting extends Component {
                       style={{ position: 'absolute', top: 28 }}
                       onPress={() => { this.setState({ clickTomorrow: !this.state.clickTomorrow, clickToday: !this.state.clickToday }) }}>
                       <Text style={{
-                        backgroundColor: '#18dd83', padding: 3, borderRadius: 15,
+                        backgroundColor: '#00cb88', padding: 3, borderRadius: 15,
                         paddingHorizontal: 10, color: '#ffffff', fontSize: 15
                       }}>{this.state.clickTomorrow ? '今天' : '明天'}</Text>
                     </TouchableOpacity>
@@ -153,28 +157,30 @@ export default class OrderSetting extends Component {
               <TouchableOpacity
                 activeOpacity={1}
                 onPress={() => { this.setState({ clickHour: !this.state.clickHour }) }}
-                style={{ backgroundColor: '#18dd83', width: 104, height: 28, borderRadius: 15, alignItems: 'center' }}>
+                style={{ backgroundColor: '#00cb88', width: 104, height: 28, borderRadius: 15, alignItems: 'center' }}>
                 <Text style={{ fontSize: 15, color: '#ffffff', lineHeight: 28 }}>{this.state.pickhour[this.state.clickHourItem - 1].hour}</Text>
               </TouchableOpacity>
               {
                 this.state.clickHour ?
                   <View style={{
                     position: 'absolute', top: 30, zIndex: 10, borderRadius: 15,
-                    backgroundColor: '#e5e4e4', width: 104, height: 200, alignItems: 'center'
+                    backgroundColor: '#e5e4e4', width: 104, height: 180,
                   }}>
-                    {
-                      this.state.pickhour.map((item) => {
-                        return (
-                          <TouchableOpacity onPress={() => { this.setState({ clickHourItem: item.id, clickHour: false }) }}
-                            activeOpacity={1} key={item.id}>
-                            <Text style={{
-                              fontSize: 15,
-                              color: this.state.clickHourItem == item.id ? '#000000' : '#9d9b9b', lineHeight: 28
-                            }}>{item.hour}</Text>
-                          </TouchableOpacity>
-                        )
-                      })
-                    }
+                    <ScrollView showsVerticalScrollIndicator={false}>
+                      {
+                        this.state.pickhour.map((item) => {
+                          return (
+                            <TouchableOpacity onPress={() => { this.setState({ clickHourItem: item.id, clickHour: false }) }}
+                              activeOpacity={1} key={item.id}>
+                              <Text style={{
+                                fontSize: 15,alignSelf:'center',
+                                color: this.state.clickHourItem == item.id ? '#000000' : '#9d9b9b', lineHeight: 28
+                              }}>{item.hour}</Text>
+                            </TouchableOpacity>
+                          )
+                        })
+                      }
+                    </ScrollView>
                   </View>
                   :
                   <></>

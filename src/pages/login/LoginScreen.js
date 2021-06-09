@@ -30,11 +30,6 @@ export default class LoginScreen extends Component {
   }
   /* 2-1-邮箱格式校验 */
   checkAccount = (currentAccount) => {
-    const accountValid = validator.validateEmail(currentAccount);
-    if (!accountValid) {
-      console.log(accountValid);
-      return
-    }
     this.setState({ account: currentAccount });
   }
   /* 3-1-用户名校验 */
@@ -47,7 +42,8 @@ export default class LoginScreen extends Component {
   }
   /* 6-1-登录验证并跳转,利用mytoast实现弹窗 */
   submit = () => {
-    if (!this.state.account) {
+    const accountValid = validator.validateEmail(this.state.account);
+    if (!accountValid) {
       this.setState({ isShowMyLogin: true });
       return
     } else {
@@ -86,6 +82,8 @@ export default class LoginScreen extends Component {
   }
   /* 7-1- 模态框消失函数 */
   cancelMyToast = () => {
+    this.setState({ isShowMyLogin: false })
+    this.setState({ isShowMyLoading: false })
     this.setState({ isShowMyPass: false });
   }
   render() {

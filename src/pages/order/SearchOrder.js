@@ -44,8 +44,8 @@ export default class SearchOrder extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <View style={{ flexDirection: 'row', marginHorizontal: 15, alignItems: 'center', marginTop: 20, justifyContent: 'space-between', height: 40, backgroundColor: '#F8F8F9' }}>
-                    <TouchableOpacity style={{width:20,height:20}} activeOpacity={1} onPress={() => { this.props.navigation.goBack() }}>
+                <View style={{ flexDirection: 'row', marginHorizontal: 5, alignItems: 'center', marginTop: 20, justifyContent: 'space-between', height: 40, backgroundColor: '#F8F8F9' }}>
+                    <TouchableOpacity style={{padding:10}} activeOpacity={1} onPress={() => { this.props.navigation.goBack() }}>
                         <Image style={{ width: 17, height: 17, resizeMode: 'contain' }} source={require('../../assets/images/png/sousuo_gengduo_icon.png')}></Image>
                     </TouchableOpacity>
                     <View style={styles.inputBox}>
@@ -69,7 +69,7 @@ export default class SearchOrder extends Component {
                             keyboardType="default" />
                     </View>
                     <TouchableOpacity activeOpacity={1} onPress={() => { this.props.navigation.goBack() }}>
-                        <Text style={{ color: '#2A2A2A', fontSize: 16, }}>取消</Text>
+                        <Text style={{ color: '#2A2A2A', fontSize: 16,padding:10}}>取消</Text>
                     </TouchableOpacity>
                 </View>
 

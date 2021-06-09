@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, Image, StyleSheet, ScrollView, TouchableOpacity,StatusBar } from 'react-native';
+import { Text, View, Image, StyleSheet, ScrollView, TouchableOpacity, StatusBar } from 'react-native';
 import ChooseWeek from './ChooseWeek'
 import MyScrollPicker from '../../../../utils/MyScrollPicker'
 
@@ -72,11 +72,11 @@ export default class OpeningTime extends Component {
                     backgroundColor={this.state.isshade ? 'rgba(0,0,0,0.01)' : "#f8f8f9"}>
                 </StatusBar>
                 <View style={{ marginTop: 50, flexDirection: 'row', marginBottom: 20, marginHorizontal: 20, justifyContent: 'space-between', alignItems: 'center', }}>
-                    <TouchableOpacity style={{ padding: 10, paddingLeft: 0 }} activeOpacity={1} onPress={() => { this.props.navigation.goBack() }}>
+                    <TouchableOpacity style={{ padding: 10, paddingLeft: 0, paddingRight: 30 }} activeOpacity={1} onPress={() => { this.props.navigation.goBack() }}>
                         <Image style={{ width: 10, height: 15, resizeMode: 'contain', }} source={require('../../../../assets/images/png/sousuo_gengduo_icon.png')}></Image>
                     </TouchableOpacity>
                     <Text style={{ fontSize: 19, fontWeight: 'bold' }}>营业时间</Text>
-                    <View style={{ padding: 10, paddingLeft: 0 }}>
+                    <View style={{ padding: 10, paddingLeft: 30, paddingRight: 0 }}>
                         <Image style={{ opacity: 0, width: 10, height: 15 }} source={require('../../../../assets/images/png/sousuo_gengduo_icon.png')}></Image>
                     </View>
                 </View>
@@ -88,21 +88,21 @@ export default class OpeningTime extends Component {
                     <View style={styles.container}>
                         {/* 1 */}
                         <TouchableOpacity onPress={this.updateOpeningState}>
-                            {openingState ? 
-                            <View style={{ backgroundColor: '#50e4a1', borderRadius: 20, paddingTop: 10, paddingBottom: 30, alignItems: 'center' }}>
-                                <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                                    <Image source={require('../../../../assets/images/png/dw_xieyeicon.png')}></Image>
-                                    <Text style={{ fontSize: 18, color: '#5D5757', paddingLeft: 6 }}>营业中</Text>
-                                </View>
-                                <Text style={{ fontSize: 14, color: '#5D5757' }}>本店目前正常营业中</Text>
-                            </View> : 
-                            <View style={{ backgroundColor: '#FD875C', borderRadius: 20, paddingTop: 10, paddingBottom: 25, alignItems: 'center' }}>
-                                <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                                    <Image source={require('../../../../assets/images/png/dw_xieyeicon.png')}></Image>
-                                    <Text style={{ fontSize: 18, color: 'white', paddingLeft: 6 }}>歇业中</Text>
-                                </View>
-                                <Text style={{ fontSize: 14, color: 'white' }}>本店正在营业中</Text>
-                            </View>}
+                            {openingState ?
+                                <View style={{ backgroundColor: '#50e4a1', borderRadius: 20, paddingTop: 10, paddingBottom: 30, alignItems: 'center' }}>
+                                    <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                                        <Image source={require('../../../../assets/images/png/dw_xieyeicon.png')}></Image>
+                                        <Text style={{ fontSize: 18, color: '#5D5757', paddingLeft: 6 }}>营业中</Text>
+                                    </View>
+                                    <Text style={{ fontSize: 14, color: '#5D5757' }}>本店目前正常营业中</Text>
+                                </View> :
+                                <View style={{ backgroundColor: '#FD875C', borderRadius: 20, paddingTop: 10, paddingBottom: 25, alignItems: 'center' }}>
+                                    <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                                        <Image source={require('../../../../assets/images/png/dw_xieyeicon.png')}></Image>
+                                        <Text style={{ fontSize: 18, color: 'white', paddingLeft: 6 }}>歇业中</Text>
+                                    </View>
+                                    <Text style={{ fontSize: 14, color: 'white' }}>本店正在营业中</Text>
+                                </View>}
                         </TouchableOpacity>
                         {/* 2 */}
                         <View style={{ paddingTop: 25, paddingBottom: 25, paddingLeft: 23, paddingRight: 23, backgroundColor: 'white', borderRadius: 20, marginTop: -20, flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -139,24 +139,24 @@ export default class OpeningTime extends Component {
                             {/* 3-2 */}
                             <View style={{ paddingTop: 14, paddingBottom: 14, flexDirection: 'row', justifyContent: 'space-between' }}>
                                 <Text style={styles.fontStyle}>营业时间段</Text>
-                                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                    <TouchableOpacity onPress={this.updateBusiness}>
-                                        {!businessTime ? <Image source={require('../../../../assets/images/png/dw_xuanzhongquanquan.png')}></Image> : <View style={{ position: 'relative' }}>
+                                <TouchableOpacity activeOpacity={1} onPress={this.updateBusiness} style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                    {!businessTime ?
+                                        <Image source={require('../../../../assets/images/png/dw_xuanzhongquanquan.png')}></Image> :
+                                        <View style={{ position: 'relative' }}>
                                             <Image source={require('../../../../assets/images/png/dw_xuanzhongquanquan.png')} ></Image>
                                             <Image source={require('../../../../assets/images/png/dw_shixinyuan.png')} style={{ width: 5, height: 5, position: 'absolute', left: 3.5, top: 3.5 }}></Image>
                                         </View>}
-                                    </TouchableOpacity>
                                     <Text style={styles.fontStyle}>全天</Text>
-                                </View>
-                                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                    <TouchableOpacity onPress={this.changeBusinessTime}>
-                                        {!businessTime ? <View style={{ position: 'relative' }}>
+                                </TouchableOpacity>
+                                <TouchableOpacity activeOpacity={1} onPress={this.changeBusinessTime} style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                    {!businessTime ?
+                                        <View style={{ position: 'relative' }}>
                                             <Image source={require('../../../../assets/images/png/dw_xuanzhongquanquan.png')} ></Image>
                                             <Image source={require('../../../../assets/images/png/dw_shixinyuan.png')} style={{ width: 5, height: 5, position: 'absolute', left: 3.5, top: 3.5 }}></Image>
-                                        </View> : <Image source={require('../../../../assets/images/png/dw_xuanzhongquanquan.png')}></Image>}
-                                    </TouchableOpacity>
+                                        </View> :
+                                        <Image source={require('../../../../assets/images/png/dw_xuanzhongquanquan.png')}></Image>}
                                     <Text style={styles.fontStyle}>选择时间段</Text>
-                                </View>
+                                </TouchableOpacity>
                             </View>
                             {/* 时间段的选择 */}
                             {choiceBusinessTime == 1 || choiceBusinessTime == 2 ? <View><Text style={{ fontSize: 14, color: '#5D5757' }}>最多可添加三项</Text></View> : <></>}
@@ -186,10 +186,9 @@ export default class OpeningTime extends Component {
                                 <Image source={require('../../../../assets/images/png/dw_xingxingicon.png')}></Image>
                                 <Text style={{ fontSize: 17, color: '#5D5757', paddingLeft: 8 }}>外卖营业时间</Text>
                             </View>
-                            <Text style={{ fontSize: 15, color: '#838181', paddingBottom: 24.5 }}>外卖业务营业时间默认为开店后半小时至关店前半小时，您可以随时在“门店设置”页面选择开启或关闭外卖业务～
-                       </Text>
+                            <Text style={{ fontSize: 15, color: '#838181', paddingBottom: 24.5 }}>外卖业务营业时间默认为开店后半小时至关店前半小时，您可以随时在“门店设置”页面选择开启或关闭外卖业务～</Text>
                         </View>
-                        <View style={{ marginTop: 29, backgroundColor: '#FF6127', height: 34.5, alignItems: 'center', justifyContent: 'center', borderRadius: 20 }}>
+                        <View style={{ marginVertical: 29, backgroundColor: '#FF6127', height: 44, alignItems: 'center', justifyContent: 'center', borderRadius: 10 }}>
                             <Text style={{ fontSize: 17, color: 'white' }}>确认修改</Text>
                         </View>
                     </View>

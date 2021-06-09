@@ -29,7 +29,7 @@ export default class LanguageScreen extends Component {
       expires: 1000 * 3600,
     })
     Language.locale = 'en'
-    this.props.navigation.replace('NavTab')
+    this.props.navigation.replace('Login')
   }
   changeCnLanguage = () => {
     Storage.save({
@@ -40,7 +40,7 @@ export default class LanguageScreen extends Component {
       expires: 1000 * 3600,
     })
     Language.locale = 'cn'
-    this.props.navigation.replace('NavTab')
+    this.props.navigation.replace('Login')
   }
   changeJapLanguage = () => {
     Storage.save({
@@ -51,7 +51,7 @@ export default class LanguageScreen extends Component {
       expires: 1000 * 3600,
     })
     Language.locale = 'jap'
-    this.props.navigation.replace('NavTab')
+    this.props.navigation.replace('Login')
   }
   render() {
     return (
@@ -59,12 +59,12 @@ export default class LanguageScreen extends Component {
         <View style={{
           marginTop: 50, flexDirection: 'row', marginBottom: 20,marginHorizontal: 20, justifyContent: 'space-between', alignItems: 'center',
         }}>
-          <TouchableOpacity style={{ padding: 10, paddingLeft: 0 }} activeOpacity={1} onPress={() => { this.props.navigation.goBack() }}>
+          <TouchableOpacity style={{ padding: 10, paddingLeft: 0,paddingRight:30 }} activeOpacity={1} onPress={() => { this.props.navigation.goBack() }}>
             <Image style={{ width: 10, height: 15, resizeMode: 'contain', }}
               source={require('../../assets/images/png/sousuo_gengduo_icon.png')}></Image>
           </TouchableOpacity>
           <Text style={{ fontSize: 19, fontWeight: 'bold' }}>语言切换</Text>
-          <View style={{ padding: 10, paddingLeft: 0 }}>
+          <View style={{ padding: 10, paddingLeft: 30,paddingRight:0 }}>
             <Image style={{ opacity: 0, width: 10, height: 15 }} source={require('../../assets/images/png/sousuo_gengduo_icon.png')}></Image>
           </View>
         </View>

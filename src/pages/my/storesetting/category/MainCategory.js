@@ -38,13 +38,13 @@ export default class MainCategory extends Component {
         return (
             <View style={{ flex: 1, backgroundColor: '#F8F8F9' }}>
                 <View style={{ marginTop: 50, flexDirection: 'row', marginBottom: 20, marginHorizontal: 20, justifyContent: 'space-between', alignItems: 'center', }}>
-                    <TouchableOpacity style={{ padding: 10, paddingLeft: 0 }} activeOpacity={1} onPress={() => { this.props.navigation.goBack() }}>
+                    <TouchableOpacity style={{ padding: 10, paddingLeft: 0,paddingRight:30 }} activeOpacity={1} onPress={() => { this.props.navigation.goBack() }}>
                         <Image style={{ width: 10, height: 15, resizeMode: 'contain', }} source={require('../../../../assets/images/png/sousuo_gengduo_icon.png')}></Image>
                     </TouchableOpacity>
                     <Text style={{ fontSize: 19, fontWeight: 'bold' }}>经营品类</Text>
-                    <View style={{ padding: 10, paddingLeft: 0 }}>
-                        <Image style={{ opacity: 0, width: 10, height: 15 }} source={require('../../../../assets/images/png/sousuo_gengduo_icon.png')}></Image>
-                    </View>
+                    <TouchableOpacity style={{ padding: 10, paddingLeft: 0,paddingRight:30 }} activeOpacity={1} onPress={() => { this.props.navigation.goBack() }}>
+                        <Text style={{ width: 10, height: 15, }}>保存</Text>
+                    </TouchableOpacity>
                 </View>
                 {/* 2 */}
                 <View style={{ flexDirection: 'row', height: '90%' }}>
