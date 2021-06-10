@@ -17,17 +17,17 @@ export default class MyScrollPicker extends Component {
   translateY = new Animated.Value(this.height)
   // 需要选择的数据
   componentDidMount() {
-    for (var i = 0; i < 61; i++) {
+    for (var i = 0; i < 24; i++) {
       this.state.dataleft.push(i)
     }
-    for (var i = 0; i < 61; i++) {
+    for (var i = 0; i < 60; i++) {
       this.state.dataright.push(i)
     }
     console.log(this.height);
     this.setState({ dataleft: this.state.dataleft })
     this.setState({ dataright: this.state.dataright })
     Animated.timing(this.translateY, {
-      toValue: this.height - 380,
+      toValue: this.height - 350,
       duration: 500,
       useNativeDriver: true
     }).start()
@@ -45,7 +45,6 @@ export default class MyScrollPicker extends Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <View><Text style={{color:'red',fontSize:30,backgroundColor:'white',transform:[{scaleY:0.5}]}}>快点哈可获得绿卡的</Text></View>
         <Animated.View style={{
           height: 380, width: '100%', overflow: 'hidden', backgroundColor: 'white', position: 'absolute', top: 0,
           alignItems: 'center', borderTopStartRadius: 20, borderTopRightRadius: 20, transform: [{ translateY: this.translateY }]
@@ -78,7 +77,7 @@ export default class MyScrollPicker extends Component {
                         fontSize: 20, lineHeight: 40, alignSelf: 'center',
                         transform:(item) * 40 == this.state.yAxisleft ? [{scaleY:1}]: [{scaleY:0.7}],
                         color: (item) * 40 == this.state.yAxisleft ? 'black' : 'rgba(0,0,0,0.3)'
-                      }} key={item}>{item}</Text>
+                      }} key={item}>{item<10?0:''}{item}</Text>
                     )
                   })
                 }
@@ -100,7 +99,7 @@ export default class MyScrollPicker extends Component {
                   this.state.dataright.map((item) => {
                     return (
                       <Text style={{ fontSize: 20, lineHeight: 40, transform:(item) * 40 == this.state.yAxisright ? [{scaleY:1}]: [{scaleY:0.7}],
-                        alignSelf: 'center', color: (item) * 40 == this.state.yAxisright ? 'black' : 'rgba(0,0,0,0.3)' }} key={item}>{item}</Text>
+                        alignSelf: 'center', color: (item) * 40 == this.state.yAxisright ? 'black' : 'rgba(0,0,0,0.3)' }} key={item}>{item<10?0:''}{item}</Text>
                     )
                   })
                 }
@@ -110,7 +109,7 @@ export default class MyScrollPicker extends Component {
               </ScrollView>
             </View>
             <View style={{ backgroundColor: 'rgba(0,0,0,0.1)', width: '80%', zIndex: -1, height: 40, position: 'absolute', top: 40, borderRadius: 10, alignItems: 'center', justifyContent: 'center' }}>
-              <Text style={{ fontSize: 18 }}>至</Text>
+              <Text style={{ fontSize: 20 }}>:</Text>
             </View>
           </View>
           <TouchableOpacity style={{ height: 44, width: 330, borderRadius: 10, backgroundColor: '#00cb88',justifyContent:"center" }}>

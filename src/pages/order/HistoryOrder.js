@@ -16,7 +16,7 @@ export default class HistoryOrder extends Component {
   render() {
     return (
       <View style={{flex:1}}>
-        <View style={{ flexDirection: 'row', paddingLeft: 35, height: 40, alignItems: 'center', }}>
+        <View style={{ flexDirection: 'row', paddingLeft: 35, height: 40, alignItems: 'center',marginTop:-15 }}>
           <View>
             {/* 弹出日期选择框 */}
             <TouchableOpacity activeOpacity={1} style={{ alignItems: 'center', flexDirection: 'row', width: 70, }} onPress={this.showDayPick}>
@@ -84,7 +84,7 @@ class HistoryTakeOutOrder extends Component {
           this.state.historytakeoutorder.map((item) => {
             return (
               <View key={item.id}>
-                <TakeOutOrderItem props={this.props.props} num={item.a} tomorrow={item.b}></TakeOutOrderItem>
+                <TakeOutOrderItem props={this.props} num={item.a} tomorrow={item.b}></TakeOutOrderItem>
               </View>
             )
           })
@@ -105,7 +105,7 @@ class HistoryOtherOrder extends Component {
           this.state.historyotherorder.map((item) => {
             return (
               <View key={item.id}>
-                <OtherOrderItem props={this.props.props} num={item.a} tomorrow={item.b}></OtherOrderItem>
+                <OtherOrderItem props={this.props} num={item.a} tomorrow={item.b}></OtherOrderItem>
               </View>
             )
           })
@@ -126,7 +126,7 @@ class HistoryCancleOrder extends Component {
           this.state.historyotherorder.map((item) => {
             return (
               <View key={item.id}>
-                <OtherOrderItem props={this.props.props} num={item.a} can={true}></OtherOrderItem>
+                <OtherOrderItem props={this.props} num={item.a} can={true}></OtherOrderItem>
               </View>
             )
           })
@@ -147,7 +147,7 @@ class HistoryRefundOrder extends Component {
           this.state.historyotherorder.map((item) => {
             return (
               <View key={item.id}>
-                <OtherOrderItem props={this.props.props} num={item.a} tomorrow={item.b} cancel={true}></OtherOrderItem>
+                <OtherOrderItem props={this.props} num={item.a} tomorrow={item.b} cancel={true}></OtherOrderItem>
               </View>
             )
           })

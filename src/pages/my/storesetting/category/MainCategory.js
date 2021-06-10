@@ -4,7 +4,7 @@ import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 export default class MainCategory extends Component {
     state = {
         active: 1,
-        cateitem: 0,
+        cateitem: { id: 1, cate: 0 },
         foodList: [
             {
                 "id": 1,
@@ -37,70 +37,96 @@ export default class MainCategory extends Component {
     render() {
         return (
             <View style={{ flex: 1, backgroundColor: '#F8F8F9' }}>
-                <View style={{ marginTop: 50, flexDirection: 'row', marginBottom: 20, marginHorizontal: 20, justifyContent: 'space-between', alignItems: 'center', }}>
-                    <TouchableOpacity style={{ padding: 10, paddingLeft: 0,paddingRight:30 }} activeOpacity={1} onPress={() => { this.props.navigation.goBack() }}>
+                <View style={{ marginTop: 40, flexDirection: 'row', marginBottom: 20, marginHorizontal: 20, justifyContent: 'space-between', alignItems: 'center', }}>
+                    <TouchableOpacity style={{ padding: 10, paddingLeft: 0, paddingRight: 30 }} activeOpacity={1} onPress={() => { this.props.navigation.goBack() }}>
                         <Image style={{ width: 10, height: 15, resizeMode: 'contain', }} source={require('../../../../assets/images/png/sousuo_gengduo_icon.png')}></Image>
                     </TouchableOpacity>
                     <Text style={{ fontSize: 19, fontWeight: 'bold' }}>经营品类</Text>
-                    <TouchableOpacity style={{ padding: 10, paddingLeft: 0,paddingRight:30 }} activeOpacity={1} onPress={() => { this.props.navigation.goBack() }}>
-                        <Text style={{ width: 10, height: 15, }}>保存</Text>
+                    <TouchableOpacity style={{ padding: 10, paddingLeft: 0, paddingRight: 10 }} activeOpacity={1}
+                        onPress={() => { this.props.navigation.replace('BusinessCategory',
+                        {name:this.state.foodList[this.state.cateitem.id-1].name+'-'+this.state.foodList[this.state.cateitem.id-1].cate[this.state.cateitem.cate]}) }}>
+                        <Text style={{ fontSize: 15, fontWeight: 'bold' }}>保存</Text>
                     </TouchableOpacity>
                 </View>
                 {/* 2 */}
-                <View style={{ flexDirection: 'row', height: '90%' }}>
+                <View style={{ flexDirection: 'row', height: '80%' }}>
                     {/* 左边 */}
-                    <View style={{ width: '34%', borderRightColor: '#5D5757', borderRightWidth: 1 }} >
+                    <View style={{ width: '33%', borderRightColor: 'rgba(0,0,0,0.1)', borderRightWidth: 1, }} >
                         {
                             this.state.foodList.map((item, index) => {
                                 return (
-                                    <View style={styles.container} key={item.id}>
-                                        <Text style={[styles.fontStyle, { color: this.state.active == item.id ? '#5FA6EE' : '#5D5757' }]} onPress={() => { this.setState({ active: item.id }) }}>{item.name}</Text>
-                                    </View>
+                                    <TouchableOpacity activeOpacity={1} style={styles.container} key={item.id}
+                                        onPress={() => { this.setState({ active: item.id, cateitem: { id: item.id, cate: 0 }, }) }}>
+                                        <Text style={[styles.fontStyle, { color: this.state.active == item.id ? '#5FA6EE' : '#5D5757' }]} >{item.name}</Text>
+                                    </TouchableOpacity>
                                 )
                             })
                         }
                     </View>
-                    {/* 右边 */}
-                    {this.state.active == 1 ? <View style={{ width: '33%' }}>
-                        {
-                            this.state.foodList[0].cate.map((item, index) => {
-                                return (
-                                    <View style={styles.container} key={index}>
-                                        <Text onPress={() => { this.setState({ cateitem: index }) }} style={[styles.fontStyle, { color: this.state.cateitem == index ? 'green' : '#5D5757' }]}>{item}</Text>
-                                    </View>
-                                )
-                            })
+                    {/* 中间 */}
+                    <View style={{ width: '34%', borderRightColor: 'rgba(0,0,0,0.1)', borderRightWidth: 1, }}>
+                        {this.state.active == 1 ?
+                            <View>
+                                {
+                                    this.state.foodList[0].cate.map((item, index) => {
+                                        return (
+                                            <TouchableOpacity activeOpacity={1} style={styles.container} key={index} onPress={() => { this.setState({ cateitem: { id: this.state.active, cate: index } }) }}>
+                                                <Text style={[styles.fontStyle, { borderRadius: 2, borderBottomWidth: 3, borderBottomColor: this.state.cateitem.cate == index ? '#5FA6EE' : 'transparent' }]}>{item}</Text>
+                                            </TouchableOpacity>
+                                        )
+                                    })
+                                }
+                            </View>
+                            : this.state.active == 2 ?
+                                <View>
+                                    {
+                                        this.state.foodList[1].cate.map((item, index) => {
+                                            return (
+                                                <TouchableOpacity activeOpacity={1} style={styles.container} key={index} onPress={() => { this.setState({ cateitem: { id: this.state.active, cate: index } }) }}>
+                                                    <Text style={[styles.fontStyle, { borderRadius: 2, borderBottomWidth: 3, borderBottomColor: this.state.cateitem.cate == index ? '#5FA6EE' : 'transparent' }]}>{item}</Text>
+                                                </TouchableOpacity>
+                                            )
+                                        })
+                                    }
+                                </View> :
+                                this.state.active == 3 ?
+                                    <View>
+                                        {
+                                            this.state.foodList[2].cate.map((item, index) => {
+                                                return (
+                                                    <TouchableOpacity activeOpacity={1} style={styles.container} key={index} onPress={() => { this.setState({ cateitem: { id: this.state.active, cate: index } }) }}>
+                                                        <Text style={[styles.fontStyle, { borderRadius: 2, borderBottomWidth: 3, borderBottomColor: this.state.cateitem.cate == index ? '#5FA6EE' : 'transparent' }]}>{item}</Text>
+                                                    </TouchableOpacity>
+                                                )
+                                            })
+                                        }
+                                    </View> :
+                                    this.state.active == 4 ?
+                                        <View>
+                                            {
+                                                this.state.foodList[3].cate.map((item, index) => {
+                                                    return (
+                                                        <TouchableOpacity activeOpacity={1} style={styles.container} key={index} onPress={() => { this.setState({ cateitem: { id: this.state.active, cate: index } }) }}>
+                                                            <Text style={[styles.fontStyle, { borderRadius: 2, borderBottomWidth: 3, borderBottomColor: this.state.cateitem.cate == index ? '#5FA6EE' : 'transparent' }]}>{item}</Text>
+                                                        </TouchableOpacity>
+                                                    )
+                                                })
+                                            }
+                                        </View> :
+                                        this.state.active == 5 ?
+                                            <View>
+                                                {
+                                                    this.state.foodList[4].cate.map((item, index) => {
+                                                        return (
+                                                            <TouchableOpacity activeOpacity={1} style={styles.container} key={index} onPress={() => { this.setState({ cateitem: { id: this.state.active, cate: index } }) }}>
+                                                                <Text style={[styles.fontStyle, { borderRadius: 2, borderBottomWidth: 3, borderBottomColor: this.state.cateitem.cate == index ? '#5FA6EE' : 'transparent' }]}>{item}</Text>
+                                                            </TouchableOpacity>
+                                                        )
+                                                    })
+                                                }
+                                            </View> : <></>
                         }
-                    </View> : <></>}
-                    {this.state.active == 2 ? <View style={{ width: '33%' }}>
-                        <View style={styles.container}><Text style={styles.fontStyle}>丼</Text></View>
-                        <View style={styles.container}><Text style={styles.fontStyle}>寿司</Text></View>
-                        <View style={styles.container}><Text style={styles.fontStyle}>面食</Text></View>
-                        <View style={styles.container}><Text style={styles.fontStyle}>烤肉</Text></View>
-                        <View style={styles.container}><Text style={styles.fontStyle}>合适</Text></View>
-                        <View style={styles.container}><Text style={styles.fontStyle}>披萨</Text></View>
-                        <View style={styles.container}><Text style={styles.fontStyle}>咖喱</Text></View>
-                    </View> : <></>}
-                    {this.state.active == 3 ? <View style={{ width: '33%' }}>
-                        <View style={styles.container}><Text style={styles.fontStyle}>奶茶</Text></View>
-                        <View style={styles.container}><Text style={styles.fontStyle}>咖啡</Text></View>
-                        <View style={styles.container}><Text style={styles.fontStyle}>果汁</Text></View>
-                        <View style={styles.container}><Text style={styles.fontStyle}>其它饮料</Text></View>
-                    </View> : <></>}
-                    {this.state.active == 4 ? <View style={{ width: '33%' }}>
-                        <View style={styles.container}><Text style={styles.fontStyle}>烘焙</Text></View>
-                        <View style={styles.container}><Text style={styles.fontStyle}>舒芙蕾</Text></View>
-                        <View style={styles.container}><Text style={styles.fontStyle}>蛋糕</Text></View>
-                        <View style={styles.container}><Text style={styles.fontStyle}>冰激淋</Text></View>
-                        <View style={styles.container}><Text style={styles.fontStyle}>其他</Text></View>
-                    </View> : <></>}
-                    {this.state.active == 5 ? <View style={{ width: '33%' }}>
-                        <View style={styles.container}><Text style={styles.fontStyle}>炸物类</Text></View>
-                        <View style={styles.container}><Text style={styles.fontStyle}>卤味</Text></View>
-                        <View style={styles.container}><Text style={styles.fontStyle}>烤物类</Text></View>
-                        <View style={styles.container}><Text style={styles.fontStyle}>铁板类</Text></View>
-                        <View style={styles.container}><Text style={styles.fontStyle}>其他类</Text></View>
-                    </View> : <></>}
+                    </View>
                 </View>
             </View>
         )

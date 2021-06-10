@@ -71,7 +71,7 @@ class ReservedOrder extends Component {
           </TouchableOpacity>
         </View>
         <View>
-          {this.state.active == 1 ? <ReservedSoonOrder props={this.props}></ReservedSoonOrder> : this.state.active == 2 ? <ReservedTodayOrder props={this.props}></ReservedTodayOrder> : <ReservedTomorrowOrder props={this.props}></ReservedTomorrowOrder>}
+          {this.state.active == 1 ? <ReservedSoonOrder props={this.props.props}></ReservedSoonOrder> : this.state.active == 2 ? <ReservedTodayOrder props={this.props.props}></ReservedTodayOrder> : <ReservedTomorrowOrder props={this.props.props}></ReservedTomorrowOrder>}
         </View>
       </ScrollView>
     )

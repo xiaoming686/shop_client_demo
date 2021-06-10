@@ -20,11 +20,6 @@ export default class OpeningTime extends Component {
     hideMinPick = () => {
         this.setState({ isshade: false });
     }
-    updateOpeningState = () => {
-        this.setState({
-            openingState: !this.state.openingState
-        })
-    }
     changeBusiness = () => {
         this.setState({
             choiceBusinessWeek: false,
@@ -71,39 +66,43 @@ export default class OpeningTime extends Component {
                 <StatusBar
                     backgroundColor={this.state.isshade ? 'rgba(0,0,0,0.01)' : "#f8f8f9"}>
                 </StatusBar>
-                <View style={{ marginTop: 50, flexDirection: 'row', marginBottom: 20, marginHorizontal: 20, justifyContent: 'space-between', alignItems: 'center', }}>
-                    <TouchableOpacity style={{ padding: 10, paddingLeft: 0, paddingRight: 30 }} activeOpacity={1} onPress={() => { this.props.navigation.goBack() }}>
-                        <Image style={{ width: 10, height: 15, resizeMode: 'contain', }} source={require('../../../../assets/images/png/sousuo_gengduo_icon.png')}></Image>
+                <View style={{
+                    marginTop: 40, flexDirection: 'row', marginBottom: 20, marginHorizontal: 20,
+                    justifyContent: 'space-between', alignItems: 'center',
+                }}>
+                    <TouchableOpacity style={{ padding: 10, paddingLeft: 0, paddingRight: 30 }} activeOpacity={1}
+                        onPress={() => { this.props.navigation.goBack() }}>
+                        <Image style={{ width: 10, height: 15, resizeMode: 'contain', }}
+                            source={require('../../../../assets/images/png/sousuo_gengduo_icon.png')}></Image>
                     </TouchableOpacity>
                     <Text style={{ fontSize: 19, fontWeight: 'bold' }}>营业时间</Text>
                     <View style={{ padding: 10, paddingLeft: 30, paddingRight: 0 }}>
-                        <Image style={{ opacity: 0, width: 10, height: 15 }} source={require('../../../../assets/images/png/sousuo_gengduo_icon.png')}></Image>
+                        <Image style={{ opacity: 0, width: 10, height: 15 }}
+                            source={require('../../../../assets/images/png/sousuo_gengduo_icon.png')}></Image>
                     </View>
                 </View>
-                <View style={{ alignItems: 'center' }}>
-                    <Image style={{ width: 96.5, height: 96.5 }} source={require('../../../../assets/images/png/dw-dianpukuang.png')}></Image>
-                    <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#3F3C3C', paddingTop: 12, paddingBottom: 25 }}>盐忆</Text>
-                </View>
                 <ScrollView>
+                    <View style={{ alignItems: 'center' }}>
+                        <Image style={{ width: 96.5, height: 96.5 }} source={require('../../../../assets/images/png/dw-dianpukuang.png')}></Image>
+                        <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#3F3C3C', paddingTop: 12, paddingBottom: 25 }}>盐忆</Text>
+                    </View>
                     <View style={styles.container}>
                         {/* 1 */}
-                        <TouchableOpacity onPress={this.updateOpeningState}>
-                            {openingState ?
-                                <View style={{ backgroundColor: '#50e4a1', borderRadius: 20, paddingTop: 10, paddingBottom: 30, alignItems: 'center' }}>
-                                    <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                                        <Image source={require('../../../../assets/images/png/dw_xieyeicon.png')}></Image>
-                                        <Text style={{ fontSize: 18, color: '#5D5757', paddingLeft: 6 }}>营业中</Text>
-                                    </View>
-                                    <Text style={{ fontSize: 14, color: '#5D5757' }}>本店目前正常营业中</Text>
-                                </View> :
-                                <View style={{ backgroundColor: '#FD875C', borderRadius: 20, paddingTop: 10, paddingBottom: 25, alignItems: 'center' }}>
-                                    <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                                        <Image source={require('../../../../assets/images/png/dw_xieyeicon.png')}></Image>
-                                        <Text style={{ fontSize: 18, color: 'white', paddingLeft: 6 }}>歇业中</Text>
-                                    </View>
-                                    <Text style={{ fontSize: 14, color: 'white' }}>本店正在营业中</Text>
-                                </View>}
-                        </TouchableOpacity>
+                        {openingState ?
+                            <View style={{ backgroundColor: '#50e4a1', borderRadius: 20, paddingTop: 10, paddingBottom: 30, alignItems: 'center' }}>
+                                <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                                    <View style={{ backgroundColor: '#00cb88', width: 12, height: 12, borderWidth: 2, borderColor: '#ffffff', borderRadius: 6 }}></View>
+                                    <Text style={{ fontSize: 18, color: '#5D5757', paddingLeft: 6 }}>营业中</Text>
+                                </View>
+                                <Text style={{ fontSize: 14, color: '#5D5757' }}>本店目前正常营业中</Text>
+                            </View> :
+                            <View style={{ backgroundColor: '#FD875C', borderRadius: 20, paddingTop: 10, paddingBottom: 30, alignItems: 'center' }}>
+                                <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                                    <View style={{ backgroundColor: '#ff6127', width: 12, height: 12, borderWidth: 2, borderColor: '#ffffff', borderRadius: 6 }}></View>
+                                    <Text style={{ fontSize: 18, color: 'white', paddingLeft: 6 }}>歇业中</Text>
+                                </View>
+                                <Text style={{ fontSize: 14, color: 'white' }}>本店正在营业中</Text>
+                            </View>}
                         {/* 2 */}
                         <View style={{ paddingTop: 25, paddingBottom: 25, paddingLeft: 23, paddingRight: 23, backgroundColor: 'white', borderRadius: 20, marginTop: -20, flexDirection: 'row', justifyContent: 'space-between' }}>
                             <Text style={{ color: '#5D5757', fontSize: 17 }}>今日营业时间</Text>
@@ -160,11 +159,16 @@ export default class OpeningTime extends Component {
                             </View>
                             {/* 时间段的选择 */}
                             {choiceBusinessTime == 1 || choiceBusinessTime == 2 ? <View><Text style={{ fontSize: 14, color: '#5D5757' }}>最多可添加三项</Text></View> : <></>}
-                            {!businessTime ? <TouchableOpacity onPress={this.showMinPick} style={{ height: 34.5, backgroundColor: '#E5E4E4', borderRadius: 15, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', marginTop: 20 }}>
-                                <Text style={{ fontSize: 15, color: '#5D5757' }}>10:30</Text>
-                                <Text style={{ fontSize: 15, color: '#5D5757' }}>至</Text>
-                                <Text style={{ fontSize: 15, color: '#5D5757' }}>21:30</Text>
-                            </TouchableOpacity> : <></>}
+                            {!businessTime ?
+                                <View style={{ height: 34.5, backgroundColor: '#E5E4E4', borderRadius: 15, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', marginTop: 20 }}>
+                                    <TouchableOpacity onPress={this.showMinPick}>
+                                        <Text style={{ fontSize: 15, color: '#5D5757' }}>10:30</Text>
+                                    </TouchableOpacity>
+                                    <Text style={{ fontSize: 15, color: '#5D5757' }}>至</Text>
+                                    <TouchableOpacity onPress={this.showMinPick}>
+                                        <Text style={{ fontSize: 15, color: '#5D5757' }}>21:30</Text>
+                                    </TouchableOpacity>
+                                </View> : <></>}
                             {choiceBusinessTime == 1 || choiceBusinessTime == 2 ? <TouchableOpacity onPress={this.showMinPick} style={{ height: 34.5, backgroundColor: '#E5E4E4', borderRadius: 15, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', marginTop: 20 }}>
                                 <Text style={{ fontSize: 15, color: '#5D5757' }}>选择开始时间</Text>
                                 <Text style={{ fontSize: 15, color: '#5D5757' }}>至</Text>

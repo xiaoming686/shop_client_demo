@@ -21,7 +21,7 @@ export default class MyScreen extends Component {
         return (
             <View style={{ flex: 1, justifyContent: 'center', backgroundColor: '#f8f8f9', }}>
                 {/* 1 */}
-                <View style={{ marginTop: 50, marginBottom: -75, zIndex: 99, alignItems: 'center' }}>
+                <View style={{ marginTop: 40, marginBottom: -75, zIndex: 99, alignItems: 'center' }}>
                     <Image style={{ width: 97, height: 97, resizeMode: 'contain' }}
                         source={require('../../assets/images/png/dw-dianpukuang.png')}></Image>
                     <Text style={{ fontSize: 22, color: '#3f3c3c', marginTop: 12 }}>盐忆</Text>

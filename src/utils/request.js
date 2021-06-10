@@ -24,7 +24,7 @@ instance.interceptors.response.use(function (response) {
 });
 
 
-export const NetLogin = (api, params) => {
+export const NetPost = (api, params) => {
     return new Promise((resolve, reject) => {
         instance.post(api, params)
             .then(res => {
@@ -36,3 +36,21 @@ export const NetLogin = (api, params) => {
             })
     })
 }
+
+export const NetGet = (api, params) => {
+    return new Promise((resolve, reject) => {
+        instance.get(api, params)
+            .then(res => {
+                resolve(res.data)
+            })
+            .catch(error => {
+                console.log(error);
+                reject(error)
+            })
+    })
+}
+// post
+// '/set_business_time'
+// get
+// '/set_preparation_time'
+// '/set_business_category'

@@ -5,7 +5,7 @@ export default class Agreement extends Component {
   render() {
     return (
       <View style={{ flex: 1, backgroundColor: '#f8f8f9', }}>
-        <View style={{ marginTop: 50, flexDirection: 'row', marginBottom: 20, marginHorizontal: 20, justifyContent: 'space-between', alignItems: 'center', }}>
+        <View style={{ marginTop: 40, flexDirection: 'row', marginBottom: 20, marginHorizontal: 20, justifyContent: 'space-between', alignItems: 'center', }}>
           <TouchableOpacity style={{ padding: 10, paddingLeft: 0,paddingRight:30 }} activeOpacity={1} onPress={() => { this.props.navigation.goBack() }}>
             <Image style={{ width: 10, height: 15, resizeMode: 'contain', }} source={require('../../assets/images/png/sousuo_gengduo_icon.png')}></Image>
           </TouchableOpacity>

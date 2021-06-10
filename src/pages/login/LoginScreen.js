@@ -5,7 +5,7 @@ import MyLogin from '../../utils/mytoast/myLogin'
 import MyLoading from '../../utils/mytoast/myloading'
 import md5 from 'js-md5'
 import Storage from '../../utils/storage/storage'
-import { NetLogin } from '../../utils/request'
+import { NetPost } from '../../utils/request'
 
 export default class LoginScreen extends Component {
   state = {
@@ -45,6 +45,9 @@ export default class LoginScreen extends Component {
     const accountValid = validator.validateEmail(this.state.account);
     if (!accountValid) {
       this.setState({ isShowMyLogin: true });
+      setTimeout(() => {
+        this.setState({ isShowMyLogin: false })
+      }, 1000);
       return
     } else {
       // 发送axios返回结果如果正确
@@ -55,7 +58,7 @@ export default class LoginScreen extends Component {
       }
       // 显示loading
       this.setState({ isShowMyLoading: true });
-      NetLogin('/get_oauth2_token', loginData).then(() => {
+      NetPost('/get_oauth2_token', loginData).then(() => {
         // 关闭loading并跳转，是否记住密码
         this.setState({ isShowMyLoading: false })
         this.props.navigation.replace('NavTab')
@@ -77,14 +80,11 @@ export default class LoginScreen extends Component {
         // 关闭loading及提示
         this.setState({ isShowMyLoading: false })
         this.setState({ isShowMyPass: true });
+        setTimeout(() => {
+          this.setState({ isShowMyPass: false });
+        }, 1000);
       })
     }
-  }
-  /* 7-1- 模态框消失函数 */
-  cancelMyToast = () => {
-    this.setState({ isShowMyLogin: false })
-    this.setState({ isShowMyLoading: false })
-    this.setState({ isShowMyPass: false });
   }
   render() {
     return (
@@ -98,7 +98,7 @@ export default class LoginScreen extends Component {
           flexDirection: 'row', marginTop: 39, alignItems: 'center', borderRightWidth: 4, borderBottomWidth: 4, borderColor: '#f5f5f5'
         }}>
           <Image style={{ marginLeft: 20.5, width: 20, height: 20, resizeMode: 'contain' }} source={require('../../assets/images/png/email.png')} />
-          <TextInput onChangeText={this.checkAccount} clearButtonMode="always" value={this.state.account}
+          <TextInput onChangeText={this.checkAccount} clearButtonMode='while-editing' value={this.state.account}
             style={{ marginLeft: 35, fontSize: 15, width: 200 }} placeholder="请输入邮箱"></TextInput>
         </View>
         {/* 3-用户名输入 */}
@@ -144,11 +144,9 @@ export default class LoginScreen extends Component {
         </View>
         <MyLogin
           content='请输入正确邮箱'
-          cancel={this.cancelMyToast}
           visible={this.state.isShowMyLogin} />
         <MyLogin
           content='用户名或密码错误'
-          cancel={this.cancelMyToast}
           visible={this.state.isShowMyPass} />
         <MyLoading
           visible={this.state.isShowMyLoading} />

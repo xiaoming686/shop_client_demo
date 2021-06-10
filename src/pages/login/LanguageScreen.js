@@ -57,7 +57,7 @@ export default class LanguageScreen extends Component {
     return (
       <View style={{ backgroundColor: '#f8f8f9', flex: 1 }}>
         <View style={{
-          marginTop: 50, flexDirection: 'row', marginBottom: 20,marginHorizontal: 20, justifyContent: 'space-between', alignItems: 'center',
+          marginTop: 40, flexDirection: 'row', marginBottom: 20,marginHorizontal: 20, justifyContent: 'space-between', alignItems: 'center',
         }}>
           <TouchableOpacity style={{ padding: 10, paddingLeft: 0,paddingRight:30 }} activeOpacity={1} onPress={() => { this.props.navigation.goBack() }}>
             <Image style={{ width: 10, height: 15, resizeMode: 'contain', }}
