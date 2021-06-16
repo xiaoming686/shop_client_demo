@@ -78,7 +78,7 @@ function Nav(props) {
       <Stack.Screen
         name="MainCategory"
         component={MainCategory}
-        options={{ title: '经营品类', headerShown: false }}
+        options={{ title: '主营品类', headerShown: false }}
       />
       <Stack.Screen
         name="OrderSetting"

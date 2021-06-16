@@ -29,7 +29,7 @@ export default class OtherOrder extends Component {
             <Text style={{ marginLeft: 3, color: this.state.active == 3 ? '#ffffff' : '#989897',fontSize:17 }}>退款单</Text>
           </TouchableOpacity>
         </View>
-        <View style={{ flex: 1, marginTop: 10 }}>
+        <View style={{ flex: 1 }}>
           {this.state.active == 1 ? <DoingOrder props={this.props.props}></DoingOrder> : this.state.active == 2 ? <ReservedOrder props={this.props.props}></ReservedOrder> : <RefundOrder props={this.props.props}></RefundOrder>}
         </View>
       </View>
@@ -66,7 +66,7 @@ class ReservedOrder extends Component {
   render() {
     return (
       <ScrollView style={{ backgroundColor: '#f8f8f9' }}>
-        <View style={{ marginTop: 20, flexDirection: 'row', justifyContent: 'space-around', flex: 1,marginHorizontal:20 }}>
+        <View style={{ marginTop: 15, flexDirection: 'row', justifyContent: 'space-around', flex: 1,marginHorizontal:20 }}>
           <TouchableOpacity style={{ width: 85, height: 30, alignItems: 'center', borderRadius: 15, backgroundColor: this.state.active == 1 ? '#e5e4e4' : 'transparent' }} onPress={() => { this.setState({ active: 1 }) }}>
             <Text style={{ fontSize: 15, marginTop: 4, color: this.state.active == 1 ? '#5d5757' : '#a09e9e' }}>即将到时</Text>
           </TouchableOpacity>

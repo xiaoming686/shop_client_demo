@@ -13,12 +13,15 @@ export default class OpeningTime extends Component {
         timeLimit: false,
         cancelWeek: true,
         isshade: false,
+        lefttime:'10:30',
     }
     showMinPick = () => {
         this.setState({ isshade: true });
     }
-    hideMinPick = () => {
+    hideMinPick = (value) => {
         this.setState({ isshade: false });
+        this.setState({ lefttime: value });
+        console.log(value);
     }
     changeBusiness = () => {
         this.setState({
@@ -162,7 +165,7 @@ export default class OpeningTime extends Component {
                             {!businessTime ?
                                 <View style={{ height: 34.5, backgroundColor: '#E5E4E4', borderRadius: 15, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', marginTop: 20 }}>
                                     <TouchableOpacity onPress={this.showMinPick}>
-                                        <Text style={{ fontSize: 15, color: '#5D5757' }}>10:30</Text>
+                                        <Text style={{ fontSize: 15, color: '#5D5757' }}>{this.state.lefttime}</Text>
                                     </TouchableOpacity>
                                     <Text style={{ fontSize: 15, color: '#5D5757' }}>至</Text>
                                     <TouchableOpacity onPress={this.showMinPick}>

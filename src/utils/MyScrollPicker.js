@@ -8,10 +8,10 @@ export default class MyScrollPicker extends Component {
     yAxisleft: 0,
     dataright: [],
     yAxisright: 0,
-    show: true
+    time: '',
   }
   //屏幕宽高
-  height = Dimensions.get('window').height
+  height = Dimensions.get('screen').height
   width = Dimensions.get('window').width
   // 初始动画位置
   translateY = new Animated.Value(this.height)
@@ -27,7 +27,7 @@ export default class MyScrollPicker extends Component {
     this.setState({ dataleft: this.state.dataleft })
     this.setState({ dataright: this.state.dataright })
     Animated.timing(this.translateY, {
-      toValue: this.height - 350,
+      toValue: this.height - 370,
       duration: 500,
       useNativeDriver: true
     }).start()
@@ -41,17 +41,23 @@ export default class MyScrollPicker extends Component {
     console.log(e.nativeEvent.contentOffset.y);
     this.setState({ yAxisright: e.nativeEvent.contentOffset.y })
   }
+  submit = () => {
+    let a = this.state.yAxisleft / 40
+    let b = this.state.yAxisright / 40
+    this.state.time = (a > 9 ? a : '0' + a) + ':' + (b > 10 ? b : '0' + b)
+    this.props.hide(this.state.time)
+  }
 
   render() {
     return (
       <View style={{ flex: 1 }}>
         <Animated.View style={{
-          height: 380, width: '100%', overflow: 'hidden', backgroundColor: 'white', position: 'absolute', top: 0,
+          height: 370, width: '100%', overflow: 'hidden', backgroundColor: '#ffffff', position: 'absolute', top: 0,
           alignItems: 'center', borderTopStartRadius: 20, borderTopRightRadius: 20, transform: [{ translateY: this.translateY }]
         }}>
           {/* head */}
           <View style={{
-            backgroundColor: 'white', width: '100%', height: 80,
+            backgroundColor: '#ffffff', width: '100%', height: 80,
             justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center'
           }}>
             <Text style={{ opacity: 0, fontSize: 20, marginLeft: 20 }}>×</Text>
@@ -75,9 +81,9 @@ export default class MyScrollPicker extends Component {
                     return (
                       <Text style={{
                         fontSize: 20, lineHeight: 40, alignSelf: 'center',
-                        transform:(item) * 40 == this.state.yAxisleft ? [{scaleY:1}]: [{scaleY:0.7}],
+                        transform: (item) * 40 == this.state.yAxisleft ? [{ scaleY: 1 }] : [{ scaleY: 0.7 }],
                         color: (item) * 40 == this.state.yAxisleft ? 'black' : 'rgba(0,0,0,0.3)'
-                      }} key={item}>{item<10?0:''}{item}</Text>
+                      }} key={item}>{item < 10 ? 0 : ''}{item}</Text>
                     )
                   })
                 }
@@ -98,8 +104,10 @@ export default class MyScrollPicker extends Component {
                 {
                   this.state.dataright.map((item) => {
                     return (
-                      <Text style={{ fontSize: 20, lineHeight: 40, transform:(item) * 40 == this.state.yAxisright ? [{scaleY:1}]: [{scaleY:0.7}],
-                        alignSelf: 'center', color: (item) * 40 == this.state.yAxisright ? 'black' : 'rgba(0,0,0,0.3)' }} key={item}>{item<10?0:''}{item}</Text>
+                      <Text style={{
+                        fontSize: 20, lineHeight: 40, transform: (item) * 40 == this.state.yAxisright ? [{ scaleY: 1 }] : [{ scaleY: 0.7 }],
+                        alignSelf: 'center', color: (item) * 40 == this.state.yAxisright ? 'black' : 'rgba(0,0,0,0.3)'
+                      }} key={item}>{item < 10 ? 0 : ''}{item}</Text>
                     )
                   })
                 }
@@ -112,7 +120,8 @@ export default class MyScrollPicker extends Component {
               <Text style={{ fontSize: 20 }}>:</Text>
             </View>
           </View>
-          <TouchableOpacity style={{ height: 44, width: 330, borderRadius: 10, backgroundColor: '#00cb88',justifyContent:"center" }}>
+          <TouchableOpacity onPress={this.submit}
+            style={{ height: 44, width: 330, borderRadius: 10, backgroundColor: '#00cb88', justifyContent: "center" }}>
             <Text style={{ fontSize: 16, alignSelf: 'center', lineHeight: 30, color: '#ffffff' }}>确定</Text>
           </TouchableOpacity>
         </Animated.View>

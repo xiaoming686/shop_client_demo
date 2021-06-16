@@ -26,7 +26,9 @@ export default class OtherOrder extends Component {
           </TouchableOpacity>
         </View>
         <View style={{ flex: 1 }}>
-          {this.state.active == 1 ? <DoingOrder props={this.props.props}></DoingOrder> : this.state.active == 2 ? <ReservedOrder props={this.props.props}></ReservedOrder> : <Refund props={this.props.props}></Refund>}
+          {this.state.active == 1 ? <DoingOrder props={this.props.props}></DoingOrder>
+            : this.state.active == 2 ? <ReservedOrder props={this.props.props}></ReservedOrder>
+              : <Refund props={this.props.props}></Refund>}
         </View>
       </View>
     );
@@ -43,7 +45,9 @@ class DoingOrder extends Component {
         {
           this.state.doingorder.map((item) => {
             return (
-              <TakeOutOrderItem key={item.id} props={this.props} doing={item.a}></TakeOutOrderItem>
+              <TouchableOpacity activeOpacity={1} onPress={() => { this.props.props.navigation.navigate('TakeoutOrderDetail') }}>
+                <TakeOutOrderItem key={item.id} doing={item.a}></TakeOutOrderItem>
+              </TouchableOpacity>
             )
           })
         }
@@ -59,7 +63,7 @@ class ReservedOrder extends Component {
   render() {
     return (
       <ScrollView style={{ backgroundColor: '#f8f8f9' }}>
-        <View style={{ marginTop: 20, flexDirection: 'row', justifyContent: 'space-around', marginHorizontal: 20, flex: 1 }}>
+        <View style={{ marginTop: 15, flexDirection: 'row', justifyContent: 'space-around', marginHorizontal: 20, flex: 1 }}>
           <TouchableOpacity style={{ width: 85, height: 30, alignItems: 'center', borderRadius: 15, backgroundColor: this.state.active == 1 ? '#e5e4e4' : 'transparent' }} onPress={() => { this.setState({ active: 1 }) }}>
             <Text style={{ fontSize: 15, marginTop: 4, color: this.state.active == 1 ? '#5d5757' : '#a09e9e' }}>即将到时</Text>
           </TouchableOpacity>
@@ -71,7 +75,9 @@ class ReservedOrder extends Component {
           </TouchableOpacity>
         </View>
         <View>
-          {this.state.active == 1 ? <ReservedSoonOrder props={this.props.props}></ReservedSoonOrder> : this.state.active == 2 ? <ReservedTodayOrder props={this.props.props}></ReservedTodayOrder> : <ReservedTomorrowOrder props={this.props.props}></ReservedTomorrowOrder>}
+          {this.state.active == 1 ? <ReservedSoonOrder props={this.props.props}></ReservedSoonOrder>
+            : this.state.active == 2 ? <ReservedTodayOrder props={this.props.props}></ReservedTodayOrder>
+              : <ReservedTomorrowOrder props={this.props.props}></ReservedTomorrowOrder>}
         </View>
       </ScrollView>
     )
@@ -88,9 +94,9 @@ class ReservedSoonOrder extends Component {
         {
           this.state.reservedsoonorder.map((item) => {
             return (
-              <View key={item.id}>
+              <TouchableOpacity key={item.id} activeOpacity={1} onPress={() => { this.props.props.navigation.navigate('TakeoutOrderDetail') }}>
                 <TakeOutOrderItem props={this.props} num={item.a}></TakeOutOrderItem>
-              </View>
+              </TouchableOpacity>
             )
           })
         }
@@ -109,7 +115,9 @@ class ReservedTodayOrder extends Component {
         {
           this.state.reservedtodayorder.map((item) => {
             return (
-              <TakeOutOrderItem key={item.id} props={this.props} num={item.a}></TakeOutOrderItem>
+              <TouchableOpacity key={item.id} activeOpacity={1} onPress={() => { this.props.props.navigation.navigate('TakeoutOrderDetail') }}>
+                <TakeOutOrderItem props={this.props} num={item.a}></TakeOutOrderItem>
+              </TouchableOpacity>
             )
           })
         }

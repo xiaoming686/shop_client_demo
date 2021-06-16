@@ -4,7 +4,7 @@ import React from 'react'
 export default function TakeoutOrderDetail() {
   return (
     <View style={{ flex: 1, backgroundColor: '#f8f8f9' }}>
-      <ScrollView showsVerticalScrollIndicator={false} style={{ backgroundColor: '#ffffff', flex: 1, margin: 19, marginTop: 47.5, borderRadius: 15, paddingLeft: 12, paddingRight: 20, paddingTop: 20 }}>
+      <ScrollView showsVerticalScrollIndicator={false} style={{ backgroundColor: '#ffffff', flex: 1, margin: 19, marginTop: 40, borderRadius: 15, paddingLeft: 12, paddingRight: 20, paddingTop: 10 }}>
         {/* 1 */}
         <View style={{ borderBottomColor: '#ECECEC', borderBottomWidth: 1, borderStyle: 'dashed', paddingBottom: 10, paddingTop: 10 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', }}>
@@ -64,7 +64,7 @@ export default function TakeoutOrderDetail() {
             <Text style={{ fontSize: 19, color: '#3F3C3C', paddingLeft: 5 }}>订单详情</Text>
           </View>
           {/* 5-2 */}
-          <View style={{ borderBottomColor: '#ECECEC', borderBottomWidth: 1, borderStyle: 'dashed', paddingBottom: 6 }}>
+          <View style={{ borderBottomColor: '#ECECEC', borderBottomWidth: 1, borderStyle: 'dashed', paddingBottom: 2 }}>
             <View style={{ marginTop: 22, flexDirection: "row" }}>
               <View style={{ marginLeft: 10, overflow: 'hidden' }}><Image source={require('../../assets/images/png/1.png')} style={{ height: 70, width: 70, borderRadius: 2 }} /></View>
               <View style={{ marginLeft: 20, flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -79,7 +79,7 @@ export default function TakeoutOrderDetail() {
             <View style={{ alignItems: 'flex-end' }}><Text style={{ color: '#3F3C3C', fontSize: 11 }}>*上述价格已含税</Text></View>
           </View>
           {/* 5-3 */}
-          <View style={{ borderBottomColor: '#ECECEC', borderBottomWidth: 1, borderStyle: 'dashed', paddingBottom: 10, marginLeft: 12 }}>
+          <View style={{ borderBottomColor: '#ECECEC', borderBottomWidth: 1, borderStyle: 'dashed', paddingBottom: 3, marginLeft: 12 }}>
             <View style={styles.orderTimeItems}>
               <Text style={{ fontSize: 13, color: '#5d5757' }}>商品总数</Text>
               <Text style={{ fontSize: 13, color: '#5d5757' }}>2</Text>

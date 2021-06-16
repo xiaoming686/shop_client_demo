@@ -45,7 +45,7 @@ export default function OtherOrderDetail() {
           </View>
         </View>
         {/* 2-2 */}
-        <View style={{ borderBottomColor: '#ECECEC', borderBottomWidth: 1, borderStyle: 'dashed', paddingBottom: 3 }}>
+        <View style={{ borderBottomColor: '#ECECEC', borderBottomWidth: 1, borderStyle: 'dashed', paddingBottom: 2 }}>
           <View style={{ marginTop: 15, flexDirection: "row" }}>
             <View style={{ marginLeft: 10, overflow: 'hidden' }}>
               <Image source={require('../../assets/images/png/1.png')} style={{ height: 70, width: 70, borderRadius: 2 }} />
@@ -62,13 +62,15 @@ export default function OtherOrderDetail() {
           <View style={{ alignItems: 'flex-end' }}><Text style={{ color: '#3F3C3C', fontSize: 11 }}>*上述价格已含税</Text></View>
         </View>
         {/* 2-3 */}
-        <View style={{ borderBottomColor: '#ECECEC', borderBottomWidth: 1, borderStyle: 'dashed', paddingBottom: 10 }}>
+        <View style={{ borderBottomColor: '#ECECEC', borderBottomWidth: 1, borderStyle: 'dashed', paddingBottom: 3 }}>
           <View style={styles.orderTimeItems}><Text style={{ fontSize: 13, color: '#3F3C3C' }}>商品总数</Text><Text style={{ fontSize: 13, color: '#3F3C3C' }}>2</Text></View>
           <View style={styles.orderTimeItems}><Text style={{ fontSize: 13, color: '#3F3C3C' }}>10%对象 (消费税)</Text><Text style={{ fontSize: 13, color: '#3F3C3C' }}>¥1830 (¥1830)</Text></View>
           <View style={styles.orderTimeItems}><Text style={{ fontSize: 13, color: '#3F3C3C' }}>优惠金额</Text><Text style={{ fontSize: 13, color: '#3F3C3C' }}>0</Text></View>
           <View style={{ flexDirection: "row", justifyContent: 'space-between', marginTop: 10 }}>
             <Text style={{ fontSize: 17, color: '#2A2A2A' }}>实收</Text>
-            <View><Text style={{ textAlign: 'right', fontSize: 17, color: '#1B1B1B' }}>¥1830</Text><Text style={{ fontSize: 13, color: '#3F3C3C' }}>(不含税¥1647)</Text>
+            <View>
+              <Text style={{ textAlign: 'right', fontSize: 17, color: '#1B1B1B' }}>¥1830</Text>
+              <Text style={{ fontSize: 13, color: '#3F3C3C' }}>(不含税¥1647)</Text>
             </View>
           </View>
         </View>
@@ -121,7 +123,7 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     backgroundColor: '#f8f8f9',
-    paddingTop: 50,
+    paddingTop: 40,
   },
   orderStatus: {
     height: 60,

@@ -7,8 +7,8 @@ export default class HistoryOrder extends Component {
   state = {
     active: 1,
     clickDay: false,
-    clickDayItem: 6,
-    pickday: [{ id: 1, day: '4.18' }, { id: 2, day: '4.19' }, { id: 3, day: '4.20' }, { id: 4, day: '4.21' }, { id: 5, day: '4.22' }, { id: 6, day: '4.23' },]
+    clickDayItem: 7,
+    pickday: [{ id: 1, day: '4.17' },{ id: 2, day: '4.18' }, { id: 3, day: '4.19' }, { id: 4, day: '4.20' }, { id: 5, day: '4.21' }, { id: 6, day: '4.22' }, { id: 7, day: '4.23' },]
   }
   showDayPick = () => {
     this.setState({ clickDay: !this.state.clickDay });
@@ -25,7 +25,7 @@ export default class HistoryOrder extends Component {
             </TouchableOpacity>
             {
               this.state.clickDay ?
-                <View style={{ position: 'absolute', top: 30, left:-5,borderRadius: 15, backgroundColor: '#f3f3f3', zIndex: 10, width: 52, height: 175, }}>
+                <View style={{ position: 'absolute', top: 30, left:-5,borderRadius: 15, backgroundColor: '#f3f3f3', zIndex: 10, width: 52, height: 200, }}>
                   {
                     this.state.pickday.map((item) => {
                       return (
@@ -56,7 +56,7 @@ export default class HistoryOrder extends Component {
             </TouchableOpacity>
           </ScrollView>
         </View>
-        <View style={{flex:1}}>
+        <View style={{flex:1,marginTop:-5}}>
           {
             this.state.active == 1 ?
               <HistoryTakeOutOrder props={this.props.props}></HistoryTakeOutOrder>

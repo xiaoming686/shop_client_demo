@@ -4,7 +4,7 @@ import { View, Text, Button, TouchableOpacity, Image, BackHandler, Alert } from 
 
 export default function TakeOutOrderItem(props) {
   return (
-    <View style={{ marginHorizontal: 19, marginTop: 23, padding: 20, backgroundColor: '#FFFFFF', borderRadius: 20 }}>
+    <View style={{ marginHorizontal: 19, marginTop: 15, padding: 20, backgroundColor: '#FFFFFF', borderRadius: 20 }}>
       {/* 1 */}
       <View style={{ borderBottomColor: '#ECECEC', borderBottomWidth: 1, borderStyle: 'dashed', paddingBottom: 15 }}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -43,7 +43,7 @@ export default function TakeOutOrderItem(props) {
       {/* 2 */}
       <View style={{ alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between', paddingTop: 20, paddingBottom: 20, borderBottomColor: '#ECECEC', borderBottomWidth: 1, borderStyle: 'dashed' }}>
         <View>
-          <Text style={{ fontSize: 16, color: '#5d5757' }}>李先生尾号1234</Text>
+          <Text style={{ fontSize: 16, color: '#5d5757' }}>李先生尾号  1234</Text>
           <Text style={{ color: '#5d5757', fontSize: 13, marginTop: 5 }}>2.3km/具体位置</Text>
         </View>
         <View style={{ flexDirection: 'row' }}>
@@ -88,13 +88,13 @@ export default function TakeOutOrderItem(props) {
       </View>
       {/* 7 */}
       {/* 8 */}
-      <TouchableOpacity activeOpacity={1} onPress={() => { props.props.props.navigation.navigate('TakeoutOrderDetail') }}>
+      <View>
         <Text style={{ fontSize: 14, color: '#5d5757', marginTop: 12 }}>师傅你好，麻烦少放辣椒，我真的很怕辣，可以多放点洋葱和香菜。可以多放点孜然，谢谢！</Text>
         <View style={{ flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', marginTop: 50 }}>
           <Text style={{ fontSize: 14, color: '#5d5757', marginRight: 5 }}>订单详情</Text>
           <Image style={{ width: 7, height: 11, resizeMode: 'contain' }} source={require('../assets/images/png/gr_gengduo_icon1.png')}></Image>
         </View>
-      </TouchableOpacity>
+      </View>
     </View >
   )
 }

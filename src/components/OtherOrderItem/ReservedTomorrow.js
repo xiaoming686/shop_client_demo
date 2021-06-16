@@ -4,7 +4,7 @@ import { View, Text, Button, TouchableOpacity, Image } from 'react-native'
 
 export default function OtherOrderItem(props) {
   return (
-    <View style={{ margin: 17.5, marginBottom: 0, padding: 15.5, backgroundColor: '#FFFFFF', borderRadius: 20, }}>
+    <View style={{ margin: 15, marginBottom: 0, padding: 15.5, backgroundColor: '#FFFFFF', borderRadius: 20, }}>
       {/* 1 */}
       <TouchableOpacity activeOpacity={1} onPress={() => { props.props.props.navigation.navigate('OtherOrderDetail') }} >
         <View style={{ flexDirection: 'row', height: 30, alignItems: 'center' }}>
