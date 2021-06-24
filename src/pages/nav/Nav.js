@@ -7,6 +7,7 @@ import NavTab from './NavTab'
 import SearchOrder from '../order/SearchOrder'
 import OtherOrderDetail from '../orderDetail/OtherOrderDetail'
 import TakeoutOrderDetail from '../orderDetail/TakeoutOrderDetail'
+import Map from '../maps/Map'
 import StoreSetting from '../my/storesetting/StoreSetting'
 import OpeningTime from '../my/storesetting/openingtime/OpeningTime'
 import CheckTime from '../my/storesetting/CheckTime'
@@ -54,6 +55,11 @@ function Nav(props) {
         name="TakeoutOrderDetail"
         component={TakeoutOrderDetail}
         options={{ title: '外卖订单详情', headerShown: false }}
+      />
+      <Stack.Screen
+        name="Map"
+        component={Map}
+        options={{ title: '地图', headerShown: false }}
       />
       <Stack.Screen
         name="StoreSetting"

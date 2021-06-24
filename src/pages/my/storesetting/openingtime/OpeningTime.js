@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { Text, View, Image, StyleSheet, ScrollView, TouchableOpacity, StatusBar } from 'react-native';
 import ChooseWeek from './ChooseWeek'
 import MyScrollPicker from '../../../../utils/MyScrollPicker'
+import { NetPost } from '../../../../utils/request'
+import { NetGet } from '../../../../utils/request'
+import Storage from '../../../../utils/storage/storage'
 
 export default class OpeningTime extends Component {
     state = {
@@ -13,15 +16,38 @@ export default class OpeningTime extends Component {
         timeLimit: false,
         cancelWeek: true,
         isshade: false,
-        lefttime:'10:30',
+        token: ''
+    }
+    componentDidMount() {
+        Storage.load({
+            key: 'loginState',
+        }).then(ret => {
+            this.setState({ token: ret.token });
+            console.log(ret.token);
+        }).catch(err => {
+            console.log(err);
+        })
+        let data = {
+            "open_time": [
+                { "start_time": 300, "end_time": 600 },
+                { "start_time": 900, "end_time": 1200 }
+            ],
+            'day_off': 2
+        }
+        NetPost('/set_business_time/v2?query=1', data).then((res) => {
+            // NetGet('/set_preparation_time/v2?preparation_time=15').then((res) => {
+            console.log('---');
+            console.log(res);
+        }).catch(error => {
+            console.log('+++');
+            console.log(error);
+        })
     }
     showMinPick = () => {
         this.setState({ isshade: true });
     }
-    hideMinPick = (value) => {
+    hideMinPick = () => {
         this.setState({ isshade: false });
-        this.setState({ lefttime: value });
-        console.log(value);
     }
     changeBusiness = () => {
         this.setState({
@@ -165,7 +191,7 @@ export default class OpeningTime extends Component {
                             {!businessTime ?
                                 <View style={{ height: 34.5, backgroundColor: '#E5E4E4', borderRadius: 15, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', marginTop: 20 }}>
                                     <TouchableOpacity onPress={this.showMinPick}>
-                                        <Text style={{ fontSize: 15, color: '#5D5757' }}>{this.state.lefttime}</Text>
+                                        <Text style={{ fontSize: 15, color: '#5D5757' }}>10:30</Text>
                                     </TouchableOpacity>
                                     <Text style={{ fontSize: 15, color: '#5D5757' }}>至</Text>
                                     <TouchableOpacity onPress={this.showMinPick}>

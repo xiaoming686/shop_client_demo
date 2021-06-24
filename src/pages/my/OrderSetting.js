@@ -68,11 +68,24 @@ export default class OrderSetting extends Component {
     chooseday: '今天',
     pickhour: ['15分钟','30分钟','45分钟','1小时','1小时15分钟','1小时30分钟','1小时45分钟','2小时','2小时15分钟','2小时30分钟','2小时45分钟','3小时'],
     choosehour: '15分钟',
+    chooseTomorrow:false,
+    isTomorrow:false
   }
   componentDidMount() {
     for (var i = 5; i < 31; i++) {
       this.state.minutes.push(i + '分钟')
     }
+  }
+  chooseTomorrow = ()=>{
+    this.setState({
+      chooseTomorrow:!this.state.chooseTomorrow,
+    })
+  }
+  isTomorrow = ()=>{
+    this.setState({
+      isTomorrow:!this.state.isTomorrow,
+      chooseTomorrow:!this.state.chooseTomorrow
+    })
   }
   showMinPick = () => {
     this.setState({ isshade: true });
@@ -205,9 +218,11 @@ export default class OrderSetting extends Component {
           borderRadius: 15, paddingHorizontal: 20, marginTop: 22
         }}>
           {/* 1 */}
-          <Text style={{ fontSize: 18, color: '#5d5757' }}>预订单设置</Text>
-          <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 5, justifyContent: 'space-between' }}>
+          <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
+          <View> 
+            <Text style={{ fontSize: 18, color: '#5d5757' }}>预订单设置</Text>
             <Text style={{ fontSize: 16, color: '#5d5757' }}>休息时间支持预定</Text>
+          </View>
             <TouchableOpacity style={{
               width: 50, height: 26, backgroundColor: this.state.swichbar ? '#00cb88' : '#9D9B9B',
               borderRadius: 20, justifyContent: 'center', paddingHorizontal: 0.5
@@ -220,20 +235,22 @@ export default class OrderSetting extends Component {
               }}></View>
             </TouchableOpacity>
           </View>
-          <Text style={{ fontSize: 15, color: '#838181', marginTop: 5 }}>休息时间即非营业时间</Text>
           {/* 2 */}
-          <View style={{ marginVertical: 10, paddingVertical: 10, borderBottomWidth: 1, borderTopWidth: 1, borderColor: '#ececec', flexDirection: 'row', justifyContent: 'space-between' }}>
+          <View style={{ marginVertical: 10, paddingVertical: 26, borderBottomWidth: 1, borderTopWidth: 1, borderColor: '#ececec', flexDirection: 'row', justifyContent: 'space-between'}}>
             <View>
               <Text style={{ fontSize: 18, color: '#5d5757' }}>商家接受预定日期</Text>
               <Text style={{ fontSize: 15, color: '#838181', marginTop: 5 }}>公休日不接单</Text>
             </View>
-            <TouchableOpacity activeOpacity={1} onPress={this.showDayPick} style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <View  style={{ flexDirection: 'row', alignItems: 'center'}}>
               <Text style={{ fontSize: 15, color: '#5d5d57' }}>今天</Text>
               <Text style={{ fontSize: 15, marginHorizontal: 10 }}>~</Text>
-              <Text style={{ fontSize: 15, color: '#5d5d57' }}>{this.state.chooseday}</Text>
-              <Image style={{ width: 8, height: 12, resizeMode: 'contain', marginLeft: 10 }}
-                source={require('../../assets/images/png/gr_gengduo_icon1.png')}></Image>
-            </TouchableOpacity>
+              <View>
+              <TouchableOpacity onPress={this.chooseTomorrow} style={{alignItems:'center',justifyContent:'center',width:77,height:30,borderRadius:10,backgroundColor:'#00CB88'}}>
+                <Text style={{ fontSize: 15,color:'white'}}>{this.state.isTomorrow ? '明天' :'今天'} ></Text>
+              </TouchableOpacity>
+              {this.state.chooseTomorrow ? <TouchableOpacity onPress={this.isTomorrow} style={{alignItems:'center',justifyContent:'center',width:77,height:30,borderRadius:10,backgroundColor:'#00CB88',position:'absolute',top:33}}><Text style={{ fontSize: 15,color:'white',zIndex:99}}>{!this.state.isTomorrow ? '明天' :'今天'}</Text></TouchableOpacity>:<></> }
+              </View>
+            </View>
           </View>
           {/* 3-小时选择框需要动画 */}
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>

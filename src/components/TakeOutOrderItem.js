@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, Button, TouchableOpacity, Image, BackHandler, Alert } from 'react-native'
+import { View, Text, Button, TouchableOpacity, Image, BackHandler, Alert,Linking } from 'react-native'
 
 
 export default function TakeOutOrderItem(props) {
@@ -15,7 +15,7 @@ export default function TakeOutOrderItem(props) {
               props.doing || props.refund ?
                 <></>
                 :
-                <Text style={{ backgroundColor: '#FF6127', fontSize: 12, width: 32, height: 20, marginLeft: 15, lineHeight: 20, color: '#f8f8f9', textAlign: 'center',borderRadius:3 }}>预定</Text>
+                <Text style={{ backgroundColor: '#FF6127', fontSize: 12, width: 32, height: 20, marginLeft: 15, lineHeight: 20, color: '#f8f8f9', textAlign: 'center', borderRadius: 3 }}>预定</Text>
             }
           </View>
           {
@@ -46,9 +46,9 @@ export default function TakeOutOrderItem(props) {
           <Text style={{ fontSize: 16, color: '#5d5757' }}>李先生尾号  1234</Text>
           <Text style={{ color: '#5d5757', fontSize: 13, marginTop: 5 }}>2.3km/具体位置</Text>
         </View>
-        <View style={{ flexDirection: 'row' }}>
+        <TouchableOpacity onPress={async () => { await Linking.openURL('tel:12345678') }}>
           <Image source={require('../assets/images/png/dw_dianhuaicon.png')}></Image>
-        </View>
+        </TouchableOpacity>
       </View>
       {/* 3 */}
       {props.refund ?
@@ -90,7 +90,7 @@ export default function TakeOutOrderItem(props) {
       {/* 8 */}
       <View>
         <Text style={{ fontSize: 14, color: '#5d5757', marginTop: 12 }}>师傅你好，麻烦少放辣椒，我真的很怕辣，可以多放点洋葱和香菜。可以多放点孜然，谢谢！</Text>
-        <View style={{ flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', marginTop: 50 }}>
+        <View style={{ flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', marginTop: 30 }}>
           <Text style={{ fontSize: 14, color: '#5d5757', marginRight: 5 }}>订单详情</Text>
           <Image style={{ width: 7, height: 11, resizeMode: 'contain' }} source={require('../assets/images/png/gr_gengduo_icon1.png')}></Image>
         </View>

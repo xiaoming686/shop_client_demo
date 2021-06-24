@@ -58,7 +58,8 @@ export default class LoginScreen extends Component {
       }
       // 显示loading
       this.setState({ isShowMyLoading: true });
-      NetPost('/get_oauth2_token', loginData).then(() => {
+      NetPost('/sign_in/v2', loginData).then((res) => {
+        console.log(res);
         // 关闭loading并跳转，是否记住密码
         this.setState({ isShowMyLoading: false })
         this.props.navigation.replace('NavTab')
@@ -67,7 +68,8 @@ export default class LoginScreen extends Component {
             key: 'loginState',
             data: {
               email: loginData.email,
-              haslogin: true
+              haslogin: true,
+              token: res.access_token
             },
             expires: 1000 * 3600,
           })
@@ -78,6 +80,7 @@ export default class LoginScreen extends Component {
         }
       }).catch(error => {
         // 关闭loading及提示
+        console.log(error);
         this.setState({ isShowMyLoading: false })
         this.setState({ isShowMyPass: true });
         setTimeout(() => {

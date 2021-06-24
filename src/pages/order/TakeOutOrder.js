@@ -45,8 +45,8 @@ class DoingOrder extends Component {
         {
           this.state.doingorder.map((item) => {
             return (
-              <TouchableOpacity activeOpacity={1} onPress={() => { this.props.props.navigation.navigate('TakeoutOrderDetail') }}>
-                <TakeOutOrderItem key={item.id} doing={item.a}></TakeOutOrderItem>
+              <TouchableOpacity key={item.id} activeOpacity={1} onPress={() => { this.props.props.navigation.navigate('TakeoutOrderDetail') }}>
+                <TakeOutOrderItem  doing={item.a}></TakeOutOrderItem>
               </TouchableOpacity>
             )
           })

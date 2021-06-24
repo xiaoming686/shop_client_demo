@@ -1,7 +1,7 @@
-import { View, Text, Image, StyleSheet, Button, ScrollView, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, Image, StyleSheet, Linking, ScrollView, TextInput, TouchableOpacity } from 'react-native'
 import React from 'react'
 
-export default function TakeoutOrderDetail() {
+export default function TakeoutOrderDetail(props) {
   return (
     <View style={{ flex: 1, backgroundColor: '#f8f8f9' }}>
       <ScrollView showsVerticalScrollIndicator={false} style={{ backgroundColor: '#ffffff', flex: 1, margin: 19, marginTop: 40, borderRadius: 15, paddingLeft: 12, paddingRight: 20, paddingTop: 10 }}>
@@ -13,7 +13,7 @@ export default function TakeoutOrderDetail() {
               <Text style={{ fontSize: 19, color: '#3F3C3C', paddingLeft: 5 }}>#1</Text>
             </View>
             <View style={{ flexDirection: 'row' }}>
-              <Image style={{ width: 20, height: 20,resizeMode:'contain' }} source={require('../../assets/images/png/dy_dianpincheicon3x.png')}></Image>
+              <Image style={{ width: 20, height: 20, resizeMode: 'contain' }} source={require('../../assets/images/png/dy_dianpincheicon3x.png')}></Image>
               <Text style={{ fontSize: 15, color: '#FF6127' }}>待骑手接单</Text>
             </View>
           </View>
@@ -25,9 +25,9 @@ export default function TakeoutOrderDetail() {
             <Text style={{ fontSize: 16, color: '#5d5757', }}>李先生尾号1234</Text>
             <Text style={{ color: '#5d5757', fontSize: 13, marginTop: 5 }}>2.3km/具体位置</Text>
           </View>
-          <View style={{ flexDirection: 'row' }}>
+          <TouchableOpacity onPress={async () => { await Linking.openURL('tel:12345678') }}>
             <Image source={require('../../assets/images/png/dw_dianhuaicon.png')}></Image>
-          </View>
+          </TouchableOpacity>
         </View>
         {/* 3 */}
         <View style={{ marginLeft: 12, flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10, paddingBottom: 10, borderBottomColor: '#ECECEC', borderBottomWidth: 1, borderStyle: 'dashed' }}>
@@ -52,8 +52,12 @@ export default function TakeoutOrderDetail() {
             <Text style={{ color: '#FF6127', fontSize: 13, marginTop: 5 }}>11:45  骑手已到店</Text>
           </View>
           <View style={{ flexDirection: 'row' }}>
-            <Image source={require('../../assets/images/png/dw_dianhuaicon.png')}></Image>
-            <Image source={require('../../assets/images/png/dy_dingweiicon.png')} style={{ marginLeft: 10 }}></Image>
+            <TouchableOpacity onPress={async () => { await Linking.openURL('tel:12345678') }}>
+              <Image source={require('../../assets/images/png/dw_dianhuaicon.png')}></Image>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => { props.navigation.navigate('Map') }} style={{ marginLeft: 10 }}>
+              <Image source={require('../../assets/images/png/dy_dingweiicon.png')} ></Image>
+            </TouchableOpacity>
           </View>
         </View>
         {/* 5 */}
