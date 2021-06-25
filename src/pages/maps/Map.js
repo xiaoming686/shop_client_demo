@@ -1,148 +1,96 @@
+import React from 'react'
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, PermissionsAndroid,Dimensions } from 'react-native';
+import MapView, { Circle, Marker, Polygon, PROVIDER_GOOGLE } from 'react-native-maps';
+import Geolocation from 'react-native-geolocation-service'
 
-import { TouchableOpacity, Text, View, PanResponder, StyleSheet, Animated, ScrollView, Dimensions } from 'react-native'
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+const height=Dimensions.get('window').height
 
-
-export default class Map extends Component {
-  state = {
-    index: 0,
-    lastY: 0,
-    top: false,
-    bottom: true,
-    scrolly: 10
-  }
-  getIndex = (index) => {
-    if (index > 2) {
-      return 0
+export default function Map() {
+  async function requestPermission() {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION,
+        {
+          title: "Cool Photo App Camera Permission",
+          message:
+            "Cool Photo App needs access to your camera " +
+            "so you can take awesome pictures.",
+          buttonNeutral: "Ask Me Later",
+          buttonNegative: "Cancel",
+          buttonPositive: "OK"
+        }
+      );
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        console.log("You can use the camera");
+        Geolocation.getCurrentPosition(
+          (position) => {
+            console.log(position);
+          },
+          (error) => {
+            // See error code charts below.
+            console.log(error.code, error.message);
+          },
+          { enableHighAccuracy: false, timeout: 10000, maximumAge: 10000 }
+        )
+      } else {
+        console.log("Camera permission denied");
+      }
+    } catch (err) {
+      console.warn(err);
     }
-    console.log(index);
-    return index + 1
-  }
-  scposition = (e) => {
-    console.log(e.nativeEvent.contentOffset.y);
-    this.setState({ scrolly: e.nativeEvent.contentOffset.y })
-  }
-  panResponder = PanResponder.create({
-    onStartShouldSetPanResponderCapture: (evt, gestureState) => {
-      if (this.state.scrolly > 9) {
-        console.log(this.state.scrolly);
-        console.log(222);
-        return false
-      } else {
-        this.setState({ scrolly: 1 })
-        return true
-      }
-    },
-    // 启动平移手势
-    onMoveShouldSetPanResponder: () => {
-      return true
-    },
-    // 一旦动画开始进行操作
-    onPanResponderGrant: (event, gestureState) => {
-      // 获取偏移量并赋值
-      console.log('刚开始');
-    },
-    // 移动时处理
-    onPanResponderMove: (event, gestureState) => {
-      if (this.state.top) {
-        if (gestureState.dy >= 0) {
-          this.setState({ lastY: -500 + gestureState.dy })
-        } else {
-          this.setState({ lastY: -500 })
-        }
-      } else {
-        this.setState({ lastY: gestureState.dy })
-      }
-    },
-    // 释放后处理
-    // this.pan.y._value手指移动距离
-    onPanResponderRelease: (event, gestureState) => {
-      if (gestureState.moveY < 500) {
-        if (this.state.bottom) {
-          this.setState({ lastY: -500 })
-          this.setState({ bottom: false })
-          this.setState({ top: true })
-        } else {
-          this.setState({ lastY: -500 })
-          this.setState({ top: true })
-        }
-      } else {
-        if (this.state.top) {
-          this.setState({ lastY: 0 })
-          this.setState({ bottom: true })
-          this.setState({ top: false })
-        } else {
-          this.setState({ lastY: 0 })
-        }
-      }
-    }
-  })
-  // <View style={{ backgroundColor: `rgba(0,0,0,${state})`, position: 'absolute', top: 0, zIndex: 99, width: '100%', height: '100%' }}></View>
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.titleText}>{this.state.index}</Text>
-        <Text style={styles.titleText}>Drag this box!</Text>
-        <Text style={styles.titleText}>Drag this box!</Text>
-        <Text style={styles.titleText}>Drag this box!</Text>
-        <Text style={styles.titleText}>Drag this box!</Text>
-        <Text style={styles.titleText}>Drag this box!</Text>
-        <Text style={styles.titleText}>Drag this box!</Text>
-        <Text style={styles.titleText}>Drag this box!</Text>
-        <Text style={styles.titleText}>Drag this box!</Text>
-        <Text style={styles.titleText}>Drag this box!</Text>
-        <Text style={styles.titleText}>Drag this box!</Text>
-        <Text style={styles.titleText}>Drag this box!</Text>
-        <View>
-          <View
-            style={{
-              alignItems: 'center',
-              marginTop: 350,
-              transform: [
-                { translateX: 0 },
-                { translateY: this.state.lastY }]
-            }}
-            {...this.panResponder.panHandlers}
-          >
-            <View style={styles.box}>
-              <ScrollView onScroll={this.scposition} style={{ backgroundColor: 'red' }}>
-                <Text style={{ fontSize: 50 }}>66666666666666</Text>
-                <Text style={{ fontSize: 50 }}>66666666666666</Text>
-                <Text style={{ fontSize: 50 }}>66666666666666</Text>
-                <Text style={{ fontSize: 50 }}>66666666666666</Text>
-                <Text style={{ fontSize: 50 }}>66666666666666</Text>
-                <Text style={{ fontSize: 50 }}>66666666666666</Text>
-                <Text style={{ fontSize: 50 }}>66666666666666</Text>
-                <Text style={{ fontSize: 50 }}>66666666666666</Text>
-                <Text style={{ fontSize: 50 }}>66666666666666</Text>
-                <Text style={{ fontSize: 50 }}>66666666666666</Text>
-                <Text style={{ fontSize: 50 }}>66666666666666</Text>
-              </ScrollView>
-
-            </View>
-          </View>
-        </View>
-      </View>
-    )
-  }
+  };
+  requestPermission()
+  return (
+    <View style={styles.container}>
+      <ScrollView>
+        <MapView
+          provider={PROVIDER_GOOGLE} // remove if not using Google Maps
+          style={styles.map}
+          mapType='standard'
+          showsUserLocation={true}
+          showsTraffic={true}
+          showsIndoorLevelPicker={true}
+          region={{
+            latitude: 30.549287,
+            longitude: 104.077953,
+            latitudeDelta: 0.006,
+            longitudeDelta: 0.006,
+          }}
+        >
+          <Marker title='666'
+            draggable
+            coordinate={{ latitude: 30.549287, longitude: 104.077953 }}
+            image={require('../../assets/images/png/dy_dianpincheicon3x.png')}
+          ></Marker>
+          <Polygon
+            strokeWidth={3}
+            strokeColor='#00cb88'
+            coordinates={[
+              { latitude: 30.549287, longitude: 104.077953 },
+              { latitude: 30.548, longitude: 104.077 }
+            ]}>
+          </Polygon>
+          <Circle
+            center={{ latitude: 30.549287, longitude: 104.077953 }}
+            radius={200}
+            strokeWidth={3}
+            strokeColor='#00cb88'
+          ></Circle>
+        </MapView>
+        <View style={{ backgroundColor: 'red', width: '100%', height: 500 }}></View>
+        <View><Text>6666666666</Text></View>
+      </ScrollView>
+    </View>
+  )
 }
-
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    marginTop: 30
+    flex:1,
+    justifyContent:'center'
   },
-  titleText: {
-    fontSize: 14,
-    lineHeight: 24,
-    fontWeight: "bold"
-  },
-  box: {
-    height: 650,
-    width: Dimensions.get('window').width - 20,
-    backgroundColor: "gray",
-    borderRadius: 20,
-    padding: 40
+  map: {
+    marginTop:33,
+    width:'100%',
+    height:height/2,
   },
 });

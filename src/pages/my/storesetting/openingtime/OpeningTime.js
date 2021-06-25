@@ -34,6 +34,7 @@ export default class OpeningTime extends Component {
             ],
             'day_off': 2
         }
+        // 发送设置时间的请求
         NetPost('/set_business_time/v2?query=1', data).then((res) => {
             // NetGet('/set_preparation_time/v2?preparation_time=15').then((res) => {
             console.log('---');

@@ -23,8 +23,7 @@ const Stack = createStackNavigator();
 
 function Nav(props) {
   return (
-    // <Stack.Navigator initialRouteName={props.haslogin?"NavTab":"Login"} >
-    <Stack.Navigator initialRouteName="NavTab" >
+    <Stack.Navigator initialRouteName={props.haslogin?"NavTab":"Login"} >
       <Stack.Screen
         name="Login"
         component={LoginScreen}

@@ -4,61 +4,6 @@ import Picker from 'react-native-picker'
 import EventBus from 'react-native-event-bus'
 
 export default class OrderSetting extends Component {
-  // <Text style={{ backgroundColor: '#ececec', padding: 3, borderRadius: 15, paddingHorizontal: 10, fontSize: 15 }}>今天</Text>
-  // <Text style={{ marginHorizontal: 5, fontSize: 15 }}>~</Text>
-  // <View>
-  //   {/* 2-1今日明日弹出框 */}
-  //   <TouchableOpacity onPress={() => { this.setState({ clickToday: !this.state.clickToday }) }}>
-  //     <Text style={{
-  //       backgroundColor: '#00cb88', padding: 3, borderRadius: 15,
-  //       paddingHorizontal: 10, color: '#ffffff', fontSize: 15
-  //     }}>{this.state.clickTomorrow ? '明天' : '今天'}</Text>
-  //   </TouchableOpacity>
-  //   {
-  //     this.state.clickToday ?
-  //       <TouchableOpacity
-  //         style={{ position: 'absolute', top: 28 }}
-  //         onPress={() => { this.setState({ clickTomorrow: !this.state.clickTomorrow, clickToday: !this.state.clickToday }) }}>
-  //         <Text style={{
-  //           backgroundColor: '#00cb88', padding: 3, borderRadius: 15,
-  //           paddingHorizontal: 10, color: '#ffffff', fontSize: 15
-  //         }}>{this.state.clickTomorrow ? '今天' : '明天'}</Text>
-  //       </TouchableOpacity>
-  //       :
-  //       <></>
-  //   }
-  // </View>
-  //   <TouchableOpacity
-  //   activeOpacity={1}
-  //   onPress={() => { this.setState({ clickHour: !this.state.clickHour }) }}
-  //   style={{ backgroundColor: '#00cb88', width: 104, height: 28, borderRadius: 15, alignItems: 'center' }}>
-  //   <Text style={{ fontSize: 15, color: '#ffffff', lineHeight: 28 }}>{this.state.pickhour[this.state.clickHourItem - 1].hour}</Text>
-  // </TouchableOpacity>
-  // {
-  //   this.state.clickHour ?
-  //     <View style={{
-  //       position: 'absolute', top: 30, zIndex: 10, borderRadius: 15,
-  //       backgroundColor: '#e5e4e4', width: 104, height: 180,
-  //     }}>
-  //       <ScrollView showsVerticalScrollIndicator={false}>
-  //         {
-  //           this.state.pickhour.map((item) => {
-  //             return (
-  //               <TouchableOpacity onPress={() => { this.setState({ clickHourItem: item.id, clickHour: false }) }}
-  //                 activeOpacity={1} key={item.id}>
-  //                 <Text style={{
-  //                   fontSize: 15, alignSelf: 'center',
-  //                   color: this.state.clickHourItem == item.id ? '#000000' : '#9d9b9b', lineHeight: 28
-  //                 }}>{item.hour}</Text>
-  //               </TouchableOpacity>
-  //             )
-  //           })
-  //         }
-  //       </ScrollView>
-  //     </View>
-  //     :
-  //     <></>
-  // }
   state = {
     isshade: false,
     swichbar: true,
